@@ -5,41 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="blog.html">Blog</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
+    <div class="rain"></div>
+    
+    <nav class="navbar">
+        <div class="logo">Rainmate</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="search-box">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
     </nav>
     
     <main>
-        <h1>Blog</h1>
-        <p class="subtitle">Temukan berbagai artikel inspiratif tentang desain, coding, dan teknologi.</p>
+        <div class="hero-section">
+            <h1>BLOG</h1>
+            <h2>Temukan berbagai artikel inspiratif tentang desain, coding, dan teknologi.</h2>
+        </div>
         
-        <div class="blog-posts">
-            <article class="blog-post">
-                <h2>CREATIVE HIDDLELY</h2>
-                <h3>"5 Tips Membuat Desain Portfolio"</h3>
-                <p class="description">"Pelajari cara membuat tampilan portfolio yang memikat klien..."</p>
-            </article>
+        <div class="blog-container">
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <div class="post-image">
+                        <img src="img/creative.jpg" alt="Portfolio Design Tips">
+                        <div class="post-image-rain"></div>
+                        <div class="lightning-container"></div>
+                    </div>
+                    <div class="post-content">
+                        <span class="category">CREATIVE HIDDLELY</span>
+                        <h3>"5 Tips Membuat Desain Portfolio"</h3>
+                        <p class="description">"Pelajari cara membuat tampilan portfolio yang memikat klien..."</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="blog-post">
+                    <div class="post-image">
+                        <img src="img/web.jpg" alt="HTML & CSS Tutorial">
+                        <div class="post-image-rain"></div>
+                        <div class="lightning-container"></div>
+                    </div>
+                    <div class="post-content">
+                        <span class="category">Kuliah</span>
+                        <h3>"Panduan Lengkap Membuat Website Portfolio dengan HTML & CSS"</h3>
+                        <p class="description">"Tutorial step-by-step untuk membuat website portfolio profesional dari awal hingga akhir..."</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="blog-post">
+                    <div class="post-image">
+                        <img src="img/Vector.jpg" alt="Internet of Things">
+                        <div class="post-image-rain"></div>
+                        <div class="lightning-container"></div>
+                    </div>
+                    <div class="post-content">
+                        <span class="category">Teknologi</span>
+                        <h3>"Internet of Things (IoT): Bagaimana Perangkat Pintar Bekerja?"</h3>
+                        <p class="description">"Mengenal ekosistem IoT dan bagaimana berbagai perangkat pintar terhubung dan berinteraksi..."</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
             
-            <article class="blog-post">
-                <h2>Kuliah</h2>
-                <h3>"Panduan Lengkap Membuat Website Portfolio dengan HTML & CSS"</h3>
-            </article>
-            
-            <article class="blog-post">
-                <h2>Teknologi</h2>
-                <h3>"Internet of Things (IoT): Bagaimana Perangkat Pintar Bekerja?"</h3>
-            </article>
+            <div class="categories-section">
+                <div class="category-card">
+                    <h3>Kuliah</h3>
+                    <div class="category-posts">
+                        <div class="category-post">
+                            <img src="img/kuliah.jpg" alt="College Group">
+                            <h4>Catatan Kuliah Semester 5</h4>
+                        </div>
+                        <div class="category-post">
+                            <img src="img/tugasakhir.jpg" alt="Study Notes">
+                            <h4>Penerapan UI/UX dalam Projek Akhir</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="weather">
+            <i class="fas fa-cloud-rain"></i> 18° C
         </div>
     </main>
-    
-    <footer>
-        <p>Copyright © Rahmat Fadhila</p>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h3>Rainmate</h3>
+                    <p>Creating ideas under the rain</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rainmate. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Function to create the rain effect
+        function createRain() {
+            const rain = document.querySelector('.rain');
+            
+            const numberOfDrops = 150;
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                const posX = Math.floor(Math.random() * window.innerWidth);
+                drop.style.left = posX + 'px';
+                const fallDuration = 0.5 + Math.random();
+                drop.style.animationDuration = fallDuration + 's';
+                const opacity = 0.2 + Math.random() * 0.5;
+                drop.style.opacity = opacity;
+                const delay = Math.random() * 2;
+                drop.style.animationDelay = delay + 's';
+                const size = 1 + Math.random();
+                drop.style.width = size + 'px';
+                drop.style.height = (size * 10) + 'px';
+                rain.appendChild(drop);
+            }
+        }
+
+        function createPostRain() {
+            const postRainContainers = document.querySelectorAll('.post-image-rain');
+            postRainContainers.forEach(container => {
+                const numberOfDrops = 30;
+                for (let i = 0; i < numberOfDrops; i++) {
+                    const drop = document.createElement('div');
+                    drop.className = 'post-rain-drop';
+                    const posX = Math.floor(Math.random() * 100);
+                    drop.style.left = posX + '%';
+                    const fallDuration = 0.5 + Math.random();
+                    drop.style.animationDuration = fallDuration + 's';
+                    const opacity = 0.3 + Math.random() * 0.6;
+                    drop.style.opacity = opacity;
+                    const delay = Math.random() * 2;
+                    drop.style.animationDelay = delay + 's';
+                    const size = 1 + Math.random();
+                    drop.style.width = size + 'px';
+                    drop.style.height = (size * 8) + 'px';
+                    container.appendChild(drop);
+                }
+            });
+        }
+
+        function createLightningEffects() {
+            const lightningContainers = document.querySelectorAll('.lightning-container');
+            lightningContainers.forEach(container => {
+                function flashLightning() {
+                    const lightning = document.createElement('div');
+                    lightning.className = 'lightning';
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    lightning.style.left = posX + '%';
+                    lightning.style.top = posY + '%';
+                    const scale = 0.5 + Math.random() * 0.5;
+                    lightning.style.transform = `scale(${scale})`;
+                    container.appendChild(lightning);
+                    setTimeout(() => { lightning.remove(); }, 200);
+                    const nextFlash = 5000 + Math.random() * 10000;
+                    setTimeout(flashLightning, nextFlash);
+                }
+                setTimeout(flashLightning, 2000 + Math.random() * 5000);
+            });
+        }
+
+        window.addEventListener('load', function() {
+            createRain();
+            createPostRain();
+            createLightningEffects();
+        });
+    </script>
 </body>
 </html>

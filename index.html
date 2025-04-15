@@ -5,29 +5,411 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahmat Fadhila - Home</title>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Animation styles */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Rain entrance animation */
+        .rain-entrance {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .logo-entrance {
+            color: #00e5ff;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+            opacity: 0;
+            animation: logoEntrance 3s ease-in-out forwards;
+        }
+
+        @keyframes logoEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            70% {
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .entrance-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+
+        .entrance-drop {
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,0.8) 100%);
+            opacity: 0.8;
+            animation: entranceRainFall linear infinite;
+        }
+
+        @keyframes entranceRainFall {
+            0% {
+                transform: translateY(-100vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .tagline-entrance {
+            color: #fff;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: taglineEntrance 3s ease-in-out forwards;
+            animation-delay: 1s;
+            text-align: center;
+        }
+
+        @keyframes taglineEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Rain footer fix */
+        .rain-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="blog.html">Blog</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
+    <!-- Entrance animation -->
+    <div class="rain-entrance" id="entranceAnimation">
+        <div class="entrance-rain" id="entranceRain"></div>
+        <div class="logo-entrance">Rainmate</div>
+        <div class="tagline-entrance">Creating ideas under the rain</div>
+    </div>
+
+    <!-- Rain effect container -->
+    <div class="rain-container"></div>
+    
+    <nav class="navbar fade-in" style="--delay: 4s;">
+        <div class="logo">Rainmate</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="portfolio.html">Portofolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="search-box">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
     </nav>
     
     <main>
-        <h1>Rahmat Fadhila</h1>
-        <div class="intro">
-            <h2>Hi, I'm Rahmat<br>Creating ideas under the rain</h2>
-            <p>Someone who believes that, just like rain, every moment and thought has its own story. Here, I share my ideas, creativity, and small reflections about life, hoping they can bring a little calm and inspiration to anyone who stops by.</p>
-            <p class="welcome">Welcome to my little space on the Internet.<br>I'm Rahmat</p>
-            <a href="contact.html" class="cta-button">Let's talk</a>
+        <div class="hero-section fade-in" style="--delay: 4.3s;">
+            <h1>Hi, i'm Rahmat</h1>
+            <h2>Creating ideas under the rain</h2>
         </div>
-        <div class="weather">18° C</div>
+        
+        <div class="content-container">
+            <div class="left-content fade-in" style="--delay: 4.6s;">
+                <p class="description">
+                    someone who believes that, just like rain, every moment and thought has its own story. Here, I share my ideas, creativity, and small reflections about life, hoping they can bring a little calm and inspiration to anyone who stops by.
+                </p>
+                <div class="arrow-icon">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div class="center-content fade-in" style="--delay: 4.9s;">
+                <div class="photo-stack">
+                    <div class="lightning-container"></div>
+                    <div class="profile-rain"></div>
+                    <img src="img/Fotoku.png" alt="Background" class="background-photo">
+                    <img src="img/Fotoku.png" alt="Rahmat Fadhila" class="profile-photo">
+                </div>
+            </div>
+            
+            <div class="right-content fade-in" style="--delay: 5.2s;">
+                <div class="welcome-box">
+                    <p>Welcome to my little space on the internet.</p>
+                    <p class="highlight">I'm Rahmat</p>
+                    <div class="line-separator"></div>
+                    <a href="about.html" class="cta-button">Unlock My Story <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="weather fade-in" style="--delay: 5.5s;">
+            <i class="fas fa-cloud-rain"></i> 18° C
+        </div>
     </main>
-    
-    <footer>
-        <p>Copyright © Rahmat Fadhila</p>
+
+    <footer class="footer fade-in" style="--delay: 5.8s;">
+        <div class="rain-footer"></div>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h3>Rainmate</h3>
+                    <p>Creating ideas under the rain</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp" class="social-btn">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram" class="social-btn">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook" class="social-btn">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram" class="social-btn">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rainmate. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Function to create the entrance rain effect
+        function createEntranceRain() {
+            const entranceRain = document.getElementById('entranceRain');
+            const numberOfDrops = 200;
+            
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'entrance-drop';
+                
+                // Random position across screen
+                const posX = Math.floor(Math.random() * window.innerWidth);
+                drop.style.left = posX + 'px';
+                
+                // Random falling speed and delay
+                const fallDuration = 0.5 + Math.random() * 1.5;
+                drop.style.animationDuration = fallDuration + 's';
+                
+                const delay = Math.random() * 3;
+                drop.style.animationDelay = delay + 's';
+                
+                // Random size and opacity
+                const size = 1 + Math.random() * 2;
+                const height = size * (10 + Math.random() * 15);
+                drop.style.width = size + 'px';
+                drop.style.height = height + 'px';
+                
+                const opacity = 0.3 + Math.random() * 0.7;
+                drop.style.opacity = opacity;
+                
+                entranceRain.appendChild(drop);
+            }
+        }
+
+        // Function to hide entrance animation
+        function hideEntranceAnimation() {
+            const entranceAnimation = document.getElementById('entranceAnimation');
+            entranceAnimation.style.opacity = '0';
+            
+            // Remove from DOM after animation completes
+            setTimeout(() => {
+                entranceAnimation.style.display = 'none';
+            }, 1500);
+        }
+
+        // Function to create main rain effect
+        function createRain() {
+            const rainContainer = document.querySelector('.rain-container');
+            const rainFooter = document.querySelector('.rain-footer');
+            
+            const numberOfDrops = 150;
+            
+            // Create main rain effect
+            for (let i = 0; i < numberOfDrops; i++) {
+                createRainDrop(rainContainer, true);
+            }
+            
+            // Create footer rain effect (smaller and fewer drops)
+            for (let i = 0; i < numberOfDrops / 2; i++) {
+                createRainDrop(rainFooter, false);
+            }
+            
+            // Add periodic new drops to keep the rain looking fresh
+            setInterval(() => {
+                // Remove some old drops
+                const mainDrops = rainContainer.querySelectorAll('.rain-drop');
+                const footerDrops = rainFooter.querySelectorAll('.rain-drop');
+                
+                if (mainDrops.length > numberOfDrops * 1.2) {
+                    for (let i = 0; i < 10; i++) {
+                        if (mainDrops[i]) {
+                            mainDrops[i].remove();
+                        }
+                    }
+                }
+                
+                if (footerDrops.length > (numberOfDrops / 2) * 1.2) {
+                    for (let i = 0; i < 5; i++) {
+                        if (footerDrops[i]) {
+                            footerDrops[i].remove();
+                        }
+                    }
+                }
+                
+                // Add some new drops
+                for (let i = 0; i < 10; i++) {
+                    createRainDrop(rainContainer, true);
+                }
+                
+                for (let i = 0; i < 5; i++) {
+                    createRainDrop(rainFooter, false);
+                }
+            }, 3000);
+        }
+
+        function createRainDrop(container, isMainRain) {
+            const drop = document.createElement('div');
+            drop.className = 'rain-drop';
+            
+            const posX = Math.floor(Math.random() * window.innerWidth);
+            drop.style.left = posX + 'px';
+            
+            const fallDuration = isMainRain ? 
+                (0.5 + Math.random() * 1.5) : 
+                (0.3 + Math.random() * 0.8);
+            drop.style.animationDuration = fallDuration + 's';
+            
+            const opacity = isMainRain ? 
+                (0.2 + Math.random() * 0.5) : 
+                (0.1 + Math.random() * 0.3);
+            drop.style.opacity = opacity;
+            
+            const delay = Math.random() * 2;
+            drop.style.animationDelay = delay + 's';
+            
+            const size = isMainRain ? 
+                (1 + Math.random()) : 
+                (0.5 + Math.random() * 0.5);
+            drop.style.width = size + 'px';
+            drop.style.height = isMainRain ? (size * 15) + 'px' : (size * 10) + 'px';
+            
+            // Add slight horizontal movement to some drops
+            if (Math.random() > 0.7) {
+                drop.style.animation = `rain-fall-angled ${fallDuration}s linear ${delay}s infinite`;
+            }
+            
+            // Randomly color some drops to match the cyan theme color
+            if (Math.random() > 0.8) {
+                drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
+                drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
+            }
+            
+            container.appendChild(drop);
+        }
+
+        function createProfileRain() {
+            const profileRain = document.querySelector('.profile-rain');
+            const numberOfDrops = 50;
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'profile-rain-drop';
+                const posX = Math.floor(Math.random() * 100);
+                drop.style.left = posX + '%';
+                const fallDuration = 0.5 + Math.random();
+                drop.style.animationDuration = fallDuration + 's';
+                const opacity = 0.3 + Math.random() * 0.6;
+                drop.style.opacity = opacity;
+                const delay = Math.random() * 2;
+                drop.style.animationDelay = delay + 's';
+                const size = 1 + Math.random();
+                drop.style.width = size + 'px';
+                drop.style.height = (size * 8) + 'px';
+                profileRain.appendChild(drop);
+            }
+        }
+
+        function createLightning() {
+            const lightningContainer = document.querySelector('.lightning-container');
+            function flashLightning() {
+                const lightning = document.createElement('div');
+                lightning.className = 'lightning';
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                lightning.style.left = posX + '%';
+                lightning.style.top = posY + '%';
+                const scale = 0.5 + Math.random() * 0.5;
+                lightning.style.transform = `scale(${scale})`;
+                lightningContainer.appendChild(lightning);
+                setTimeout(() => { lightning.remove(); }, 200);
+                const nextFlash = 2000 + Math.random() * 6000;
+                setTimeout(flashLightning, nextFlash);
+            }
+            setTimeout(flashLightning, 1000 + Math.random() * 3000);
+        }
+
+        window.addEventListener('load', function() {
+            // Create entrance animation first
+            createEntranceRain();
+            
+            // After 4 seconds, hide entrance and show main content
+            setTimeout(() => {
+                hideEntranceAnimation();
+                createRain();
+                createProfileRain();
+                createLightning();
+            }, 4000);
+        });
+    </script>
 </body>
 </html>

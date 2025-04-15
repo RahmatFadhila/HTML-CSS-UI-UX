@@ -5,47 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="blog.html">Blog</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
+    <nav class="navbar">
+        <div class="logo">Rainmate</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="search-box">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
     </nav>
     
     <main>
-        <h1>Contact Me</h1>
-        
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2>Hit Me Up</h2>
-                
-                <div class="contact-item">
-                    <h3>EMAIL</h3>
-                    <p>mmmetsahmat97@gmail.com</p>
+        <div class="section contact-section">
+            <div class="contact-heading">
+                <h1>CONTACT US</h1>
+                <p class="subtitle">WE'D LOVE TO HEAR WHAT YOU THINK</p>
+                <div class="heading-underline"></div>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info-left">
+                    <div class="info-section">
+                        <h3>EMAIL US</h3>
+                        <a href="mailto:mametrahmat97@gmail.com">mametrahmat97@gmail.com</a>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>PHONE US</h3>
+                        <a href="tel:+6285657133691">+62 856 5713 3691</a>
+                    </div>
+                    
+                    <div class="profile-images">
+                        <div class="back-image"></div>
+                        <div class="front-image">
+                            <img src="img/diriku.jpeg" alt="Rahmat Fadhila">
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/6285657133691" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="contact-item">
-                    <h3>CONTACT ME</h3>
-                    <p>+6285657133691</p>
-                </div>
-                
-                <div class="contact-item">
-                    <h3>INSTAGRAM</h3>
-                    <p>@rahmatfdhla</p>
+                <div class="contact-form">
+                    <h2>LET'S WORK TOGETHER</h2>
+                    <form id="contactForm" action="mailto:mametrahmat97@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">FIRST NAME <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">LAST NAME <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">EMAIL ADDRESS <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">PHONE NUMBER <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">LOCATION <span class="required">*</span></label>
+                                <input type="text" id="location" name="location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">DATE <span class="required">*</span></label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="subject">SUBJECT <span class="required">*</span></label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="message">DETAILS <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <button type="submit" class="submit-btn">SUBMIT</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             
-            <div class="contact-message">
-                <p>"Feel free to reach out for collaborations, projects, or just to say hi! I'm open to discussions, sharing, and creative ideas."</p>
+            <div class="testimonials-section">
+                <h2>WHAT OUR CLIENTS SAY</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"Feel free to reach out for collaborations, projects, or just to say hi! I'm open to discussions, sharing, and creative ideas."</p>
+                        <div class="testimonial-author">
+                            <span class="author-name">Rahmat Fadhila</span>
+                            <span class="author-title">Rainmate</span>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"Creating ideas under the rain is more than a tagline - it's a philosophy of innovation and creativity in every project we undertake."</p>
+                        <div class="testimonial-author">
+                            <span class="author-name">Creative Team</span>
+                            <span class="author-title">Rainmate Studio</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
-    
-    <footer>
-        <p>Copyright © Rahmat Fadhila</p>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h3>Rainmate</h3>
+                    <p>Creating ideas under the rain</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rainmate. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Function to create the rain effect
+        function createRain() {
+            const rain = document.createElement('div');
+            rain.className = 'rain';
+            document.body.appendChild(rain);
+            
+            const numberOfDrops = 150;
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                const posX = Math.floor(Math.random() * window.innerWidth);
+                drop.style.left = posX + 'px';
+                const fallDuration = 0.5 + Math.random();
+                drop.style.animationDuration = fallDuration + 's';
+                const opacity = 0.2 + Math.random() * 0.5;
+                drop.style.opacity = opacity;
+                const delay = Math.random() * 2;
+                drop.style.animationDelay = delay + 's';
+                const size = 1 + Math.random();
+                drop.style.width = size + 'px';
+                drop.style.height = (size * 10) + 'px';
+                rain.appendChild(drop);
+            }
+        }
+
+        window.addEventListener('load', function() {
+            createRain();
+            
+            // Form submission handler to format the email
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const location = document.getElementById('location').value;
+                const date = document.getElementById('date').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Set email subject and update form action
+                const formattedSubject = encodeURIComponent(`Contact Form: ${subject}`);
+                const formattedBody = encodeURIComponent(
+                    `First Name: ${firstName}\n` +
+                    `Last Name: ${lastName}\n` +
+                    `Email: ${email}\n` +
+                    `Phone: ${phone}\n` +
+                    `Location: ${location}\n` +
+                    `Date: ${date}\n\n` +
+                    `Message:\n${message}`
+                );
+                
+                this.action = `mailto:mametrahmat97@gmail.com?subject=${formattedSubject}&body=${formattedBody}`;
+            });
+        });
+    </script>
 </body>
 </html>

@@ -5,43 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="blog.html">Blog</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
+    <nav class="navbar">
+        <div class="logo">Rainmate</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="search-box">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
     </nav>
     
     <main>
-        <h1>My Portfolio</h1>
-        <p class="subtitle">"Here are some of the projects I have worked on, showcasing my dedication to design and development."</p>
-        
-        <div class="portfolio-items">
-            <article class="portfolio-item">
-                <h2>Deebot Vacuum - Digital Marketing & E-commerce</h2>
-                <p>Projek e-commerce ini saya buat untuk memasarkan produk Deebot Vacuum dengan desain modern, responsif, dan fitur checkout. Saya berperan dalam merancang UI dan memastikan pengalaman pengguna yang nyaman.</p>
-                <a href="#" class="view-more">View more...</a>
-            </article>
+        <div class="section portfolio-section">
+            <h1>My Portfolio</h1>
             
-            <article class="portfolio-item">
-                <h2>Pembuatan Dashboard Analitik dengan RStudio dan Shiny</h2>
-                <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
-                <a href="#" class="view-more">View more...</a>
-            </article>
+            <div class="portfolio-header">
+                <p class="header-quote">"Here are some of the projects I have worked on, showcasing my dedication to design and development."</p>
+            </div>
             
-            <article class="portfolio-item">
-                <h2>App Design & Prototype</h2>
-                <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
-                <a href="#" class="view-more">View more...</a>
-            </article>
+            <div class="portfolio-container">
+                <!-- Project 1: Deebot Vacuum -->
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <div class="portfolio-text">
+                            <h2>Deebot Vacuum-Digital Marketing & E-commerce</h2>
+                            <p>Proyek e-commerce ini saya buat untuk memasarkan produk Deebot Vacuum dengan desain modern, responsif, dan fitur checkout. Saya berperan dalam merancang UI dan memastikan pengalaman pengguna yang nyaman.</p>
+                            <div class="view-more">
+                                <a href="#" class="view-more-link">View more...</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Dashboard Analitik -->
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <div class="portfolio-text">
+                            <h2>Pembuatan Dashboard Analitik dengan RStudio dan Shiny</h2>
+                            <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
+                            <div class="view-more">
+                                <a href="#" class="view-more-link">View more...</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="img/figma.png" alt="Dashboard Analitik Project">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: App Design & Prototype -->
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <div class="portfolio-text">
+                            <h2>App Design & Prototype</h2>
+                            <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
+                            <div class="view-more">
+                                <a href="#" class="view-more-link">View more...</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="img/dashboard.jpg" alt="App Design & Prototype">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-    
-    <footer>
-        <p>Copyright © Rahmat Fadhila</p>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h3>Rainmate</h3>
+                    <p>Creating ideas under the rain</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rainmate. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Function to create the rain effect
+        function createRain() {
+            const rain = document.createElement('div');
+            rain.className = 'rain';
+            document.body.appendChild(rain);
+            
+            const numberOfDrops = 150;
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                const posX = Math.floor(Math.random() * window.innerWidth);
+                drop.style.left = posX + 'px';
+                const fallDuration = 0.5 + Math.random();
+                drop.style.animationDuration = fallDuration + 's';
+                const opacity = 0.2 + Math.random() * 0.5;
+                drop.style.opacity = opacity;
+                const delay = Math.random() * 2;
+                drop.style.animationDelay = delay + 's';
+                const size = 1 + Math.random();
+                drop.style.width = size + 'px';
+                drop.style.height = (size * 10) + 'px';
+                rain.appendChild(drop);
+            }
+        }
+
+        window.addEventListener('load', function() {
+            createRain();
+        });
+    </script>
 </body>
 </html>
