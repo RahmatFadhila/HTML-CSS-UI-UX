@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="css/portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition-overlay.active {
+            opacity: 0.8;
+        }
+        
+        /* Loading indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none;
+        }
+        
+        .loading-indicator.active {
+            display: block;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 229, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00e5ff;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {transform: rotate(360deg);}
+        }
+        
         /* Tambahan CSS untuk foto profil dan penyempurnaan */
         .portfolio-intro {
             display: flex;
@@ -115,163 +160,7 @@
         .gallery-image:hover {
             transform: scale(1.05);
         }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo">Rainmate</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="search-box">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
-    </nav>
-    
-    <main>
-        <div class="section portfolio-section">
-            <h1 class="section-title">My Portfolio</h1>
-            
-            <!-- Tambahan bagian intro dengan foto -->
-            <div class="portfolio-intro">
-                <div class="intro-content">
-                    <h2 class="intro-title">Rahmat Fadhila</h2>
-                    <p class="intro-subtitle">UI/UX Designer & Frontend Developer</p>
-                    <p class="intro-text">Saya adalah designer dan developer dengan pengalaman yang lumayan bagus dalam merancang antarmuka yang menarik dan fungsional. Saya percaya bahwa desain yang baik bukan hanya tentang estetika, tetapi juga tentang bagaimana pengguna berinteraksi dengan produk.</p>
-                    <div class="tags">
-                        <span class="tag">UI/UX Design</span>
-                        <span class="tag">Web Development</span>
-                        <span class="tag">Frontend</span>
-                        <span class="tag">Digital Marketing</span>
-                        <span class="tag">E-commerce</span>
-                    </div>
-                </div>
-                <div class="intro-photo">
-                    <img src="img/profilporto.jpg" alt="Rahmat Fadhila">
-                </div>
-            </div>
-            
-            <div class="portfolio-header">
-                <p class="header-quote">"Here are some of the projects I have worked on, showcasing my dedication to design and development."</p>
-            </div>
-            
-            <div class="portfolio-container">
-                <!-- Project 1: Deebot Vacuum -->
-                <div class="portfolio-item">
-                    <div class="portfolio-content">
-                        <div class="portfolio-text">
-                            <h2>Deebot Vacuum-Digital Marketing & E-commerce</h2>
-                            <p>Proyek e-commerce ini saya buat untuk memasarkan produk Deebot Vacuum dengan desain modern, responsif, dan fitur checkout. Saya berperan dalam merancang UI dan memastikan pengalaman pengguna yang nyaman.</p>
-                            <div class="view-more">
-                                <a href="#" class="view-more-link">View more...</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-image">
-                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2: Dashboard Analitik -->
-                <div class="portfolio-item">
-                    <div class="portfolio-content">
-                        <div class="portfolio-text">
-                            <h2>Pembuatan Dashboard Analitik dengan RStudio dan Shiny</h2>
-                            <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
-                            <div class="view-more">
-                                <a href="#" class="view-more-link">View more...</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-image">
-                            <img src="img/dashboard.jpg" alt="Dashboard Analitik Project">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3: App Design & Prototype -->
-                <div class="portfolio-item">
-                    <div class="portfolio-content">
-                        <div class="portfolio-text">
-                            <h2>App Design & Prototype</h2>
-                            <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
-                            <div class="view-more">
-                                <a href="#" class="view-more-link">View more...</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-image">
-                            <img src="img/figma.png" alt="App Design & Prototype">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-logo">
-                    <h3>Rainmate</h3>
-                    <p>Creating ideas under the rain</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Rainmate. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Function to create the rain effect
-        function createRain() {
-            const rain = document.createElement('div');
-            rain.className = 'rain';
-            document.body.appendChild(rain);
-            
-            const numberOfDrops = 150;
-            for (let i = 0; i < numberOfDrops; i++) {
-                const drop = document.createElement('div');
-                drop.className = 'rain-drop';
-                const posX = Math.floor(Math.random() * window.innerWidth);
-                drop.style.left = posX + 'px';
-                const fallDuration = 0.5 + Math.random();
-                drop.style.animationDuration = fallDuration + 's';
-                const opacity = 0.2 + Math.random() * 0.5;
-                drop.style.opacity = opacity;
-                const delay = Math.random() * 2;
-                drop.style.animationDelay = delay + 's';
-                const size = 1 + Math.random();
-                drop.style.width = size + 'px';
-                drop.style.height = (size * 10) + 'px';
-                rain.appendChild(drop);
-            }
-        }
-
-        window.addEventListener('load', function() {
-            createRain();
-        });
         
-        // Tambahkan CSS untuk modal
-        const styleModal = document.createElement('style');
-        styleModal.innerHTML = `
         /* Modal styles */
         .portfolio-modal {
             display: none;
@@ -455,13 +344,192 @@
                 justify-content: center;
             }
         }
-        `;
-        document.head.appendChild(styleModal);
+    </style>
+</head>
+<body>
+    <!-- Page transition overlay -->
+    <div class="page-transition-overlay"></div>
+    <div class="loading-indicator">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Container for modal -->
+    <div class="portfolio-modal"></div>
+    
+    <nav class="navbar">
+        <div class="logo">Rainmate</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="page-link" data-transition="true">Home</a></li>
+            <li><a href="about.html" class="page-link" data-transition="true">About</a></li>
+            <li><a href="blog.html" class="page-link" data-transition="true">Blog</a></li>
+            <li><a href="portfolio.html" class="page-link" data-transition="true">Portfolio</a></li>
+            <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
+        </ul>
+        <div class="search-box">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="section portfolio-section">
+            <h1 class="section-title">My Portfolio</h1>
+            
+            <!-- Tambahan bagian intro dengan foto -->
+            <div class="portfolio-intro">
+                <div class="intro-content">
+                    <h2 class="intro-title">Rahmat Fadhila</h2>
+                    <p class="intro-subtitle">UI/UX Designer & Frontend Developer</p>
+                    <p class="intro-text">Saya adalah designer dan developer dengan pengalaman yang lumayan bagus dalam merancang antarmuka yang menarik dan fungsional. Saya percaya bahwa desain yang baik bukan hanya tentang estetika, tetapi juga tentang bagaimana pengguna berinteraksi dengan produk.</p>
+                    <div class="tags">
+                        <span class="tag">UI/UX Design</span>
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Frontend</span>
+                        <span class="tag">Digital Marketing</span>
+                        <span class="tag">E-commerce</span>
+                    </div>
+                </div>
+                <div class="intro-photo">
+                    <img src="img/profilporto.jpg" alt="Rahmat Fadhila">
+                </div>
+            </div>
+            
+            <div class="portfolio-header">
+                <p class="header-quote">"Here are some of the projects I have worked on, showcasing my dedication to design and development."</p>
+            </div>
+            
+            <div class="portfolio-container">
+                <!-- Project 1: Deebot Vacuum -->
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <div class="portfolio-text">
+                            <h2>Deebot Vacuum-Digital Marketing & E-commerce</h2>
+                            <p>Proyek e-commerce ini saya buat untuk memasarkan produk Deebot Vacuum dengan desain modern, responsif, dan fitur checkout. Saya berperan dalam merancang UI dan memastikan pengalaman pengguna yang nyaman.</p>
+                            <div class="view-more">
+                                <a href="#" class="view-more-link">View more...</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Dashboard Analitik -->
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <div class="portfolio-text">
+                            <h2>Pembuatan Dashboard Analitik dengan RStudio dan Shiny</h2>
+                            <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
+                            <div class="view-more">
+                                <a href="#" class="view-more-link">View more...</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="img/dashboard.jpg" alt="Dashboard Analitik Project">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: App Design & Prototype -->
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <div class="portfolio-text">
+                            <h2>App Design & Prototype</h2>
+                            <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
+                            <div class="view-more">
+                                <a href="#" class="view-more-link">View more...</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="img/figma.png" alt="App Design & Prototype">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-        // Buat container modal
-        const modalContainer = document.createElement('div');
-        modalContainer.className = 'portfolio-modal';
-        document.body.appendChild(modalContainer);
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h3>Rainmate</h3>
+                    <p>Creating ideas under the rain</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rainmate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to create the rain effect
+        function createRain() {
+            const rain = document.createElement('div');
+            rain.className = 'rain';
+            document.body.appendChild(rain);
+            
+            const numberOfDrops = 150;
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                const posX = Math.floor(Math.random() * window.innerWidth);
+                drop.style.left = posX + 'px';
+                const fallDuration = 0.5 + Math.random();
+                drop.style.animationDuration = fallDuration + 's';
+                const opacity = 0.2 + Math.random() * 0.5;
+                drop.style.opacity = opacity;
+                const delay = Math.random() * 2;
+                drop.style.animationDelay = delay + 's';
+                const size = 1 + Math.random();
+                drop.style.width = size + 'px';
+                drop.style.height = (size * 10) + 'px';
+                rain.appendChild(drop);
+            }
+        }
+
+        // Page Transition Functions
+        function setupPageTransitions() {
+            const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
+            const overlay = document.querySelector('.page-transition-overlay');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            transitionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = this.getAttribute('href');
+                    
+                    // Show overlay with fade effect
+                    overlay.classList.add('active');
+                    loadingIndicator.classList.add('active');
+                    
+                    // Wait for animation
+                    setTimeout(() => {
+                        // Save that we're navigating internally
+                        sessionStorage.setItem('internalNavigation', 'true');
+                        
+                        // Then navigate
+                        window.location.href = target;
+                    }, 300);
+                });
+            });
+        }
 
         // Data proyek
         const projectsData = {
@@ -527,29 +595,10 @@
             }
         };
 
-        // Tambahkan event listener ke semua tombol "View more..."
-        document.addEventListener('DOMContentLoaded', function() {
-            const viewMoreLinks = document.querySelectorAll('.view-more-link');
-            
-            viewMoreLinks.forEach((link, index) => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Identifikasi proyek yang diklik
-                    let projectKey;
-                    if (index === 0) projectKey = 'deebot';
-                    else if (index === 1) projectKey = 'dashboard';
-                    else if (index === 2) projectKey = 'appdesign';
-                    
-                    // Tampilkan modal dengan data proyek
-                    displayProjectModal(projectKey);
-                });
-            });
-        });
-
         // Fungsi untuk menampilkan modal
         function displayProjectModal(projectKey) {
             const project = projectsData[projectKey];
+            const modalContainer = document.querySelector('.portfolio-modal');
             
             // Buat galeri gambar jika tersedia
             let galleryHTML = '';
@@ -629,14 +678,44 @@
             });
         }
 
-        // Tambahkan data untuk project Manipi Coffee jika diperlukan
-        const manipiLink = document.createElement('a');
-        manipiLink.href = "#";
-        manipiLink.className = "view-more-link";
-        manipiLink.textContent = "View more...";
-        manipiLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            displayProjectModal('manipicoffe');
+        window.addEventListener('load', function() {
+            // Hide transition overlay if it's active
+            const overlay = document.querySelector('.page-transition-overlay');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            overlay.classList.remove('active');
+            loadingIndicator.classList.remove('active');
+            
+            createRain();
+            setupPageTransitions();
+            
+            // Tambahkan event listener ke semua tombol "View more..."
+            const viewMoreLinks = document.querySelectorAll('.view-more-link');
+            
+            viewMoreLinks.forEach((link, index) => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Identifikasi proyek yang diklik
+                    let projectKey;
+                    if (index === 0) projectKey = 'deebot';
+                    else if (index === 1) projectKey = 'dashboard';
+                    else if (index === 2) projectKey = 'appdesign';
+                    
+                    // Tampilkan modal dengan data proyek
+                    displayProjectModal(projectKey);
+                });
+            });
+            
+            // Tambahkan data untuk project Manipi Coffee jika diperlukan
+            const manipiLink = document.createElement('a');
+            manipiLink.href = "#";
+            manipiLink.className = "view-more-link";
+            manipiLink.textContent = "View more...";
+            manipiLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                displayProjectModal('manipicoffe');
+            });
         });
     </script>
 </body>

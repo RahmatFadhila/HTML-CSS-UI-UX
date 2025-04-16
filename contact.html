@@ -6,16 +6,68 @@
     <title>Contact - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition-overlay.active {
+            opacity: 0.8;
+        }
+        
+        /* Loading indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none;
+        }
+        
+        .loading-indicator.active {
+            display: block;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 229, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00e5ff;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {transform: rotate(360deg);}
+        }
+    </style>
 </head>
 <body>
+    <!-- Page transition overlay -->
+    <div class="page-transition-overlay"></div>
+    <div class="loading-indicator">
+        <div class="loading-spinner"></div>
+    </div>
+    
     <nav class="navbar">
         <div class="logo">Rainmate</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" class="page-link" data-transition="true">Home</a></li>
+            <li><a href="about.html" class="page-link" data-transition="true">About</a></li>
+            <li><a href="blog.html" class="page-link" data-transition="true">Blog</a></li>
+            <li><a href="portfolio.html" class="page-link" data-transition="true">Portfolio</a></li>
+            <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
         </ul>
         <div class="search-box">
             <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -196,7 +248,42 @@
             }
         }
 
+        // Page Transition Functions
+        function setupPageTransitions() {
+            const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
+            const overlay = document.querySelector('.page-transition-overlay');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            transitionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = this.getAttribute('href');
+                    
+                    // Show overlay with fade effect
+                    overlay.classList.add('active');
+                    loadingIndicator.classList.add('active');
+                    
+                    // Wait for animation
+                    setTimeout(() => {
+                        // Save that we're navigating internally
+                        sessionStorage.setItem('internalNavigation', 'true');
+                        
+                        // Then navigate
+                        window.location.href = target;
+                    }, 300);
+                });
+            });
+        }
+
         window.addEventListener('load', function() {
+            // Hide transition overlay if it's active
+            const overlay = document.querySelector('.page-transition-overlay');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            overlay.classList.remove('active');
+            loadingIndicator.classList.remove('active');
+            
             createRain();
             
             // Form submission handler to format the email
@@ -224,6 +311,9 @@
                 
                 this.action = `mailto:mametrahmat97@gmail.com?subject=${formattedSubject}&body=${formattedBody}`;
             });
+            
+            // Set up page transitions
+            setupPageTransitions();
         });
     </script>
 </body>

@@ -183,9 +183,60 @@
             animation: none !important;
             transition: none !important;
         }
+        
+        /* PAGE TRANSITION OVERLAY */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition-overlay.active {
+            opacity: 0.8;
+        }
+        
+        /* Loading indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none;
+        }
+        
+        .loading-indicator.active {
+            display: block;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 229, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00e5ff;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {transform: rotate(360deg);}
+        }
     </style>
 </head>
 <body>
+    <!-- Page transition overlay -->
+    <div class="page-transition-overlay"></div>
+    <div class="loading-indicator">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Entrance animation -->
     <div class="rain-entrance" id="entranceAnimation">
         <div class="entrance-rain" id="entranceRain"></div>
@@ -199,11 +250,11 @@
     <nav class="navbar page-element">
         <div class="logo">Rainmate</div>
         <ul class="nav-links">
-            <li><a href="index.html" class="page-link">Home</a></li>
-            <li><a href="about.html" class="page-link">About</a></li>
-            <li><a href="blog.html" class="page-link">Blog</a></li>
-            <li><a href="portfolio.html" class="page-link">Portofolio</a></li>
-            <li><a href="contact.html" class="page-link">Contact</a></li>
+            <li><a href="index.html" class="page-link" data-transition="true">Home</a></li>
+            <li><a href="about.html" class="page-link" data-transition="true">About</a></li>
+            <li><a href="blog.html" class="page-link" data-transition="true">Blog</a></li>
+            <li><a href="portfolio.html" class="page-link" data-transition="true">Portofolio</a></li>
+            <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
         </ul>
         <div class="search-box">
             <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -240,7 +291,7 @@
                     <p>Welcome to my little space on the internet.</p>
                     <p class="highlight">I'm Rahmat</p>
                     <div class="line-separator"></div>
-                    <a href="about.html" class="cta-button page-link">Unlock My Story <i class="fas fa-arrow-right"></i></a>
+                    <a href="about.html" class="cta-button page-link" data-transition="true">Unlock My Story <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -465,18 +516,48 @@
             setTimeout(flashLightning, 1000 + Math.random() * 3000);
         }
 
-        // Add event listener to track navigation within site
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add event listener to all internal links
-            document.querySelectorAll('.page-link').forEach(link => {
+        // Page Transition Functions
+        function setupPageTransitions() {
+            const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
+            const overlay = document.querySelector('.page-transition-overlay');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            transitionLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    // Don't prevent default navigation, just set a flag
-                    sessionStorage.setItem('internalNavigation', 'true');
+                    e.preventDefault();
+                    
+                    const target = this.getAttribute('href');
+                    
+                    // Show overlay with fade effect
+                    overlay.classList.add('active');
+                    loadingIndicator.classList.add('active');
+                    
+                    // Wait for animation
+                    setTimeout(() => {
+                        // Save that we're navigating internally
+                        sessionStorage.setItem('internalNavigation', 'true');
+                        
+                        // Then navigate
+                        window.location.href = target;
+                    }, 300);
                 });
             });
+        }
+
+        // Add event listener to track navigation within site
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up page transitions
+            setupPageTransitions();
         });
 
         window.addEventListener('load', function() {
+            // Hide transition overlay if it's active
+            const overlay = document.querySelector('.page-transition-overlay');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            overlay.classList.remove('active');
+            loadingIndicator.classList.remove('active');
+            
             // Check if the user has already seen the entrance animation
             const entranceAnimation = document.getElementById('entranceAnimation');
             const entranceSeen = sessionStorage.getItem('entranceSeen');
