@@ -6,6 +6,69 @@
     <title>About - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Scroll animation styles */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Different animation delays for elements */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+        
+        /* Card animations for education cards */
+        .education-card {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .education-card.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Experience card animations */
+        .experience-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+        }
+        
+        .experience-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .experience-card:nth-child(even) {
+            transform: translateY(40px) translateX(30px);
+        }
+        
+        .experience-card:nth-child(even).active {
+            transform: translateY(0) translateX(0);
+        }
+    </style>
 </head>
 <body>
     <!-- Rain effect container -->
@@ -27,26 +90,26 @@
     
     <main>
         <!-- About Me Section -->
-        <div class="section about-section">
+        <div class="section about-section reveal">
             <h1>About Me</h1>
             
-            <div class="about-header">
+            <div class="about-header reveal delay-100">
                 <h2>WHO <span class="highlight">AM I?</span></h2>
             </div>
             
             <div class="about-container">
                 <div class="profile-section">
-                    <div class="profile-left">
+                    <div class="profile-left reveal delay-200">
                         <div class="profile-image-container">
                             <img src="img/ProfilAbout.png" alt="Rahmat Fadhila" class="profile-image">
                         </div>
                     </div>
                     
-                    <div class="profile-right">
+                    <div class="profile-right reveal delay-300">
                         <div class="bio-text">
                             <p>Hi there! My name is Rahmat Fadhila, a Digital Business student who's always curious about how technology and business work together. I've explored digital marketing, entrepreneurship, and a bit of coding — though sometimes my code looks like a secret language only computers refuse to understand (still learning of course!). Outside of studying, I love playing football — even if the ball never listens when I say "go into the goal!" — and gaming, where I probably win more than on the real field. I believe learning should be fun, and life is all about growing while enjoying the little moments.</p>
                             
-                            <div class="email-instagram">
+                            <div class="email-instagram reveal delay-400">
                                 <a href="mailto:mametrahmat97@gmail.com">
                                     <i class="fas fa-envelope"></i>
                                     <span>mametrahmat97@gmail.com</span>
@@ -63,7 +126,7 @@
         </div>
         
         <!-- Education Section -->
-        <div class="section education-section">
+        <div class="section education-section reveal">
             <h1>My academic experience</h1>
             
             <div class="education-container">
@@ -86,7 +149,7 @@
                         </div>
                     </div>
                     
-                    <div class="education-card highlight-card">
+                    <div class="education-card">
                         <div class="location-pin">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -141,14 +204,14 @@
                     </div>
                 </div>
                 
-                <div class="education-description">
+                <div class="education-description reveal">
                     <p>I started my education at MIS Rantepao for elementary school, continued to SMA Negeri 1 Rantepao for high school, and now I'm studying at Universitas Negeri Makassar — still surviving as a college student! From carrying heavy books in elementary school to carrying heavier assignments in university, my journey has been quite an adventure (and yes, coffee has become my best friend along the way!).</p>
                 </div>
             </div>
         </div>
         
         <!-- Experience Section -->
-        <div class="section experience-section">
+        <div class="section experience-section reveal">
             <h1>What I've Learned</h1>
             
             <div class="experience-container">
@@ -323,10 +386,57 @@
             });
         }
 
+        // Function to handle scroll reveal animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const educationCards = document.querySelectorAll('.education-card');
+            const experienceCards = document.querySelectorAll('.experience-card');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element, offset = 150) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= window.innerHeight - offset && 
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Reveal general elements
+            reveals.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Reveal education cards with staggered delay
+            educationCards.forEach((card, index) => {
+                if (isInViewport(card, 100)) {
+                    setTimeout(() => {
+                        card.classList.add('active');
+                    }, index * 150); // Stagger the animations
+                }
+            });
+            
+            // Reveal experience cards with staggered delay
+            experienceCards.forEach((card, index) => {
+                if (isInViewport(card, 120)) {
+                    setTimeout(() => {
+                        card.classList.add('active');
+                    }, index * 200); // Stagger the animations
+                }
+            });
+        }
+
         // Initialize everything when page loads
         window.addEventListener('load', function() {
             createRain();
             setupHoverEffects();
+            
+            // Initial check for elements in viewport
+            revealOnScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', revealOnScroll);
         });
     </script>
 </body>

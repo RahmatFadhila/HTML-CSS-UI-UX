@@ -10,7 +10,7 @@
         /* Animation styles */
         .fade-in {
             opacity: 0;
-            animation: fadeIn 2s ease-in-out forwards;
+            animation: fadeIn 1s ease-out forwards;
             animation-delay: var(--delay, 0s);
         }
 
@@ -116,6 +116,49 @@
             }
         }
 
+        /* ===== IMPROVED PAGE TRANSITIONS ===== */
+        
+        /* Improved animations for page elements */
+        .page-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        
+        .page-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Page element animation sequence delays */
+        .navbar.page-element {
+            transition-delay: 0.1s;
+        }
+        
+        .hero-section.page-element {
+            transition-delay: 0.2s;
+        }
+        
+        .left-content.page-element {
+            transition-delay: 0.3s;
+        }
+        
+        .center-content.page-element {
+            transition-delay: 0.4s;
+        }
+        
+        .right-content.page-element {
+            transition-delay: 0.5s;
+        }
+        
+        .weather.page-element {
+            transition-delay: 0.6s;
+        }
+        
+        .footer.page-element {
+            transition-delay: 0.7s;
+        }
+
         /* Rain footer fix */
         .rain-footer {
             position: fixed;
@@ -126,6 +169,19 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
+        }
+        
+        /* Hide element initially */
+        .hidden {
+            display: none;
+        }
+        
+        /* No animation class for returning navigation */
+        .no-animation {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+            transition: none !important;
         }
     </style>
 </head>
@@ -140,14 +196,14 @@
     <!-- Rain effect container -->
     <div class="rain-container"></div>
     
-    <nav class="navbar fade-in" style="--delay: 4s;">
+    <nav class="navbar page-element">
         <div class="logo">Rainmate</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="portfolio.html">Portofolio</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" class="page-link">Home</a></li>
+            <li><a href="about.html" class="page-link">About</a></li>
+            <li><a href="blog.html" class="page-link">Blog</a></li>
+            <li><a href="portfolio.html" class="page-link">Portofolio</a></li>
+            <li><a href="contact.html" class="page-link">Contact</a></li>
         </ul>
         <div class="search-box">
             <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -155,13 +211,13 @@
     </nav>
     
     <main>
-        <div class="hero-section fade-in" style="--delay: 4.3s;">
+        <div class="hero-section page-element">
             <h1>Hi, i'm Rahmat</h1>
             <h2>Creating ideas under the rain</h2>
         </div>
         
         <div class="content-container">
-            <div class="left-content fade-in" style="--delay: 4.6s;">
+            <div class="left-content page-element">
                 <p class="description">
                     someone who believes that, just like rain, every moment and thought has its own story. Here, I share my ideas, creativity, and small reflections about life, hoping they can bring a little calm and inspiration to anyone who stops by.
                 </p>
@@ -170,7 +226,7 @@
                 </div>
             </div>
             
-            <div class="center-content fade-in" style="--delay: 4.9s;">
+            <div class="center-content page-element">
                 <div class="photo-stack">
                     <div class="lightning-container"></div>
                     <div class="profile-rain"></div>
@@ -179,22 +235,22 @@
                 </div>
             </div>
             
-            <div class="right-content fade-in" style="--delay: 5.2s;">
+            <div class="right-content page-element">
                 <div class="welcome-box">
                     <p>Welcome to my little space on the internet.</p>
                     <p class="highlight">I'm Rahmat</p>
                     <div class="line-separator"></div>
-                    <a href="about.html" class="cta-button">Unlock My Story <i class="fas fa-arrow-right"></i></a>
+                    <a href="about.html" class="cta-button page-link">Unlock My Story <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
         
-        <div class="weather fade-in" style="--delay: 5.5s;">
+        <div class="weather page-element">
             <i class="fas fa-cloud-rain"></i> 18° C
         </div>
     </main>
 
-    <footer class="footer fade-in" style="--delay: 5.8s;">
+    <footer class="footer page-element">
         <div class="rain-footer"></div>
         <div class="footer-container">
             <div class="footer-top">
@@ -265,7 +321,18 @@
             // Remove from DOM after animation completes
             setTimeout(() => {
                 entranceAnimation.style.display = 'none';
+                
+                // Set session storage to indicate user has seen the entrance animation
+                sessionStorage.setItem('entranceSeen', 'true');
             }, 1500);
+        }
+        
+        // Function to animate page elements
+        function animatePageElements() {
+            const elements = document.querySelectorAll('.page-element');
+            elements.forEach(element => {
+                element.classList.add('visible');
+            });
         }
 
         // Function to create main rain effect
@@ -398,17 +465,55 @@
             setTimeout(flashLightning, 1000 + Math.random() * 3000);
         }
 
+        // Add event listener to track navigation within site
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener to all internal links
+            document.querySelectorAll('.page-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default navigation, just set a flag
+                    sessionStorage.setItem('internalNavigation', 'true');
+                });
+            });
+        });
+
         window.addEventListener('load', function() {
-            // Create entrance animation first
-            createEntranceRain();
+            // Check if the user has already seen the entrance animation
+            const entranceAnimation = document.getElementById('entranceAnimation');
+            const entranceSeen = sessionStorage.getItem('entranceSeen');
+            const internalNavigation = sessionStorage.getItem('internalNavigation');
             
-            // After 4 seconds, hide entrance and show main content
-            setTimeout(() => {
-                hideEntranceAnimation();
+            // Animate elements with staggered timing if coming from internal navigation
+            if (internalNavigation) {
+                // Clear internal navigation flag for future use
+                sessionStorage.removeItem('internalNavigation');
+                
+                // Start animation after a brief delay
+                setTimeout(animatePageElements, 100);
+            } else {
+                // Direct visit - animate elements after a short delay
+                setTimeout(animatePageElements, entranceSeen ? 100 : 4100);
+            }
+            
+            if (entranceSeen) {
+                // Skip entrance animation if already seen
+                entranceAnimation.style.display = 'none';
+                
+                // Create main effects immediately
                 createRain();
                 createProfileRain();
                 createLightning();
-            }, 4000);
+            } else {
+                // First visit - show entrance animation
+                createEntranceRain();
+                
+                // After 4 seconds, hide entrance and show main content
+                setTimeout(() => {
+                    hideEntranceAnimation();
+                    createRain();
+                    createProfileRain();
+                    createLightning();
+                }, 4000);
+            }
         });
     </script>
 </body>
