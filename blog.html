@@ -23,16 +23,17 @@
             <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
     </nav>
-    
+
     <main>
         <div class="hero-section">
             <h1>BLOG</h1>
             <h2>Temukan berbagai artikel inspiratif tentang desain, coding, dan teknologi.</h2>
         </div>
-        
+
         <div class="blog-container">
             <div class="blog-posts">
-                <article class="blog-post">
+                <!-- Blog Post 1 -->
+                <article class="blog-post card">
                     <div class="post-image">
                         <img src="img/creative.jpg" alt="Portfolio Design Tips">
                         <div class="post-image-rain"></div>
@@ -42,11 +43,25 @@
                         <span class="category">CREATIVE HIDDLELY</span>
                         <h3>"5 Tips Membuat Desain Portfolio"</h3>
                         <p class="description">"Pelajari cara membuat tampilan portfolio yang memikat klien..."</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        <div class="card-full-content">
+                            <p>Portfolio adalah aset penting bagi seorang desainer. Ini adalah cara Anda menunjukkan kemampuan dan gaya Anda kepada klien potensial. Berikut adalah 5 tips untuk membuat portfolio yang menarik:</p>
+                            <p>1. <strong>Pilih Karya Terbaik Anda</strong> - Kualitas lebih penting daripada kuantitas. Pilih proyek-proyek yang menonjolkan keterampilan dan kreativitas Anda.</p>
+                            <p>2. <strong>Ceritakan Kisah di Balik Desain</strong> - Jelaskan proses kreatif, masalah yang Anda pecahkan, dan solusi yang Anda berikan.</p>
+                            <p>3. <strong>Pastikan Portfolio Anda Mudah Dinavigasi</strong> - Pengunjung harus dapat dengan mudah menemukan informasi yang mereka cari.</p>
+                            <p>4. <strong>Konsistensi adalah Kunci</strong> - Pertahankan tema dan gaya yang konsisten di seluruh portfolio Anda.</p>
+                            <p>5. <strong>Perbarui Portfolio Anda Secara Teratur</strong> - Tambahkan proyek baru dan hapus yang lama untuk memastikan portfolio Anda mencerminkan kemampuan Anda saat ini.</p>
+                        </div>
+                        <div class="read-more">
+                            <span class="read-more-text">Read More</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 9L12 16L5 9" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                 </article>
                 
-                <article class="blog-post">
+                <!-- Blog Post 2 -->
+                <article class="blog-post card">
                     <div class="post-image">
                         <img src="img/web.jpg" alt="HTML & CSS Tutorial">
                         <div class="post-image-rain"></div>
@@ -56,11 +71,30 @@
                         <span class="category">Kuliah</span>
                         <h3>"Panduan Lengkap Membuat Website Portfolio dengan HTML & CSS"</h3>
                         <p class="description">"Tutorial step-by-step untuk membuat website portfolio profesional dari awal hingga akhir..."</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        <div class="card-full-content">
+                            <p>Membangun website portfolio adalah langkah penting dalam karir pengembangan web Anda. Berikut adalah panduan langkah demi langkah untuk membuat website portfolio yang profesional:</p>
+                            <p><strong>Langkah 1: Persiapkan Struktur Dasar HTML</strong><br>
+                            Mulailah dengan membuat file HTML dengan struktur dasar seperti DOCTYPE, tag html, head, dan body.</p>
+                            <p><strong>Langkah 2: Desain Header dan Navigation</strong><br>
+                            Buat header yang menarik dan navigasi yang user-friendly untuk memudahkan pengunjung menjelajahi website Anda.</p>
+                            <p><strong>Langkah 3: Kembangkan Bagian About Me</strong><br>
+                            Tambahkan bagian perkenalan yang menarik yang menjelaskan siapa Anda dan keahlian Anda.</p>
+                            <p><strong>Langkah 4: Buat Galeri Proyek</strong><br>
+                            Tampilkan proyek-proyek Anda dengan layout yang menarik dan responsif menggunakan CSS Grid atau Flexbox.</p>
+                            <p><strong>Langkah 5: Desain Footer yang Profesional</strong><br>
+                            Lengkapi website Anda dengan footer yang berisi informasi kontak dan tautan media sosial.</p>
+                        </div>
+                        <div class="read-more">
+                            <span class="read-more-text">Read More</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 9L12 16L5 9" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                 </article>
                 
-                <article class="blog-post">
+                <!-- Blog Post 3 -->
+                <article class="blog-post card">
                     <div class="post-image">
                         <img src="img/Vector.jpg" alt="Internet of Things">
                         <div class="post-image-rain"></div>
@@ -70,11 +104,27 @@
                         <span class="category">Teknologi</span>
                         <h3>"Internet of Things (IoT): Bagaimana Perangkat Pintar Bekerja?"</h3>
                         <p class="description">"Mengenal ekosistem IoT dan bagaimana berbagai perangkat pintar terhubung dan berinteraksi..."</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        <div class="card-full-content">
+                            <p>Internet of Things (IoT) telah merevolusi cara kita berinteraksi dengan teknologi. Berikut adalah penjelasan tentang cara kerja IoT:</p>
+                            <p><strong>Apa itu IoT?</strong><br>
+                            IoT mengacu pada jaringan perangkat fisik yang terhubung ke internet dan dapat bertukar data satu sama lain tanpa intervensi manusia.</p>
+                            <p><strong>Komponen Utama IoT:</strong></p>
+                            <p>1. <strong>Sensor</strong> - Mengumpulkan data dari lingkungan seperti suhu, gerakan, atau kelembaban.</p>
+                            <p>2. <strong>Konektivitas</strong> - Mengirimkan data yang dikumpulkan ke cloud melalui WiFi, Bluetooth, atau teknologi koneksi lainnya.</p>
+                            <p>3. <strong>Pemrosesan Data</strong> - Data dianalisis di cloud untuk menghasilkan insight dan tindakan yang berguna.</p>
+                            <p>4. <strong>Antarmuka Pengguna</strong> - Memungkinkan pengguna untuk berinteraksi dengan dan mengontrol perangkat IoT.</p>
+                            <p>Dengan IoT, rumah, kota, dan industri menjadi lebih pintar dan efisien, menciptakan ekosistem di mana perangkat saling terhubung dan bekerja sama untuk meningkatkan kualitas hidup kita.</p>
+                        </div>
+                        <div class="read-more">
+                            <span class="read-more-text">Read More</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 9L12 16L5 9" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                 </article>
             </div>
-            
+
             <div class="categories-section">
                 <div class="category-card">
                     <h3>Kuliah</h3>
@@ -98,6 +148,7 @@
     </main>
 
     <footer class="footer">
+        <div class="rain-footer"></div>
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-logo">
@@ -105,16 +156,16 @@
                     <p>Creating ideas under the rain</p>
                 </div>
                 <div class="footer-social">
-                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp">
+                    <a href="https://wa.me/6281332147614" target="_blank" aria-label="WhatsApp" class="social-btn">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram">
+                    <a href="https://www.instagram.com/rahmatfdhla/" target="_blank" aria-label="Instagram" class="social-btn">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook">
+                    <a href="https://facebook.com/rahmat.fadhila" target="_blank" aria-label="Facebook" class="social-btn">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram">
+                    <a href="https://t.me/rahmatfadhila" target="_blank" aria-label="Telegram" class="social-btn">
                         <i class="fab fa-telegram"></i>
                     </a>
                 </div>
@@ -193,10 +244,43 @@
             });
         }
 
+        // Fungsi untuk tombol Read More
+        function setupReadMoreButtons() {
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.card');
+                    card.classList.toggle('expanded');
+                    
+                    const readMoreText = this.querySelector('.read-more-text');
+                    
+                    if (card.classList.contains('expanded')) {
+                        readMoreText.textContent = 'Read Less';
+                        
+                        // Smooth scroll to show full content
+                        setTimeout(() => {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                        
+                        // Tambahkan efek kilau saat dibuka
+                        card.style.boxShadow = '0 15px 40px rgba(0, 229, 255, 0.3)';
+                        setTimeout(() => {
+                            card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.5)';
+                        }, 1000);
+                        
+                    } else {
+                        readMoreText.textContent = 'Read More';
+                    }
+                });
+            });
+        }
+
         window.addEventListener('load', function() {
             createRain();
             createPostRain();
             createLightningEffects();
+            setupReadMoreButtons();
         });
     </script>
 </body>

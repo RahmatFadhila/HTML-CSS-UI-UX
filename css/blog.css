@@ -343,10 +343,17 @@ body::before {
     align-items: center;
     color: #00e5ff;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.9rem;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
     margin-top: auto;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .read-more i {
@@ -355,11 +362,68 @@ body::before {
 }
 
 .read-more:hover {
-    color: #fff;
+    background: rgba(0, 229, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
 }
 
 .read-more:hover i {
     transform: translateX(5px);
+}
+
+.read-more::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(0, 229, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.read-more:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.read-more svg {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.read-more-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Tambahan untuk fitur Read More yang diperluas */
+.card-full-content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-top: 0;
+}
+
+.card.expanded .card-full-content {
+    height: auto;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.card.expanded .read-more svg {
+    transform: rotate(180deg);
+}
+
+.card.expanded {
+    transform: scale(1.03);
+    z-index: 100;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Categories section */
@@ -437,6 +501,7 @@ body::before {
 }
 
 /* Footer styles */
+/* Footer styles */
 .footer {
     background-color: rgba(22, 28, 36, 0.8);
     backdrop-filter: blur(10px);
@@ -444,12 +509,27 @@ body::before {
     padding: 2rem 0 1rem;
     margin-top: 3rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 229, 255, 0.05), transparent);
+    pointer-events: none;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-top {
@@ -465,6 +545,7 @@ body::before {
     font-weight: 600;
     color: #00e5ff;
     margin-bottom: 0.3rem;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
 }
 
 .footer-logo p {
@@ -477,21 +558,50 @@ body::before {
     gap: 0.8rem;
 }
 
-.footer-social a {
+.footer-social .social-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.footer-social a:hover {
+.footer-social .social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.footer-social .social-btn:hover {
     background-color: #00e5ff;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+}
+
+.footer-social .social-btn:hover::before {
+    opacity: 1;
+}
+
+.footer-social .social-btn i {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.footer-social .social-btn:hover i {
+    transform: scale(1.2);
 }
 
 .footer-bottom {
@@ -506,54 +616,14 @@ body::before {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 1200px) {
-    .blog-posts {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 1rem;
-    }
-    
-    .navbar::after {
-        left: 20px;
-        right: 20px;
-    }
-    
-    .logo {
-        margin-bottom: 1rem;
-    }
-    
-    .nav-links {
-        margin: 1rem 0;
-    }
-    
-    .nav-links li {
-        margin: 0 8px;
-    }
-    
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-section h2 {
-        font-size: 1.1rem;
-    }
-    
-    .blog-posts {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-top {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .footer-logo {
-        text-align: center;
-    }
+.rain-footer {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
