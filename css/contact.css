@@ -1,3 +1,4 @@
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +9,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
     line-height: 1.6;
+    background-color: #000; /* Warna dasar sebelum background dimuat */
     background: url('/img/Backround\ \(1\).png') no-repeat center center fixed;
     background-size: cover;
     position: relative;
@@ -26,7 +28,7 @@ body::before {
     z-index: -1;
 }
 
-/* Rain effect styles */
+/* Optimasi: Efek hujan */
 .rain {
     position: fixed;
     top: 0;
@@ -39,11 +41,10 @@ body::before {
 
 .rain-drop {
     position: absolute;
-    width: 2px;
-    height: 20px;
+    width: 1px;
+    height: 15px;
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
-    opacity: 0.7;
-    border-radius: 0px;
+    opacity: 0.6;
     animation: rain-fall linear infinite;
 }
   
@@ -56,19 +57,26 @@ body::before {
     }
 }
 
-/* Navbar styling */
+@keyframes rain-fall-angled {
+    0% {
+        transform: translateY(-100vh) translateX(-10px);
+    }
+    100% {
+        transform: translateY(100vh) translateX(10px);
+    }
+}
+
+/* Optimasi: Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(22, 28, 36, 0.6);
-    backdrop-filter: blur(8px);
+    background-color: rgba(22, 28, 36, 0.8);
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
 }
 
 .navbar::after {
@@ -92,7 +100,6 @@ body::before {
 
 .logo:hover {
     transform: scale(1.05);
-    text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
 }
 
 .nav-links {
@@ -151,10 +158,9 @@ body::before {
 
 .search-btn:hover {
     color: #00e5ff;
-    transform: scale(1.1);
 }
 
-/* Main content */
+/* Optimasi: Main content */
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -170,11 +176,10 @@ main {
     padding: 2rem;
     border-radius: 15px;
     background-color: rgba(44, 62, 80, 0.7);
-    backdrop-filter: blur(10px);
     position: relative;
 }
 
-/* Contact Section */
+/* Optimasi: Contact heading */
 .contact-heading {
     text-align: center;
     margin-bottom: 3rem;
@@ -214,6 +219,7 @@ main {
     top: 0;
 }
 
+/* Optimasi: Contact container */
 .contact-container {
     display: flex;
     flex-wrap: wrap;
@@ -255,6 +261,7 @@ main {
     text-decoration: underline;
 }
 
+/* Optimasi: Profile images */
 .profile-images {
     min-width: 300px;
     position: relative;
@@ -291,6 +298,7 @@ main {
     object-position: center;
 }
 
+/* Optimasi: Social links */
 .social-links {
     display: flex;
     justify-content: flex-start;
@@ -316,14 +324,13 @@ main {
     transform: translateY(-3px);
 }
 
-/* Contact Form */
+/* Optimasi: Contact form */
 .contact-form {
     flex: 2;
     min-width: 350px;
     background-color: rgba(22, 28, 36, 0.8);
     padding: 2rem;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
 }
 
 .contact-form h2 {
@@ -404,30 +411,7 @@ main {
     color: #161c24;
 }
 
-/* Form submission feedback */
-.form-success {
-    display: none;
-    padding: 1rem;
-    background-color: rgba(0, 200, 83, 0.2);
-    border: 1px solid #00c853;
-    border-radius: 5px;
-    color: #ffffff;
-    margin-top: 1rem;
-    text-align: center;
-}
-
-.form-error {
-    display: none;
-    padding: 1rem;
-    background-color: rgba(255, 53, 71, 0.2);
-    border: 1px solid #ff3547;
-    border-radius: 5px;
-    color: #ffffff;
-    margin-top: 1rem;
-    text-align: center;
-}
-
-/* Testimonials Section */
+/* Optimasi: Testimonials section */
 .testimonials-section {
     margin-top: 3rem;
 }
@@ -486,45 +470,9 @@ main {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Form input highlight animation */
-@keyframes input-highlight {
-    0% {
-        border-color: rgba(255, 255, 255, 0.2);
-    }
-    50% {
-        border-color: #00e5ff;
-    }
-    100% {
-        border-color: rgba(255, 255, 255, 0.2);
-    }
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    animation: input-highlight 2s infinite;
-}
-
-/* Submit button animation */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.submit-btn:hover {
-    animation: pulse 1.5s infinite;
-}
-
-/* Footer styles */
+/* Optimasi: Footer */
 .footer {
     background-color: rgba(22, 28, 36, 0.8);
-    backdrop-filter: blur(10px);
     color: #ffffff;
     padding: 2rem 0 1rem;
     margin-top: 3rem;
@@ -591,7 +539,47 @@ main {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Media queries for responsiveness */
+/* Optimasi: Animation classes */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+.form-row, .form-group.full-width {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.form-row.active, .form-group.full-width.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease-out;
+}
+
+.testimonial.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Media queries */
 @media (max-width: 1200px) {
     .contact-container {
         flex-direction: column;
@@ -685,4 +673,68 @@ main {
     .info-section a {
         font-size: 1rem;
     }
+}
+
+/* Optimasi: Low performance mode */
+.low-performance .rain-drop {
+    display: none;
+}
+
+.low-performance .rain-drop:nth-child(3n) {
+    display: block;
+}
+
+.low-performance .submit-btn:hover,
+.low-performance .form-group input:focus,
+.low-performance .form-group textarea:focus,
+.low-performance .social-links a:hover,
+.low-performance .info-section a:hover,
+.low-performance .footer-social a:hover {
+    animation: none;
+    transform: none;
+}
+
+/* Page transition overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-transition-overlay.active {
+    opacity: 0.8;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    display: none;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 229, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00e5ff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {transform: rotate(360deg);}
 }

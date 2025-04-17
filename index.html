@@ -5,230 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahmat Fadhila - Home</title>
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Animation styles */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-            animation-delay: var(--delay, 0s);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Rain entrance animation */
-        .rain-entrance {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        .logo-entrance {
-            color: #00e5ff;
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
-            opacity: 0;
-            animation: logoEntrance 3s ease-in-out forwards;
-        }
-
-        @keyframes logoEntrance {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-            70% {
-                transform: scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .entrance-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1001;
-        }
-
-        .entrance-drop {
-            position: absolute;
-            width: 3px;
-            background: linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,0.8) 100%);
-            opacity: 0.8;
-            animation: entranceRainFall linear infinite;
-        }
-
-        @keyframes entranceRainFall {
-            0% {
-                transform: translateY(-100vh);
-            }
-            100% {
-                transform: translateY(100vh);
-            }
-        }
-
-        .tagline-entrance {
-            color: #fff;
-            font-size: 1.2rem;
-            opacity: 0;
-            animation: taglineEntrance 3s ease-in-out forwards;
-            animation-delay: 1s;
-            text-align: center;
-        }
-
-        @keyframes taglineEntrance {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== IMPROVED PAGE TRANSITIONS ===== */
-        
-        /* Improved animations for page elements */
-        .page-element {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        
-        .page-element.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Page element animation sequence delays */
-        .navbar.page-element {
-            transition-delay: 0.1s;
-        }
-        
-        .hero-section.page-element {
-            transition-delay: 0.2s;
-        }
-        
-        .left-content.page-element {
-            transition-delay: 0.3s;
-        }
-        
-        .center-content.page-element {
-            transition-delay: 0.4s;
-        }
-        
-        .right-content.page-element {
-            transition-delay: 0.5s;
-        }
-        
-        .weather.page-element {
-            transition-delay: 0.6s;
-        }
-        
-        .footer.page-element {
-            transition-delay: 0.7s;
-        }
-
-        /* Rain footer fix */
-        .rain-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 35%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        /* Hide element initially */
-        .hidden {
-            display: none;
-        }
-        
-        /* No animation class for returning navigation */
-        .no-animation {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            animation: none !important;
-            transition: none !important;
-        }
-        
-        /* PAGE TRANSITION OVERLAY */
-        .page-transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .page-transition-overlay.active {
-            opacity: 0.8;
-        }
-        
-        /* Loading indicator */
-        .loading-indicator {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10000;
-            display: none;
-        }
-        
-        .loading-indicator.active {
-            display: block;
-        }
-        
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(0, 229, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #00e5ff;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to {transform: rotate(360deg);}
-        }
-    </style>
+    <!-- Font Awesome dengan loading yang dioptimalkan -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Preload gambar penting -->
+    <link rel="preload" href="img/Fotoku.png" as="image">
 </head>
 <body>
     <!-- Page transition overlay -->
@@ -291,7 +71,7 @@
                     <p>Welcome to my little space on the internet.</p>
                     <p class="highlight">I'm Rahmat</p>
                     <div class="line-separator"></div>
-                    <a href="about.html" class="cta-button page-link" data-transition="true">Clik To Know Me <i class="fas fa-arrow-right"></i></a>
+                    <a href="about.html" class="cta-button page-link" data-transition="true">Clik To Know <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -330,55 +110,84 @@
         </div>
     </footer>
 
+    <!-- JavaScript langsung di HTML -->
     <script>
-        // Function to create the entrance rain effect
+        // Deteksi performa perangkat untuk menyesuaikan efek
+        function detectPerformance() {
+            // Deteksi perangkat low-end
+            const isLowEndDevice = () => {
+                const processors = navigator.hardwareConcurrency || 1;
+                const limitedMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
+                return processors <= 2 || limitedMemory;
+            };
+            
+            // Deteksi koneksi lambat
+            const isSlowConnection = () => {
+                if ('connection' in navigator) {
+                    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                    return connection && (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g' || connection.saveData);
+                }
+                return false;
+            };
+            
+            // Sesuaikan berdasarkan perangkat dan koneksi
+            if (isLowEndDevice() || isSlowConnection()) {
+                document.body.classList.add('low-performance');
+            }
+            
+            // Tentukan jumlah elemen hujan berdasarkan performa
+            return {
+                rainDrops: isLowEndDevice() ? 30 : 80,
+                entranceRainDrops: isLowEndDevice() ? 20 : 50,
+                profileRainDrops: isLowEndDevice() ? 10 : 25
+            };
+        }
+
+        // Fungsi untuk membuat animasi entrance hujan
         function createEntranceRain() {
             const entranceRain = document.getElementById('entranceRain');
-            const numberOfDrops = 200;
+            if (!entranceRain) return;
+            
+            const performanceSettings = detectPerformance();
+            const numberOfDrops = performanceSettings.entranceRainDrops;
             
             for (let i = 0; i < numberOfDrops; i++) {
                 const drop = document.createElement('div');
                 drop.className = 'entrance-drop';
                 
-                // Random position across screen
+                // Random position
                 const posX = Math.floor(Math.random() * window.innerWidth);
                 drop.style.left = posX + 'px';
                 
-                // Random falling speed and delay
-                const fallDuration = 0.5 + Math.random() * 1.5;
+                // Random falling speed dan delay
+                const fallDuration = 0.8 + Math.random();
                 drop.style.animationDuration = fallDuration + 's';
                 
-                const delay = Math.random() * 3;
+                const delay = Math.random() * 2;
                 drop.style.animationDelay = delay + 's';
                 
-                // Random size and opacity
-                const size = 1 + Math.random() * 2;
-                const height = size * (10 + Math.random() * 15);
-                drop.style.width = size + 'px';
+                // Random size
+                const height = 10 + Math.random() * 15;
                 drop.style.height = height + 'px';
-                
-                const opacity = 0.3 + Math.random() * 0.7;
-                drop.style.opacity = opacity;
                 
                 entranceRain.appendChild(drop);
             }
         }
 
-        // Function to hide entrance animation
+        // Fungsi untuk menyembunyikan animasi entrance
         function hideEntranceAnimation() {
             const entranceAnimation = document.getElementById('entranceAnimation');
+            if (!entranceAnimation) return;
+            
             entranceAnimation.style.opacity = '0';
             
-            // Remove from DOM after animation completes
             setTimeout(() => {
                 entranceAnimation.style.display = 'none';
-                
-                // Set session storage to indicate user has seen the entrance animation
                 sessionStorage.setItem('entranceSeen', 'true');
-            }, 1500);
+            }, 1000);
         }
-        
-        // Function to animate page elements
+
+        // Fungsi untuk menampilkan elemen halaman dengan animasi
         function animatePageElements() {
             const elements = document.querySelectorAll('.page-element');
             elements.forEach(element => {
@@ -386,214 +195,237 @@
             });
         }
 
-        // Function to create main rain effect
+        // Fungsi untuk membuat efek hujan utama
         function createRain() {
             const rainContainer = document.querySelector('.rain-container');
             const rainFooter = document.querySelector('.rain-footer');
+            if (!rainContainer || !rainFooter) return;
             
-            const numberOfDrops = 150;
+            const performanceSettings = detectPerformance();
+            const numberOfDrops = performanceSettings.rainDrops;
             
-            // Create main rain effect
+            // Hapus semua elemen yang mungkin sudah ada
+            rainContainer.innerHTML = '';
+            rainFooter.innerHTML = '';
+            
+            // Buat rain drops untuk container utama
             for (let i = 0; i < numberOfDrops; i++) {
                 createRainDrop(rainContainer, true);
             }
             
-            // Create footer rain effect (smaller and fewer drops)
+            // Buat rain drops untuk footer
             for (let i = 0; i < numberOfDrops / 2; i++) {
                 createRainDrop(rainFooter, false);
             }
-            
-            // Add periodic new drops to keep the rain looking fresh
-            setInterval(() => {
-                // Remove some old drops
-                const mainDrops = rainContainer.querySelectorAll('.rain-drop');
-                const footerDrops = rainFooter.querySelectorAll('.rain-drop');
-                
-                if (mainDrops.length > numberOfDrops * 1.2) {
-                    for (let i = 0; i < 10; i++) {
-                        if (mainDrops[i]) {
-                            mainDrops[i].remove();
-                        }
-                    }
-                }
-                
-                if (footerDrops.length > (numberOfDrops / 2) * 1.2) {
-                    for (let i = 0; i < 5; i++) {
-                        if (footerDrops[i]) {
-                            footerDrops[i].remove();
-                        }
-                    }
-                }
-                
-                // Add some new drops
-                for (let i = 0; i < 10; i++) {
-                    createRainDrop(rainContainer, true);
-                }
-                
-                for (let i = 0; i < 5; i++) {
-                    createRainDrop(rainFooter, false);
-                }
-            }, 3000);
         }
 
+        // Fungsi untuk membuat rain drop individual
         function createRainDrop(container, isMainRain) {
             const drop = document.createElement('div');
             drop.className = 'rain-drop';
             
+            // Random position
             const posX = Math.floor(Math.random() * window.innerWidth);
             drop.style.left = posX + 'px';
             
+            // Random falling speed
             const fallDuration = isMainRain ? 
-                (0.5 + Math.random() * 1.5) : 
-                (0.3 + Math.random() * 0.8);
+                (0.8 + Math.random() * 0.7) : 
+                (0.5 + Math.random() * 0.5);
             drop.style.animationDuration = fallDuration + 's';
             
+            // Random opacity
             const opacity = isMainRain ? 
-                (0.2 + Math.random() * 0.5) : 
+                (0.2 + Math.random() * 0.4) : 
                 (0.1 + Math.random() * 0.3);
             drop.style.opacity = opacity;
             
-            const delay = Math.random() * 2;
-            drop.style.animationDelay = delay + 's';
-            
+            // Random size
             const size = isMainRain ? 
                 (1 + Math.random()) : 
                 (0.5 + Math.random() * 0.5);
             drop.style.width = size + 'px';
             drop.style.height = isMainRain ? (size * 15) + 'px' : (size * 10) + 'px';
             
-            // Add slight horizontal movement to some drops
+            // Tambahkan animasi miring untuk beberapa drops
             if (Math.random() > 0.7) {
-                drop.style.animation = `rain-fall-angled ${fallDuration}s linear ${delay}s infinite`;
-            }
-            
-            // Randomly color some drops to match the cyan theme color
-            if (Math.random() > 0.8) {
-                drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
-                drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
+                drop.style.animation = `rain-fall-angled ${fallDuration}s linear infinite`;
             }
             
             container.appendChild(drop);
         }
 
+        // Fungsi untuk membuat hujan di sekitar profil
         function createProfileRain() {
             const profileRain = document.querySelector('.profile-rain');
-            const numberOfDrops = 50;
+            if (!profileRain) return;
+            
+            const performanceSettings = detectPerformance();
+            const numberOfDrops = performanceSettings.profileRainDrops;
+            
             for (let i = 0; i < numberOfDrops; i++) {
                 const drop = document.createElement('div');
                 drop.className = 'profile-rain-drop';
+                
+                // Posisi
                 const posX = Math.floor(Math.random() * 100);
                 drop.style.left = posX + '%';
-                const fallDuration = 0.5 + Math.random();
+                
+                // Kecepatan jatuh
+                const fallDuration = 0.8 + Math.random();
                 drop.style.animationDuration = fallDuration + 's';
-                const opacity = 0.3 + Math.random() * 0.6;
-                drop.style.opacity = opacity;
-                const delay = Math.random() * 2;
-                drop.style.animationDelay = delay + 's';
+                
+                // Ukuran
                 const size = 1 + Math.random();
                 drop.style.width = size + 'px';
-                drop.style.height = (size * 8) + 'px';
+                drop.style.height = (size * 6) + 'px';
+                
                 profileRain.appendChild(drop);
             }
         }
 
+        // Fungsi untuk membuat efek kilat
         function createLightning() {
             const lightningContainer = document.querySelector('.lightning-container');
+            if (!lightningContainer) return;
+            
             function flashLightning() {
                 const lightning = document.createElement('div');
                 lightning.className = 'lightning';
+                
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
                 lightning.style.left = posX + '%';
                 lightning.style.top = posY + '%';
-                const scale = 0.5 + Math.random() * 0.5;
-                lightning.style.transform = `scale(${scale})`;
+                
                 lightningContainer.appendChild(lightning);
-                setTimeout(() => { lightning.remove(); }, 200);
-                const nextFlash = 2000 + Math.random() * 6000;
+                
+                // Hapus elemen kilat setelah animasi selesai
+                setTimeout(() => {
+                    lightning.remove();
+                }, 200);
+                
+                // Jeda yang lebih lama antara kilat
+                const nextFlash = 5000 + Math.random() * 8000;
                 setTimeout(flashLightning, nextFlash);
             }
-            setTimeout(flashLightning, 1000 + Math.random() * 3000);
+            
+            // Mulai animasi kilat dengan jeda awal
+            setTimeout(flashLightning, 3000);
         }
 
-        // Page Transition Functions
+        // Fungsi untuk mengatur transisi halaman
         function setupPageTransitions() {
             const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
             const overlay = document.querySelector('.page-transition-overlay');
-            const loadingIndicator = document.querySelector('.loading-indicator');
             
             transitionLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     const target = this.getAttribute('href');
                     
-                    // Show overlay with fade effect
                     overlay.classList.add('active');
-                    loadingIndicator.classList.add('active');
                     
-                    // Wait for animation
+                    // Navigasi setelah animasi overlay
                     setTimeout(() => {
-                        // Save that we're navigating internally
                         sessionStorage.setItem('internalNavigation', 'true');
-                        
-                        // Then navigate
                         window.location.href = target;
-                    }, 80);
+                    }, 300);
                 });
             });
         }
 
-        // Add event listener to track navigation within site
+        // Fungsi untuk mengoptimalkan animasi selama scroll
+        function optimizeOnScroll() {
+            let scrollTimeout;
+            
+            window.addEventListener('scroll', () => {
+                // Tambahkan class reduced ke container hujan
+                document.body.classList.add('reduced');
+                
+                // Clear timeout sebelumnya
+                clearTimeout(scrollTimeout);
+                
+                // Set timeout baru untuk menghapus class reduced
+                scrollTimeout = setTimeout(() => {
+                    document.body.classList.remove('reduced');
+                }, 300);
+            });
+        }
+
+        // Event Handlers
         document.addEventListener('DOMContentLoaded', function() {
-            // Set up page transitions
+            // Setup transisi halaman
             setupPageTransitions();
+            
+            // Optimasi selama scroll
+            optimizeOnScroll();
         });
 
+        // Load event handler
         window.addEventListener('load', function() {
-            // Hide transition overlay if it's active
             const overlay = document.querySelector('.page-transition-overlay');
-            const loadingIndicator = document.querySelector('.loading-indicator');
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
             
-            overlay.classList.remove('active');
-            loadingIndicator.classList.remove('active');
-            
-            // Check if the user has already seen the entrance animation
             const entranceAnimation = document.getElementById('entranceAnimation');
             const entranceSeen = sessionStorage.getItem('entranceSeen');
             const internalNavigation = sessionStorage.getItem('internalNavigation');
             
-            // Animate elements with staggered timing if coming from internal navigation
+            // Alur animasi berbeda untuk navigasi internal vs kunjungan pertama
             if (internalNavigation) {
-                // Clear internal navigation flag for future use
+                // Navigasi internal - hapus flag
                 sessionStorage.removeItem('internalNavigation');
                 
-                // Start animation after a brief delay
+                if (entranceAnimation) {
+                    entranceAnimation.style.display = 'none';
+                }
+                
+                // Animasikan elemen halaman setelah delay pendek
                 setTimeout(animatePageElements, 100);
-            } else {
-                // Direct visit - animate elements after a short delay
-                setTimeout(animatePageElements, entranceSeen ? 100 : 4100);
-            }
-            
-            if (entranceSeen) {
-                // Skip entrance animation if already seen
-                entranceAnimation.style.display = 'none';
                 
-                // Create main effects immediately
-                createRain();
-                createProfileRain();
-                createLightning();
-            } else {
-                // First visit - show entrance animation
-                createEntranceRain();
-                
-                // After 4 seconds, hide entrance and show main content
+                // Buat efek hujan dengan delay untuk performa lebih baik
                 setTimeout(() => {
-                    hideEntranceAnimation();
                     createRain();
                     createProfileRain();
                     createLightning();
-                }, 4000);
+                }, 300);
+            } else {
+                if (entranceSeen) {
+                    // Sudah pernah mengunjungi - skip entrance
+                    if (entranceAnimation) {
+                        entranceAnimation.style.display = 'none';
+                    }
+                    
+                    // Animasikan elemen halaman
+                    setTimeout(animatePageElements, 100);
+                    
+                    // Buat efek hujan
+                    setTimeout(() => {
+                        createRain();
+                        createProfileRain();
+                        createLightning();
+                    }, 300);
+                } else {
+                    // Kunjungan pertama - tampilkan entrance
+                    createEntranceRain();
+                    
+                    // Sembunyikan entrance setelah beberapa detik
+                    setTimeout(() => {
+                        hideEntranceAnimation();
+                        
+                        // Animasikan elemen halaman setelah entrance
+                        setTimeout(animatePageElements, 100);
+                        
+                        // Buat efek hujan
+                        setTimeout(() => {
+                            createRain();
+                            createProfileRain();
+                            createLightning();
+                        }, 300);
+                    }, 3000);
+                }
             }
         });
     </script>

@@ -9,6 +9,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
     line-height: 1.6;
+    background-color: #000; /* Warna dasar sebelum background dimuat */
     background: url('/img/Backround\ \(1\).png') no-repeat center center fixed;
     background-size: cover;
     position: relative;
@@ -27,61 +28,7 @@ body::before {
     z-index: -1;
 }
 
-/* Scroll animation styles */
-.reveal {
-    position: relative;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Different animation delays for elements */
-.delay-100 {
-    transition-delay: 0.1s;
-}
-
-.delay-200 {
-    transition-delay: 0.2s;
-}
-
-.delay-300 {
-    transition-delay: 0.3s;
-}
-
-.delay-400 {
-    transition-delay: 0.4s;
-}
-
-/* Blog card animations */
-.blog-post {
-    opacity: 0;
-    transform: translateY(30px) scale(0.97);
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.blog-post.active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-/* Category card animations */
-.category-card {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.7s ease;
-}
-
-.category-card.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Rain effect styles */
+/* Optimasi: Efek hujan */
 .rain {
     position: fixed;
     top: 0;
@@ -94,11 +41,10 @@ body::before {
 
 .rain-drop {
     position: absolute;
-    width: 2px;
-    height: 20px;
+    width: 1px;
+    height: 15px;
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
-    opacity: 0.7;
-    border-radius: 0px;
+    opacity: 0.6;
     animation: rain-fall linear infinite;
 }
   
@@ -111,17 +57,7 @@ body::before {
     }
 }
 
-/* Angled rain drop animation */
-@keyframes rain-fall-angled {
-    0% {
-        transform: translateY(-100vh) translateX(-10px);
-    }
-    100% {
-        transform: translateY(100vh) translateX(10px);
-    }
-}
-
-/* Post image rain effect */
+/* Optimasi: Efek hujan pada gambar post */
 .post-image-rain {
     position: absolute;
     top: 0;
@@ -137,9 +73,9 @@ body::before {
 .post-rain-drop {
     position: absolute;
     width: 1px;
-    height: 10px;
+    height: 8px;
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
-    opacity: 0.8;
+    opacity: 0.7;
     animation: post-rain-fall linear infinite;
 }
 
@@ -152,7 +88,7 @@ body::before {
     }
 }
 
-/* Lightning effect */
+/* Optimasi: Efek kilat */
 .lightning-container {
     position: absolute;
     top: 0;
@@ -173,10 +109,9 @@ body::before {
         ellipse at center,
         rgba(255, 255, 255, 0.9) 0%,
         rgba(255, 255, 255, 0.6) 30%,
-        rgba(200, 220, 255, 0.3) 60%,
-        rgba(100, 150, 255, 0) 100%
+        rgba(200, 220, 255, 0) 70%
     );
-    filter: blur(3px);
+    filter: blur(2px);
     opacity: 0;
     animation: lightning-flash 0.2s ease-in-out;
     z-index: 5;
@@ -186,16 +121,7 @@ body::before {
     0% {
         opacity: 0;
     }
-    20% {
-        opacity: 0.2;
-    }
-    40% {
-        opacity: 0.8;
-    }
-    60% {
-        opacity: 0.3;
-    }
-    80% {
+    50% {
         opacity: 0.6;
     }
     100% {
@@ -203,7 +129,7 @@ body::before {
     }
 }
 
-/* Hero section styles */
+/* Optimasi: Hero section */
 .hero-section {
     text-align: center;
     padding: 4rem 1rem;
@@ -242,19 +168,17 @@ body::before {
     line-height: 1.7;
 }
 
-/* Navbar styling */
+/* Optimasi: Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(22, 28, 36, 0.6);
-    backdrop-filter: blur(8px);
+    background-color: rgba(22, 28, 36, 0.8);
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
 }
 
 .navbar::after {
@@ -278,7 +202,6 @@ body::before {
 
 .logo:hover {
     transform: scale(1.05);
-    text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
 }
 
 .nav-links {
@@ -337,17 +260,16 @@ body::before {
 
 .search-btn:hover {
     color: #00e5ff;
-    transform: scale(1.1);
 }
 
-/* Blog container */
+/* Optimasi: Blog container */
 .blog-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Blog posts section */
+/* Optimasi: Blog posts section */
 .blog-posts {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -360,36 +282,16 @@ body::before {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                box-shadow 0.5s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-.blog-post::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 1;
-    pointer-events: none;
-}
-
 .blog-post:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
-                0 5px 20px rgba(0, 229, 255, 0.1);
-}
-
-.blog-post:hover::before {
-    opacity: 1;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 .post-image {
@@ -403,11 +305,11 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s ease;
+    transition: transform 0.6s ease;
 }
 
 .blog-post:hover .post-image img {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .post-content {
@@ -443,7 +345,7 @@ body::before {
 }
 
 .blog-post:hover .category::after {
-    width: 70%;
+    width: 50px;
 }
 
 .blog-post h3 {
@@ -454,10 +356,6 @@ body::before {
     transition: color 0.3s ease;
 }
 
-.blog-post:hover h3 {
-    color: rgba(255, 255, 255, 0.95);
-}
-
 .description {
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 1.8rem;
@@ -465,6 +363,7 @@ body::before {
     line-height: 1.7;
 }
 
+/* Optimasi: Read more button */
 .read-more {
     display: inline-flex;
     align-items: center;
@@ -474,46 +373,13 @@ body::before {
     font-size: 0.95rem;
     transition: all 0.3s ease;
     margin-top: auto;
-    padding: 10px 18px;
+    padding: 8px 16px;
     border-radius: 30px;
     background: rgba(0, 229, 255, 0.1);
     border: 1px solid rgba(0, 229, 255, 0.3);
     position: relative;
     overflow: hidden;
     cursor: pointer;
-}
-
-.read-more i {
-    margin-left: 0.5rem;
-    transition: transform 0.3s;
-}
-
-.read-more:hover {
-    background: rgba(0, 229, 255, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
-}
-
-.read-more:hover i {
-    transform: translateX(5px);
-}
-
-.read-more::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(0, 229, 255, 0.1);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.read-more:hover::before {
-    width: 300px;
-    height: 300px;
 }
 
 .read-more svg {
@@ -526,7 +392,12 @@ body::before {
     z-index: 2;
 }
 
-/* Tambahan untuk fitur Read More yang diperluas */
+.read-more:hover {
+    background: rgba(0, 229, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Optimasi: Card full content */
 .card-full-content {
     height: 0;
     overflow: hidden;
@@ -548,12 +419,11 @@ body::before {
 }
 
 .card.expanded {
-    transform: scale(1.03);
-    z-index: 100;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+    z-index: 10;
 }
 
-/* Categories section */
+/* Optimasi: Categories section */
 .categories-section {
     margin-bottom: 4rem;
 }
@@ -568,26 +438,9 @@ body::before {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.category-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.2) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
 .category-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                0 5px 15px rgba(0, 229, 255, 0.1);
-}
-
-.category-card:hover::before {
-    opacity: 1;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .category-card h3 {
@@ -636,9 +489,8 @@ body::before {
 }
 
 .category-post:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 
-                0 4px 10px rgba(0, 229, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .category-post img {
@@ -649,7 +501,7 @@ body::before {
 }
 
 .category-post:hover img {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .category-post h4 {
@@ -660,7 +512,7 @@ body::before {
     z-index: 2;
 }
 
-/* Weather widget */
+/* Optimasi: Weather widget */
 .weather {
     position: fixed;
     bottom: 20px;
@@ -670,7 +522,6 @@ body::before {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 0.6rem 1.2rem;
     border-radius: 30px;
-    backdrop-filter: blur(10px);
     z-index: 90;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -679,8 +530,7 @@ body::before {
 
 .weather:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 
-                0 4px 10px rgba(0, 229, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -689,10 +539,9 @@ body::before {
     margin-right: 8px;
 }
 
-/* Footer styles */
+/* Optimasi: Footer */
 .footer {
     background-color: rgba(22, 28, 36, 0.8);
-    backdrop-filter: blur(10px);
     color: #ffffff;
     padding: 2rem 0 1rem;
     margin-top: 3rem;
@@ -760,26 +609,10 @@ body::before {
     overflow: hidden;
 }
 
-.footer-social .social-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.3) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
 .footer-social .social-btn:hover {
     background-color: #00e5ff;
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
-}
-
-.footer-social .social-btn:hover::before {
-    opacity: 1;
 }
 
 .footer-social .social-btn i {
@@ -806,7 +639,6 @@ body::before {
 
 .rain-footer {
     position: absolute;
-    top: auto;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -816,7 +648,7 @@ body::before {
     overflow: hidden;
 }
 
-/* Media Queries for Responsiveness */
+/* Optimasi: Media queries */
 @media (max-width: 768px) {
     .blog-posts {
         grid-template-columns: 1fr;
@@ -837,6 +669,39 @@ body::before {
     .category-posts {
         grid-template-columns: 1fr;
     }
+    
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .navbar::after {
+        left: 20px;
+        right: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 1rem;
+    }
+    
+    .nav-links {
+        margin: 1rem 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin: 0 8px;
+    }
+    
+    .footer-top {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .footer-logo {
+        text-align: center;
+    }
 }
 
 @media (max-width: 576px) {
@@ -855,4 +720,86 @@ body::before {
     .post-content {
         padding: 1.5rem;
     }
+}
+
+/* Optimasi: Classes for low performance mode */
+.low-performance .blog-post:hover,
+.low-performance .category-post:hover,
+.low-performance .category-card:hover,
+.low-performance .weather:hover {
+    transform: none;
+}
+
+.low-performance .post-image img,
+.low-performance .category-post img {
+    transition: none;
+}
+
+.low-performance .blog-post:hover .post-image img,
+.low-performance .category-post:hover img {
+    transform: none;
+}
+
+/* Optimasi: Animation styles */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Animation delays */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-transition-overlay.active {
+    opacity: 0.8;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    display: none;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 229, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00e5ff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {transform: rotate(360deg);}
 }

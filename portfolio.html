@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/portfolio.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Optimasi: Load Font Awesome dengan cara yang lebih efisien -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Optimasi: Preload gambar profil -->
+    <link rel="preload" href="img/profilporto.jpg" as="image">
     <style>
         /* Page Transition Overlay */
         .page-transition-overlay {
@@ -52,7 +55,7 @@
             to {transform: rotate(360deg);}
         }
         
-        /* Tambahan CSS untuk foto profil dan penyempurnaan */
+        /* Optimasi: Intro section */
         .portfolio-intro {
             display: flex;
             align-items: center;
@@ -61,7 +64,6 @@
             padding: 2rem;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            backdrop-filter: blur(5px);
         }
         
         .intro-content {
@@ -101,6 +103,7 @@
             object-fit: cover;
         }
         
+        /* Optimasi: Section title */
         .section-title {
             display: inline-block;
             position: relative;
@@ -119,6 +122,7 @@
             background: linear-gradient(90deg, rgba(0,229,255,0) 0%, rgba(0,229,255,1) 50%, rgba(0,229,255,0) 100%);
         }
         
+        /* Optimasi: Tags */
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -135,33 +139,7 @@
             border: 1px solid rgba(0, 229, 255, 0.3);
         }
         
-        /* Modal improvements */
-        .modal-content {
-            background-color: rgba(22, 28, 36, 0.95);
-            border: 1px solid rgba(0, 229, 255, 0.2);
-        }
-        
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .gallery-image:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Modal styles */
+        /* Optimasi: Modal styles */
         .portfolio-modal {
             display: none;
             position: fixed;
@@ -172,7 +150,6 @@
             background-color: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             overflow-y: auto;
-            backdrop-filter: blur(5px);
         }
 
         .modal-content {
@@ -184,173 +161,21 @@
             max-width: 900px;
             width: 90%;
             box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
-            animation: modalFadeIn 0.4s;
+            animation: modalFadeIn 0.3s;
             border: 1px solid rgba(0, 229, 255, 0.2);
         }
 
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 15px;
-        }
-
-        .modal-header h2 {
-            color: #00e5ff;
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .modal-close {
-            color: white;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-close:hover {
-            color: #00e5ff;
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            margin-bottom: 20px;
-        }
-
-        .modal-image {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-description {
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .gallery-image:hover {
-            transform: scale(1.05);
-        }
-
-        .modal-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        .detail-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .detail-item h4 {
-            font-size: 1rem;
-            color: #00e5ff;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .detail-item p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .modal-button {
-            display: inline-block;
-            padding: 10px 24px;
-            background-color: rgba(0, 229, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
-            border: 1px solid rgba(0, 229, 255, 0.5);
-            cursor: pointer;
-        }
-
-        .modal-button:hover {
-            background-color: rgba(0, 229, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        @media (max-width: 768px) {
-            .modal-content {
-                margin: 30px auto;
-                padding: 20px;
-                width: 95%;
-            }
-            
-            .modal-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            .portfolio-intro {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            
-            .intro-content {
-                padding-right: 0;
-            }
-            
-            .intro-photo {
-                margin-bottom: 2rem;
-            }
-            
-            .tags {
-                justify-content: center;
-            }
-        }
-        
-        /* Scroll animation styles */
+        /* Optimasi: Scroll animation */
         .reveal {
             position: relative;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
         }
         
         .reveal.active {
@@ -358,28 +183,16 @@
             transform: translateY(0);
         }
         
-        /* Different animation delays for elements */
-        .delay-100 {
-            transition-delay: 0.1s;
-        }
+        /* Optimasi: Animation delays */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
         
-        .delay-200 {
-            transition-delay: 0.2s;
-        }
-        
-        .delay-300 {
-            transition-delay: 0.3s;
-        }
-        
-        .delay-400 {
-            transition-delay: 0.4s;
-        }
-        
-        /* Portfolio item animations */
+        /* Optimasi: Portfolio items */
         .portfolio-item {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.7s ease;
+            transform: translateY(30px);
+            transition: all 0.5s ease-out;
         }
         
         .portfolio-item.active {
@@ -387,44 +200,19 @@
             transform: translateY(0);
         }
         
-        .portfolio-item:nth-child(even) {
-            transform: translateY(40px) translateX(30px);
+        /* Optimasi: Low performance mode */
+        .low-performance .rain-drop {
+            display: none;
         }
         
-        .portfolio-item:nth-child(even).active {
-            transform: translateY(0) translateX(0);
+        .low-performance .rain-drop:nth-child(3n) {
+            display: block;
         }
         
-        /* Rain animation for portfolio page */
-        .rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .rain-drop {
-            position: absolute;
-            top: -50px;
-            width: 1px;
-            height: 15px;
-            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
-            animation: rain-fall 1s linear infinite;
-        }
-        
-        @keyframes rain-fall {
-            to {
-                transform: translateY(calc(100vh + 50px));
-            }
-        }
-        
-        @keyframes rain-fall-angled {
-            to {
-                transform: translateY(calc(100vh + 50px)) translateX(15px);
-            }
+        /* Static Navbar */
+        .navbar {
+            position: static;
+            z-index: 100;
         }
     </style>
 </head>
@@ -456,7 +244,7 @@
         <div class="section portfolio-section reveal">
             <h1 class="section-title reveal delay-100">My Portfolio</h1>
             
-            <!-- Tambahan bagian intro dengan foto -->
+            <!-- Bagian intro dengan foto -->
             <div class="portfolio-intro reveal delay-200">
                 <div class="intro-content">
                     <h2 class="intro-title">Rahmat Fadhila</h2>
@@ -487,11 +275,11 @@
                             <h2>Deebot Vacuum-Digital Marketing & E-commerce</h2>
                             <p>Proyek e-commerce ini saya buat untuk memasarkan produk Deebot Vacuum dengan desain modern, responsif, dan fitur checkout. Saya berperan dalam merancang UI dan memastikan pengalaman pengguna yang nyaman.</p>
                             <div class="view-more">
-                                <a href="#" class="view-more-link">View more...</a>
+                                <a href="#" class="view-more-link" data-project="deebot">View more...</a>
                             </div>
                         </div>
                         <div class="portfolio-image">
-                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project">
+                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -503,11 +291,11 @@
                             <h2>Pembuatan Dashboard Analitik dengan RStudio dan Shiny</h2>
                             <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
                             <div class="view-more">
-                                <a href="#" class="view-more-link">View more...</a>
+                                <a href="#" class="view-more-link" data-project="dashboard">View more...</a>
                             </div>
                         </div>
                         <div class="portfolio-image">
-                            <img src="img/dashboard.jpg" alt="Dashboard Analitik Project">
+                            <img src="img/dashboard.jpg" alt="Dashboard Analitik Project" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -519,11 +307,11 @@
                             <h2>App Design & Prototype</h2>
                             <p>Dashboard analitik ini saya buat menggunakan RStudio dan Shiny untuk memvisualisasikan data secara interaktif. Dashboard ini dilengkapi grafik, tabel, dan filter yang memudahkan proses analisis data.</p>
                             <div class="view-more">
-                                <a href="#" class="view-more-link">View more...</a>
+                                <a href="#" class="view-more-link" data-project="appdesign">View more...</a>
                             </div>
                         </div>
                         <div class="portfolio-image">
-                            <img src="img/figma.png" alt="App Design & Prototype">
+                            <img src="img/figma.png" alt="App Design & Prototype" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -560,145 +348,142 @@
     </footer>
 
     <script>
-        // Function to create the rain effect
-        function createRain() {
-            const rain = document.createElement('div');
-            rain.className = 'rain';
-            document.body.appendChild(rain);
+        // Deteksi performa perangkat
+        function detectPerformance() {
+            // Deteksi perangkat low-end
+            const isLowEndDevice = () => {
+                const processors = navigator.hardwareConcurrency || 1;
+                const limitedMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
+                return processors <= 2 || limitedMemory;
+            };
             
-            const numberOfDrops = 150;
+            // Deteksi koneksi lambat
+            const isSlowConnection = () => {
+                if ('connection' in navigator) {
+                    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                    return connection && (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g' || connection.saveData);
+                }
+                return false;
+            };
+            
+            // Sesuaikan berdasarkan perangkat dan koneksi
+            if (isLowEndDevice() || isSlowConnection()) {
+                document.body.classList.add('low-performance');
+            }
+            
+            // Tentukan jumlah elemen hujan berdasarkan performa
+            return {
+                rainDrops: isLowEndDevice() ? 30 : 60
+            };
+        }
+
+        // Optimasi: Fungsi untuk membuat efek hujan yang lebih ringan
+        function createRain() {
+            const rainContainer = document.createElement('div');
+            rainContainer.className = 'rain';
+            document.body.appendChild(rainContainer);
+            
+            const performanceSettings = detectPerformance();
+            const numberOfDrops = performanceSettings.rainDrops;
+            
             for (let i = 0; i < numberOfDrops; i++) {
                 const drop = document.createElement('div');
                 drop.className = 'rain-drop';
+                
+                // Random position
                 const posX = Math.floor(Math.random() * window.innerWidth);
                 drop.style.left = posX + 'px';
-                const fallDuration = 0.5 + Math.random();
+                
+                // Random falling speed
+                const fallDuration = 0.8 + Math.random() * 0.7;
                 drop.style.animationDuration = fallDuration + 's';
-                const opacity = 0.2 + Math.random() * 0.5;
+                
+                // Random opacity
+                const opacity = 0.2 + Math.random() * 0.4;
                 drop.style.opacity = opacity;
-                const delay = Math.random() * 2;
-                drop.style.animationDelay = delay + 's';
+                
+                // Random size
                 const size = 1 + Math.random();
                 drop.style.width = size + 'px';
                 drop.style.height = (size * 10) + 'px';
                 
-                // Add slight horizontal movement to some drops
+                // Tambahkan efek hujan miring hanya untuk sebagian tetesan
                 if (Math.random() > 0.7) {
-                    drop.style.animation = `rain-fall-angled ${fallDuration}s linear ${delay}s infinite`;
+                    drop.style.animation = `rain-fall-angled ${fallDuration}s linear infinite`;
                 }
                 
-                // Randomly color some drops to match the cyan theme color
-                if (Math.random() > 0.8) {
-                    drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
-                    drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
-                }
-                
-                rain.appendChild(drop);
+                rainContainer.appendChild(drop);
             }
-            
-            // Add periodic new drops to keep the rain looking fresh
-            setInterval(() => {
-                // Remove some old drops
-                const drops = rain.querySelectorAll('.rain-drop');
-                
-                if (drops.length > numberOfDrops * 1.2) {
-                    for (let i = 0; i < 10; i++) {
-                        if (drops[i]) {
-                            drops[i].remove();
-                        }
-                    }
-                }
-                
-                // Add some new drops
-                for (let i = 0; i < 10; i++) {
-                    const drop = document.createElement('div');
-                    drop.className = 'rain-drop';
-                    const posX = Math.floor(Math.random() * window.innerWidth);
-                    drop.style.left = posX + 'px';
-                    const fallDuration = 0.5 + Math.random();
-                    drop.style.animationDuration = fallDuration + 's';
-                    const opacity = 0.2 + Math.random() * 0.5;
-                    drop.style.opacity = opacity;
-                    const delay = Math.random() * 2;
-                    drop.style.animationDelay = delay + 's';
-                    const size = 1 + Math.random();
-                    drop.style.width = size + 'px';
-                    drop.style.height = (size * 10) + 'px';
-                    
-                    if (Math.random() > 0.7) {
-                        drop.style.animation = `rain-fall-angled ${fallDuration}s linear ${delay}s infinite`;
-                    }
-                    
-                    if (Math.random() > 0.8) {
-                        drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
-                        drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
-                    }
-                    
-                    rain.appendChild(drop);
-                }
-            }, 3000);
         }
 
-        // Page Transition Functions
-        function setupPageTransitions() {
-            const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
-            const overlay = document.querySelector('.page-transition-overlay');
-            const loadingIndicator = document.querySelector('.loading-indicator');
-            
-            transitionLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const target = this.getAttribute('href');
-                    
-                    // Show overlay with fade effect
-                    overlay.classList.add('active');
-                    loadingIndicator.classList.add('active');
-                    
-                    // Wait for animation
-                    setTimeout(() => {
-                        // Save that we're navigating internally
-                        sessionStorage.setItem('internalNavigation', 'true');
-                        
-                        // Then navigate
-                        window.location.href = target;
-                    }, 80);
-                });
-            });
+        // Optimasi: Fungsi scroll reveal dengan throttling
+        function throttle(func, delay) {
+            let lastCall = 0;
+            return function() {
+                const now = new Date().getTime();
+                if (now - lastCall < delay) {
+                    return;
+                }
+                lastCall = now;
+                return func.apply(this, arguments);
+            }
         }
 
-        // Function to handle scroll reveal animations
+        // Fungsi untuk menampilkan elemen saat di-scroll
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.reveal');
             const portfolioItems = document.querySelectorAll('.portfolio-item');
             
-            // Function to check if element is in viewport
-            function isInViewport(element, offset = 150) {
+            // Cache hasil innerHeight untuk performa
+            const viewportHeight = window.innerHeight;
+            
+            // Fungsi cek apakah elemen dalam viewport
+            function isInViewport(element, offset = 100) {
                 const rect = element.getBoundingClientRect();
                 return (
-                    rect.top <= window.innerHeight - offset && 
+                    rect.top <= viewportHeight - offset && 
                     rect.bottom >= 0
                 );
             }
             
-            // Reveal general elements
+            // Animasi elemen umum
             reveals.forEach(element => {
                 if (isInViewport(element)) {
                     element.classList.add('active');
                 }
             });
             
-            // Reveal portfolio items with staggered delay
+            // Animasi portfolio items dengan staggered delay
             portfolioItems.forEach((item, index) => {
-                if (isInViewport(item, 100)) {
+                if (isInViewport(item, 50)) {
                     setTimeout(() => {
                         item.classList.add('active');
-                    }, index * 200); // Stagger the animations
+                    }, index * 150);
                 }
             });
         }
 
-        // Data proyek
+        // Optimasi: Fungsi transisi halaman
+        function setupPageTransitions() {
+            const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
+            const overlay = document.querySelector('.page-transition-overlay');
+            
+            transitionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    
+                    overlay.classList.add('active');
+                    
+                    setTimeout(() => {
+                        sessionStorage.setItem('internalNavigation', 'true');
+                        window.location.href = target;
+                    }, 300);
+                });
+            });
+        }
+
+        // Data proyek yang dioptimalkan
         const projectsData = {
             'deebot': {
                 title: 'Deebot Vacuum-Digital Marketing & E-commerce',
@@ -744,27 +529,14 @@
                     'img/app-detail1.jpg',
                     'img/app-detail2.jpg'
                 ]
-            },
-            'manipicoffe': {
-                title: 'Redesign Packaging Manipi Coffe',
-                image: 'img/manipi.jpg',
-                description: 'Mendesain ulang kemasan Manipi Coffee dengan perpaduan estetika modern dan nilai autentik, mencerminkan kualitas premium dan cita rasa khas kopi Manipi, sekaligus memperkuat daya tarik visual dan identitas brand.',
-                longDescription: 'Proyek redesign packaging Manipi Coffee ini bertujuan untuk meningkatkan identitas visual brand dan menyelaraskannya dengan filosofi produk. Saya melakukan riset mendalam tentang target pasar dan tren desain kemasan kopi premium saat ini. Kemasan baru dirancang dengan mempertahankan elemen ikonik dari brand namun dengan tampilan yang lebih modern dan premium.<br><br>Material kemasan dipilih dengan mempertimbangkan aspek keberlanjutan dan kemampuan menjaga kesegaran kopi. Desain menggunakan warna-warna yang mencerminkan keaslian kopi Manipi dan menampilkan informasi tentang asal biji kopi, metode roasting, dan catatan rasa. Hasil akhirnya adalah kemasan yang tidak hanya menarik secara visual tetapi juga menceritakan kisah di balik kopi Manipi.',
-                tools: 'Adobe Illustrator, Adobe Photoshop, Packaging Mockup',
-                duration: '1 bulan',
-                role: 'Graphic Designer, Packaging Designer',
-                client: 'Manipi Coffee',
-                gallery: [
-                    'img/manipi.jpg',
-                    'img/manipi-detail1.jpg',
-                    'img/manipi-detail2.jpg'
-                ]
             }
         };
 
-        // Fungsi untuk menampilkan modal
+        // Fungsi untuk menampilkan modal yang dioptimalkan
         function displayProjectModal(projectKey) {
             const project = projectsData[projectKey];
+            if (!project) return;
+            
             const modalContainer = document.querySelector('.portfolio-modal');
             
             // Buat galeri gambar jika tersedia
@@ -773,7 +545,7 @@
                 galleryHTML = `
                     <h3 style="margin: 30px 0 15px; color: #00e5ff;">Gallery</h3>
                     <div class="modal-gallery">
-                        ${project.gallery.map(img => `<img src="${img}" alt="${project.title}" class="gallery-image">`).join('')}
+                        ${project.gallery.map(img => `<img src="${img}" alt="${project.title}" class="gallery-image" loading="lazy">`).join('')}
                     </div>
                 `;
             }
@@ -845,49 +617,37 @@
             });
         }
 
+        // Inisialisasi
         window.addEventListener('load', function() {
-            // Hide transition overlay if it's active
+            // Hapus overlay
             const overlay = document.querySelector('.page-transition-overlay');
             const loadingIndicator = document.querySelector('.loading-indicator');
             
             overlay.classList.remove('active');
             loadingIndicator.classList.remove('active');
             
+            // Buat efek hujan
             createRain();
+            
+            // Setup page transitions
             setupPageTransitions();
             
-            // Initial check for elements in viewport
+            // Initial check untuk elemen dalam viewport
             revealOnScroll();
             
-            // Add scroll event listener
-            window.addEventListener('scroll', revealOnScroll);
+            // Tambahkan event listener scroll dengan throttling untuk performa lebih baik
+            window.addEventListener('scroll', throttle(revealOnScroll, 100));
             
-            // Tambahkan event listener ke semua tombol "View more..."
+            // Setup event listeners untuk tombol "View more..."
             const viewMoreLinks = document.querySelectorAll('.view-more-link');
-            
-            viewMoreLinks.forEach((link, index) => {
+            viewMoreLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
-                    // Identifikasi proyek yang diklik
-                    let projectKey;
-                    if (index === 0) projectKey = 'deebot';
-                    else if (index === 1) projectKey = 'dashboard';
-                    else if (index === 2) projectKey = 'appdesign';
-                    
-                    // Tampilkan modal dengan data proyek
-                    displayProjectModal(projectKey);
+                    const projectKey = this.getAttribute('data-project');
+                    if (projectKey) {
+                        displayProjectModal(projectKey);
+                    }
                 });
-            });
-            
-            // Tambahkan data untuk project Manipi Coffee jika diperlukan
-            const manipiLink = document.createElement('a');
-            manipiLink.href = "#";
-            manipiLink.className = "view-more-link";
-            manipiLink.textContent = "View more...";
-            manipiLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                displayProjectModal('manipicoffe');
             });
         });
     </script>
