@@ -51,6 +51,109 @@
         @keyframes spin {
             to {transform: rotate(360deg);}
         }
+        
+        /* Scroll animation styles */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Different animation delays for elements */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+        
+        /* Blog card animations */
+        .blog-post {
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .blog-post.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Category card animations */
+        .category-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+        }
+        
+        .category-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Glowing badge effect for categories */
+        .category {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .blog-post:hover .category::before {
+            left: 100%;
+        }
+        
+        /* Enhanced hero section */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.7), transparent);
+        }
+        
+        /* Enhanced weather widget */
+        .weather {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+        }
+        
+        .weather:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -77,9 +180,9 @@
     </nav>
 
     <main>
-        <div class="hero-section">
+        <div class="hero-section reveal">
             <h1>BLOG</h1>
-            <h2>Temukan berbagai artikel inspiratif tentang desain, coding, dan teknologi.</h2>
+            <h2 class="reveal delay-100">Temukan berbagai artikel inspiratif tentang desain, coding, dan teknologi.</h2>
         </div>
 
         <div class="blog-container">
@@ -177,7 +280,7 @@
                 </article>
             </div>
 
-            <div class="categories-section">
+            <div class="categories-section reveal">
                 <div class="category-card">
                     <h3>Kuliah</h3>
                     <div class="category-posts">
@@ -248,6 +351,13 @@
                 const size = 1 + Math.random();
                 drop.style.width = size + 'px';
                 drop.style.height = (size * 10) + 'px';
+                
+                // Randomly color some drops with cyan tint
+                if (Math.random() > 0.8) {
+                    drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
+                    drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
+                }
+                
                 rain.appendChild(drop);
             }
         }
@@ -294,6 +404,43 @@
                 }
                 setTimeout(flashLightning, 2000 + Math.random() * 5000);
             });
+        }
+
+        // Function to handle scroll reveal animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const blogPosts = document.querySelectorAll('.blog-post');
+            const categoryCard = document.querySelector('.category-card');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element, offset = 150) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= window.innerHeight - offset && 
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Reveal general elements
+            reveals.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Reveal blog posts with staggered delay
+            blogPosts.forEach((post, index) => {
+                if (isInViewport(post, 100)) {
+                    setTimeout(() => {
+                        post.classList.add('active');
+                    }, index * 150); // Stagger the animations
+                }
+            });
+            
+            // Reveal category card
+            if (categoryCard && isInViewport(categoryCard, 120)) {
+                categoryCard.classList.add('active');
+            }
         }
 
         // Fungsi untuk tombol Read More
@@ -351,9 +498,31 @@
                         
                         // Then navigate
                         window.location.href = target;
-                    }, 300);
+                    }, 80);
                 });
             });
+        }
+
+        // Initialize all animations
+        function initAnimations() {
+            // Add subtle parallax effect to blog post images on scroll
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const direction = scrollTop > lastScrollTop ? 'down' : 'up';
+                const postImages = document.querySelectorAll('.post-image img');
+                
+                postImages.forEach(img => {
+                    const translateY = direction === 'down' ? '1%' : '-1%';
+                    img.style.transform = `scale(1.01) translateY(${translateY})`;
+                    setTimeout(() => {
+                        img.style.transform = 'scale(1)';
+                    }, 300);
+                });
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, { passive: true });
         }
 
         window.addEventListener('load', function() {
@@ -369,6 +538,13 @@
             createLightningEffects();
             setupReadMoreButtons();
             setupPageTransitions();
+            initAnimations();
+            
+            // Initial check for elements in viewport
+            revealOnScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', revealOnScroll);
         });
     </script>
 </body>

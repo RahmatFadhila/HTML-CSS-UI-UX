@@ -51,6 +51,100 @@
         @keyframes spin {
             to {transform: rotate(360deg);}
         }
+        
+        /* Scroll animation styles */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Different animation delays for elements */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+        
+        /* Form field animations */
+        .form-row, .form-group.full-width {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .form-row.active, .form-group.full-width.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Testimonial animations */
+        .testimonial {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+        }
+        
+        .testimonial.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial:nth-child(even) {
+            transform: translateY(40px) translateX(30px);
+        }
+        
+        .testimonial:nth-child(even).active {
+            transform: translateY(0) translateX(0);
+        }
+        
+        /* Rain effect animations */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .rain-drop {
+            position: absolute;
+            top: -50px;
+            width: 1px;
+            height: 15px;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
+            animation: rain-fall 1s linear infinite;
+        }
+        
+        @keyframes rain-fall {
+            to {
+                transform: translateY(calc(100vh + 50px));
+            }
+        }
+        
+        @keyframes rain-fall-angled {
+            to {
+                transform: translateY(calc(100vh + 50px)) translateX(15px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -75,15 +169,15 @@
     </nav>
     
     <main>
-        <div class="section contact-section">
-            <div class="contact-heading">
+        <div class="section contact-section reveal">
+            <div class="contact-heading reveal delay-100">
                 <h1>CONTACT US</h1>
                 <p class="subtitle">WE'D LOVE TO HEAR WHAT YOU THINK</p>
                 <div class="heading-underline"></div>
             </div>
             
             <div class="contact-container">
-                <div class="contact-info-left">
+                <div class="contact-info-left reveal delay-200">
                     <div class="info-section">
                         <h3>EMAIL US</h3>
                         <a href="mailto:mametrahmat97@gmail.com">mametrahmat97@gmail.com</a>
@@ -117,7 +211,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form reveal delay-300">
                     <h2>LET'S WORK TOGETHER</h2>
                     <form id="contactForm" action="mailto:mametrahmat97@gmail.com" method="post" enctype="text/plain">
                         <div class="form-row">
@@ -170,7 +264,7 @@
                 </div>
             </div>
             
-            <div class="testimonials-section">
+            <div class="testimonials-section reveal delay-400">
                 <h2>WHAT OUR CLIENTS SAY</h2>
                 <div class="testimonials-container">
                     <div class="testimonial">
@@ -244,8 +338,103 @@
                 const size = 1 + Math.random();
                 drop.style.width = size + 'px';
                 drop.style.height = (size * 10) + 'px';
+                
+                // Add slight horizontal movement to some drops
+                if (Math.random() > 0.7) {
+                    drop.style.animation = `rain-fall-angled ${fallDuration}s linear ${delay}s infinite`;
+                }
+                
+                // Randomly color some drops to match the cyan theme color
+                if (Math.random() > 0.8) {
+                    drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
+                    drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
+                }
+                
                 rain.appendChild(drop);
             }
+            
+            // Add periodic new drops to keep the rain looking fresh
+            setInterval(() => {
+                // Remove some old drops
+                const drops = rain.querySelectorAll('.rain-drop');
+                
+                if (drops.length > numberOfDrops * 1.2) {
+                    for (let i = 0; i < 10; i++) {
+                        if (drops[i]) {
+                            drops[i].remove();
+                        }
+                    }
+                }
+                
+                // Add some new drops
+                for (let i = 0; i < 10; i++) {
+                    const drop = document.createElement('div');
+                    drop.className = 'rain-drop';
+                    const posX = Math.floor(Math.random() * window.innerWidth);
+                    drop.style.left = posX + 'px';
+                    const fallDuration = 0.5 + Math.random();
+                    drop.style.animationDuration = fallDuration + 's';
+                    const opacity = 0.2 + Math.random() * 0.5;
+                    drop.style.opacity = opacity;
+                    const delay = Math.random() * 2;
+                    drop.style.animationDelay = delay + 's';
+                    const size = 1 + Math.random();
+                    drop.style.width = size + 'px';
+                    drop.style.height = (size * 10) + 'px';
+                    
+                    if (Math.random() > 0.7) {
+                        drop.style.animation = `rain-fall-angled ${fallDuration}s linear ${delay}s infinite`;
+                    }
+                    
+                    if (Math.random() > 0.8) {
+                        drop.style.background = `linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,${opacity * 1.5}) 100%)`;
+                        drop.style.boxShadow = '0 0 5px rgba(0, 229, 255, 0.5)';
+                    }
+                    
+                    rain.appendChild(drop);
+                }
+            }, 3000);
+        }
+
+        // Function to handle scroll reveal animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const formRows = document.querySelectorAll('.form-row, .form-group.full-width');
+            const testimonials = document.querySelectorAll('.testimonial');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element, offset = 150) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= window.innerHeight - offset && 
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Reveal general elements
+            reveals.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Reveal form rows with staggered delay
+            formRows.forEach((row, index) => {
+                if (isInViewport(row, 100)) {
+                    setTimeout(() => {
+                        row.classList.add('active');
+                    }, index * 150); // Stagger the animations
+                }
+            });
+            
+            // Reveal testimonials with staggered delay
+            testimonials.forEach((testimonial, index) => {
+                if (isInViewport(testimonial, 100)) {
+                    setTimeout(() => {
+                        testimonial.classList.add('active');
+                    }, index * 200); // Stagger the animations
+                }
+            });
         }
 
         // Page Transition Functions
@@ -271,7 +460,7 @@
                         
                         // Then navigate
                         window.location.href = target;
-                    }, 300);
+                    }, 80);
                 });
             });
         }
@@ -285,6 +474,12 @@
             loadingIndicator.classList.remove('active');
             
             createRain();
+            
+            // Initial check for elements in viewport
+            revealOnScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', revealOnScroll);
             
             // Form submission handler to format the email
             document.getElementById('contactForm').addEventListener('submit', function(e) {
