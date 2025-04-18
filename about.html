@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tentang Rahmat Fadhila - Digital Business student yang berbagi ide dan kreativitas seperti hujan yang membawa inspirasi.">
     <title>About - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/about.css">
     <!-- Optimasi: Load Font Awesome dengan cara yang lebih efisien -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <!-- Optimasi: Preload gambar penting -->
     <link rel="preload" href="img/ProfilAbout.png" as="image">
+    <link rel="preload" href="img/Backround (1).png" as="image">
     <style>
         /* Page Transition Overlay */
         .page-transition-overlay {
@@ -61,6 +64,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease-out;
+            will-change: opacity, transform;
         }
         
         .reveal.active {
@@ -79,6 +83,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease-out;
+            will-change: opacity, transform;
         }
         
         .education-card.active {
@@ -91,6 +96,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease-out;
+            will-change: opacity, transform;
         }
         
         .experience-card.active {
@@ -133,9 +139,6 @@
             <li><a href="portfolio.html" class="page-link" data-transition="true">Portfolio</a></li>
             <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
         </ul>
-        <div class="search-box">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
     </nav>
     
     <main>
@@ -151,7 +154,7 @@
                 <div class="profile-section">
                     <div class="profile-left reveal delay-200">
                         <div class="profile-image-container">
-                            <img src="img/ProfilAbout.png" alt="Rahmat Fadhila" class="profile-image">
+                            <img src="img/ProfilAbout.png" alt="Rahmat Fadhila" class="profile-image" width="250" height="250">
                         </div>
                     </div>
                     
@@ -187,7 +190,7 @@
                         </div>
                         <div class="school-frame">
                             <div class="school-image">
-                                <img src="img/misrantepao.jpg" alt="MIS Rantepao" loading="lazy">
+                                <img src="img/misrantepao.jpg" alt="MIS Rantepao" loading="lazy" width="180" height="180">
                             </div>
                         </div>
                         <div class="school-info">
@@ -205,7 +208,7 @@
                         </div>
                         <div class="school-frame">
                             <div class="school-image">
-                                <img src="img/spensa.jpg" alt="SMP Negeri 1 Rantepao" loading="lazy">
+                                <img src="img/spensa.jpg" alt="SMP Negeri 1 Rantepao" loading="lazy" width="180" height="180">
                             </div>
                         </div>
                         <div class="school-info">
@@ -223,7 +226,7 @@
                         </div>
                         <div class="school-frame">
                             <div class="school-image">
-                                <img src="img/smansa.jpg" alt="SMA Negeri 1 Rantepao" loading="lazy">
+                                <img src="img/smansa.jpg" alt="SMA Negeri 1 Rantepao" loading="lazy" width="180" height="180">
                             </div>
                         </div>
                         <div class="school-info">
@@ -241,7 +244,7 @@
                         </div>
                         <div class="school-frame">
                             <div class="school-image">
-                                <img src="img/uneng.jpeg" alt="Universitas Negeri Makassar" loading="lazy">
+                                <img src="img/uneng.jpeg" alt="Universitas Negeri Makassar" loading="lazy" width="180" height="180">
                             </div>
                         </div>
                         <div class="school-info">
@@ -267,13 +270,13 @@
             <div class="experience-container">
                 <div class="experience-card">
                     <div class="experience-image">
-                        <img src="img/timdeebot.jpg" alt="DEEBOT Team" loading="lazy">
+                        <img src="img/timdeebot.jpg" alt="DEEBOT Team" loading="lazy" width="300" height="200">
                     </div>
                     <div class="experience-arrow">
                         <i class="fas fa-arrow-left"></i>
                     </div>
                     <div class="experience-logo">
-                        <img src="img/deebot.jpg" alt="DEEBOT Logo" loading="lazy">
+                        <img src="img/deebot.jpg" alt="DEEBOT Logo" loading="lazy" width="80" height="80">
                     </div>
                     <div class="experience-description">
                         <p>"Pernah jadi creative di tim iklan Deebot Vacuum dan sempat mempresentasikan hasilnya di GDOGC UNM 2024. Selain belajar bikin iklan yang menarik, saya juga belajar cara menyakinkan para juri–karena ternyata, bukan cuma talenta yang perlu baik, ide juga harus 'kinclong' biar dilirik!"</p>
@@ -282,10 +285,10 @@
                 
                 <div class="experience-card reverse">
                     <div class="experience-image">
-                        <img src="img/timt6.jpg" alt="T6 Digiart Team" loading="lazy">
+                        <img src="img/timt6.jpg" alt="T6 Digiart Team" loading="lazy" width="300" height="200">
                     </div>
                     <div class="experience-logo">
-                        <img src="img/logoT6.jpg" alt="T6 Digiart Logo" loading="lazy">
+                        <img src="img/logoT6.jpg" alt="T6 Digiart Logo" loading="lazy" width="80" height="80">
                     </div>
                     <div class="experience-description">
                         <p>"Pernah menjadi Manager Pemasaran di tim T6 Digiart, jasa desain kreatif, dan dari pengalaman ini belajar bahwa memasarkan desain bukan sekadar hasil bagus, tapi juga gimana mempresentasikan ke klien–karena kalau promosinya biasa aja, klien bisa kabur duluan."</p>
@@ -350,8 +353,8 @@
             
             // Tentukan jumlah elemen hujan berdasarkan performa
             return {
-                rainDrops: isLowEndDevice() ? 30 : 80,
-                footerRainDrops: isLowEndDevice() ? 15 : 40
+                rainDrops: isLowEndDevice() ? 20 : 50,
+                footerRainDrops: isLowEndDevice() ? 10 : 25
             };
         }
 
@@ -370,19 +373,29 @@
             rainContainer.innerHTML = '';
             rainFooter.innerHTML = '';
             
+            // Menggunakan fragments untuk mengurangi DOM reflow
+            const mainFragment = document.createDocumentFragment();
+            const footerFragment = document.createDocumentFragment();
+            
             // Buat hujan utama dengan jumlah yang sudah disesuaikan
             for (let i = 0; i < numberOfDrops; i++) {
-                createRainDrop(rainContainer, true);
+                const drop = createRainDrop(true);
+                mainFragment.appendChild(drop);
             }
             
             // Buat hujan footer dengan jumlah yang lebih sedikit
             for (let i = 0; i < footerDrops; i++) {
-                createRainDrop(rainFooter, false);
+                const drop = createRainDrop(false);
+                footerFragment.appendChild(drop);
             }
+            
+            // Tambahkan fragments ke container
+            rainContainer.appendChild(mainFragment);
+            rainFooter.appendChild(footerFragment);
         }
 
-        // Fungsi untuk membuat tetesan hujan
-        function createRainDrop(container, isMainRain) {
+        // Fungsi untuk membuat tetesan hujan individual
+        function createRainDrop(isMainRain) {
             const drop = document.createElement('div');
             drop.className = 'rain-drop';
             
@@ -414,7 +427,7 @@
                 drop.style.animation = `rain-fall-angled ${fallDuration}s linear infinite`;
             }
             
-            container.appendChild(drop);
+            return drop;
         }
 
         // Optimasi: Fungsi hover effect yang lebih ringan
@@ -438,47 +451,50 @@
             });
         }
 
-        // Optimasi: Fungsi reveal on scroll yang lebih efisien
+        // Optimasi: Fungsi reveal on scroll yang lebih efisien dengan requestAnimationFrame
         function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            const educationCards = document.querySelectorAll('.education-card');
-            const experienceCards = document.querySelectorAll('.experience-card');
-            
-            // Optimasi: Cache hasil innerHeight untuk performa
-            const viewportHeight = window.innerHeight;
-            
-            // Fungsi cek apakah elemen dalam viewport
-            function isInViewport(element, offset = 100) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= viewportHeight - offset && 
-                    rect.bottom >= 0
-                );
-            }
-            
-            // Animasi elemen umum
-            reveals.forEach(element => {
-                if (isInViewport(element)) {
-                    element.classList.add('active');
+            // Gunakan requestAnimationFrame untuk sinkronisasi dengan refresh rate browser
+            requestAnimationFrame(() => {
+                const reveals = document.querySelectorAll('.reveal:not(.active)');
+                const educationCards = document.querySelectorAll('.education-card:not(.active)');
+                const experienceCards = document.querySelectorAll('.experience-card:not(.active)');
+                
+                // Optimasi: Cache hasil innerHeight untuk performa
+                const viewportHeight = window.innerHeight;
+                
+                // Fungsi cek apakah elemen dalam viewport
+                function isInViewport(element, offset = 100) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= viewportHeight - offset && 
+                        rect.bottom >= 0
+                    );
                 }
-            });
-            
-            // Animasi kartu pendidikan
-            educationCards.forEach((card, index) => {
-                if (isInViewport(card, 50)) {
-                    setTimeout(() => {
-                        card.classList.add('active');
-                    }, index * 100);
-                }
-            });
-            
-            // Animasi kartu pengalaman
-            experienceCards.forEach((card, index) => {
-                if (isInViewport(card, 50)) {
-                    setTimeout(() => {
-                        card.classList.add('active');
-                    }, index * 150);
-                }
+                
+                // Animasi elemen umum
+                reveals.forEach(element => {
+                    if (isInViewport(element)) {
+                        element.classList.add('active');
+                    }
+                });
+                
+                // Animasi kartu pendidikan
+                educationCards.forEach((card, index) => {
+                    if (isInViewport(card, 50)) {
+                        setTimeout(() => {
+                            card.classList.add('active');
+                        }, index * 100);
+                    }
+                });
+                
+                // Animasi kartu pengalaman
+                experienceCards.forEach((card, index) => {
+                    if (isInViewport(card, 50)) {
+                        setTimeout(() => {
+                            card.classList.add('active');
+                        }, index * 150);
+                    }
+                });
             });
         }
 
@@ -515,7 +531,27 @@
             }
         }
 
-        // Inisialisasi
+        // Visibilty API untuk mengoptimalkan halaman saat tidak terlihat
+        function handleVisibilityChange() {
+            if (document.visibilityState === 'hidden') {
+                // Pause animations ketika halaman tidak terlihat
+                document.body.classList.add('animation-paused');
+            } else {
+                // Resume animations ketika halaman terlihat kembali
+                document.body.classList.remove('animation-paused');
+            }
+        }
+
+        // DOMContentLoaded event - setup minimal awal
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup transisi halaman 
+            setupPageTransitions();
+            
+            // Dengarkan perubahan visibility
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        });
+
+        // Inisialisasi saat halaman selesai dimuat
         window.addEventListener('load', function() {
             // Hapus overlay
             const overlay = document.querySelector('.page-transition-overlay');
@@ -531,10 +567,7 @@
             revealOnScroll();
             
             // Tambahkan event listener scroll dengan throttling untuk performa
-            window.addEventListener('scroll', throttle(revealOnScroll, 100));
-            
-            // Setup transisi halaman
-            setupPageTransitions();
+            window.addEventListener('scroll', throttle(revealOnScroll, 100), { passive: true });
         });
     </script>
 </body>

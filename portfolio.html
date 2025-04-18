@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio Rahmat Fadhila - UI/UX Designer dan Frontend Developer yang berbagi karya desain dan pengembangan web dengan fokus pada pengalaman pengguna.">
     <title>Portfolio - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/portfolio.css">
     <!-- Optimasi: Load Font Awesome dengan cara yang lebih efisien -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    <!-- Optimasi: Preload gambar profil -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- Optimasi: Preload gambar penting -->
     <link rel="preload" href="img/profilporto.jpg" as="image">
+    <link rel="preload" href="img/Backround (1).png" as="image">
     <style>
         /* Page Transition Overlay */
         .page-transition-overlay {
@@ -176,6 +179,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease-out;
+            will-change: opacity, transform;
         }
         
         .reveal.active {
@@ -193,6 +197,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.5s ease-out;
+            will-change: opacity, transform;
         }
         
         .portfolio-item.active {
@@ -213,6 +218,11 @@
         .navbar {
             position: static;
             z-index: 100;
+        }
+        
+        /* Animasi paused ketika halaman tidak terlihat */
+        .animation-paused * {
+            animation-play-state: paused !important;
         }
     </style>
 </head>
@@ -235,9 +245,6 @@
             <li><a href="portfolio.html" class="page-link" data-transition="true">Portfolio</a></li>
             <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
         </ul>
-        <div class="search-box">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
     </nav>
     
     <main>
@@ -259,7 +266,7 @@
                     </div>
                 </div>
                 <div class="intro-photo">
-                    <img src="img/profilporto.jpg" alt="Rahmat Fadhila">
+                    <img src="img/profilporto.jpg" alt="Rahmat Fadhila" width="200" height="200">
                 </div>
             </div>
             
@@ -279,7 +286,7 @@
                             </div>
                         </div>
                         <div class="portfolio-image">
-                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project" loading="lazy">
+                            <img src="img/projectdeebot.png" alt="Deebot E-commerce Project" loading="lazy" width="500" height="300">
                         </div>
                     </div>
                 </div>
@@ -295,7 +302,7 @@
                             </div>
                         </div>
                         <div class="portfolio-image">
-                            <img src="img/dashboard.jpg" alt="Dashboard Analitik Project" loading="lazy">
+                            <img src="img/dashboard.jpg" alt="Dashboard Analitik Project" loading="lazy" width="500" height="300">
                         </div>
                     </div>
                 </div>
@@ -311,7 +318,7 @@
                             </div>
                         </div>
                         <div class="portfolio-image">
-                            <img src="img/figma.png" alt="App Design & Prototype" loading="lazy">
+                            <img src="img/figma.png" alt="App Design & Prototype" loading="lazy" width="500" height="300">
                         </div>
                     </div>
                 </div>
@@ -373,18 +380,20 @@
             
             // Tentukan jumlah elemen hujan berdasarkan performa
             return {
-                rainDrops: isLowEndDevice() ? 30 : 60
+                rainDrops: isLowEndDevice() ? 20 : 40
             };
         }
 
-        // Optimasi: Fungsi untuk membuat efek hujan yang lebih ringan
+        // Optimasi: Fungsi untuk membuat efek hujan yang lebih ringan dengan DocumentFragment
         function createRain() {
             const rainContainer = document.createElement('div');
             rainContainer.className = 'rain';
-            document.body.appendChild(rainContainer);
             
             const performanceSettings = detectPerformance();
             const numberOfDrops = performanceSettings.rainDrops;
+            
+            // Menggunakan fragment untuk mengurangi reflow DOM
+            const fragment = document.createDocumentFragment();
             
             for (let i = 0; i < numberOfDrops; i++) {
                 const drop = document.createElement('div');
@@ -412,8 +421,11 @@
                     drop.style.animation = `rain-fall-angled ${fallDuration}s linear infinite`;
                 }
                 
-                rainContainer.appendChild(drop);
+                fragment.appendChild(drop);
             }
+            
+            rainContainer.appendChild(fragment);
+            document.body.appendChild(rainContainer);
         }
 
         // Optimasi: Fungsi scroll reveal dengan throttling
@@ -429,37 +441,39 @@
             }
         }
 
-        // Fungsi untuk menampilkan elemen saat di-scroll
+        // Fungsi untuk menampilkan elemen saat di-scroll dengan requestAnimationFrame
         function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-            
-            // Cache hasil innerHeight untuk performa
-            const viewportHeight = window.innerHeight;
-            
-            // Fungsi cek apakah elemen dalam viewport
-            function isInViewport(element, offset = 100) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= viewportHeight - offset && 
-                    rect.bottom >= 0
-                );
-            }
-            
-            // Animasi elemen umum
-            reveals.forEach(element => {
-                if (isInViewport(element)) {
-                    element.classList.add('active');
+            requestAnimationFrame(() => {
+                const reveals = document.querySelectorAll('.reveal:not(.active)');
+                const portfolioItems = document.querySelectorAll('.portfolio-item:not(.active)');
+                
+                // Cache hasil innerHeight untuk performa
+                const viewportHeight = window.innerHeight;
+                
+                // Fungsi cek apakah elemen dalam viewport
+                function isInViewport(element, offset = 100) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= viewportHeight - offset && 
+                        rect.bottom >= 0
+                    );
                 }
-            });
-            
-            // Animasi portfolio items dengan staggered delay
-            portfolioItems.forEach((item, index) => {
-                if (isInViewport(item, 50)) {
-                    setTimeout(() => {
-                        item.classList.add('active');
-                    }, index * 150);
-                }
+                
+                // Animasi elemen umum
+                reveals.forEach(element => {
+                    if (isInViewport(element)) {
+                        element.classList.add('active');
+                    }
+                });
+                
+                // Animasi portfolio items dengan staggered delay
+                portfolioItems.forEach((item, index) => {
+                    if (isInViewport(item, 50)) {
+                        setTimeout(() => {
+                            item.classList.add('active');
+                        }, index * 150);
+                    }
+                });
             });
         }
 
@@ -532,7 +546,7 @@
             }
         };
 
-        // Fungsi untuk menampilkan modal yang dioptimalkan
+        // Fungsi untuk menampilkan modal yang dioptimalkan dengan lazyload gambar
         function displayProjectModal(projectKey) {
             const project = projectsData[projectKey];
             if (!project) return;
@@ -545,7 +559,7 @@
                 galleryHTML = `
                     <h3 style="margin: 30px 0 15px; color: #00e5ff;">Gallery</h3>
                     <div class="modal-gallery">
-                        ${project.gallery.map(img => `<img src="${img}" alt="${project.title}" class="gallery-image" loading="lazy">`).join('')}
+                        ${project.gallery.map(img => `<img src="${img}" alt="${project.title}" class="gallery-image" loading="lazy" width="200" height="150">`).join('')}
                     </div>
                 `;
             }
@@ -555,10 +569,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2>${project.title}</h2>
-                        <button class="modal-close">&times;</button>
+                        <button class="modal-close" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <img src="${project.image}" alt="${project.title}" class="modal-image">
+                        <img src="${project.image}" alt="${project.title}" class="modal-image" width="100%" height="auto">
                         
                         <div class="modal-description">
                             ${project.longDescription}
@@ -617,7 +631,27 @@
             });
         }
 
-        // Inisialisasi
+        // Fungsi untuk menangani visibility API
+        function handleVisibilityChange() {
+            if (document.visibilityState === 'hidden') {
+                // Jeda animasi saat tab tidak aktif
+                document.body.classList.add('animation-paused');
+            } else {
+                // Lanjutkan animasi saat tab aktif kembali
+                document.body.classList.remove('animation-paused');
+            }
+        }
+
+        // Setup awal pada DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup page transitions
+            setupPageTransitions();
+            
+            // Setup visibility listener
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        });
+
+        // Inisialisasi penuh pada window load
         window.addEventListener('load', function() {
             // Hapus overlay
             const overlay = document.querySelector('.page-transition-overlay');
@@ -626,17 +660,16 @@
             overlay.classList.remove('active');
             loadingIndicator.classList.remove('active');
             
-            // Buat efek hujan
-            createRain();
-            
-            // Setup page transitions
-            setupPageTransitions();
+            // Buat efek hujan dengan delay untuk optimasi performa
+            setTimeout(() => {
+                createRain();
+            }, 100);
             
             // Initial check untuk elemen dalam viewport
             revealOnScroll();
             
             // Tambahkan event listener scroll dengan throttling untuk performa lebih baik
-            window.addEventListener('scroll', throttle(revealOnScroll, 100));
+            window.addEventListener('scroll', throttle(revealOnScroll, 100), { passive: true });
             
             // Setup event listeners untuk tombol "View more..."
             const viewMoreLinks = document.querySelectorAll('.view-more-link');

@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hubungi Rahmat Fadhila untuk berkolaborasi, diskusi proyek, atau sekadar menyapa. Dapatkan informasi kontak lengkap dan formulir kontak langsung.">
     <title>Contact - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/contact.css">
     <!-- Optimasi: Load Font Awesome dengan cara yang lebih efisien -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    <!-- Optimasi: Preload gambar profil -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- Optimasi: Preload gambar-gambar penting -->
     <link rel="preload" href="img/diriku.jpeg" as="image">
+    <link rel="preload" href="img/Backround (1).png" as="image">
     <style>
         /* Page Transition Overlay */
         .page-transition-overlay {
@@ -61,6 +64,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease-out;
+            will-change: opacity, transform;
         }
         
         .reveal.active {
@@ -79,6 +83,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease-out;
+            will-change: opacity, transform;
         }
         
         .form-row.active, .form-group.full-width.active {
@@ -91,6 +96,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.5s ease-out;
+            will-change: opacity, transform;
         }
         
         .testimonial.active {
@@ -107,10 +113,56 @@
             display: block;
         }
         
+        /* Paused animations when not visible */
+        .animation-paused * {
+            animation-play-state: paused !important;
+        }
+        
         /* Static Navbar */
         .navbar {
             position: static;
             z-index: 100;
+        }
+        
+        /* Pesan terima kasih */
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 1rem;
+            background-color: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        
+        .thank-you-message.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .thank-you-message i {
+            font-size: 3rem;
+            color: #00e5ff;
+            margin-bottom: 1rem;
+        }
+        
+        .thank-you-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .thank-you-message p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Untuk menyembunyikan form */
+        .form-hidden {
+            display: none;
         }
     </style>
 </head>
@@ -130,9 +182,6 @@
             <li><a href="portfolio.html" class="page-link" data-transition="true">Portfolio</a></li>
             <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
         </ul>
-        <div class="search-box">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
     </nav>
     
     <main>
@@ -158,7 +207,7 @@
                     <div class="profile-images">
                         <div class="back-image"></div>
                         <div class="front-image">
-                            <img src="img/diriku.jpeg" alt="Rahmat Fadhila">
+                            <img src="img/diriku.jpeg" alt="Rahmat Fadhila" width="240" height="315">
                         </div>
                     </div>
                     
@@ -179,38 +228,16 @@
                 </div>
                 
                 <div class="contact-form reveal delay-300">
-                    <h2>LET'S WORK TOGETHER</h2>
-                    <form id="contactForm" action="mailto:mametrahmat97@gmail.com" method="post" enctype="text/plain">
+                    <h2>LEAVE A COMMENT</h2>
+                    <form id="contactForm">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="firstName">FIRST NAME <span class="required">*</span></label>
-                                <input type="text" id="firstName" name="firstName" required>
+                                <label for="name">NAME <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="lastName">LAST NAME <span class="required">*</span></label>
-                                <input type="text" id="lastName" name="lastName" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">EMAIL ADDRESS <span class="required">*</span></label>
+                                <label for="email">E-MAIL <span class="required">*</span></label>
                                 <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">PHONE NUMBER <span class="required">*</span></label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="location">LOCATION <span class="required">*</span></label>
-                                <input type="text" id="location" name="location" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="date">DATE <span class="required">*</span></label>
-                                <input type="date" id="date" name="date" required>
                             </div>
                         </div>
                         
@@ -220,7 +247,7 @@
                         </div>
                         
                         <div class="form-group full-width">
-                            <label for="message">DETAILS <span class="required">*</span></label>
+                            <label for="message">GIVE YOUR FEEDBACK <span class="required">*</span></label>
                             <textarea id="message" name="message" rows="6" required></textarea>
                         </div>
                         
@@ -228,26 +255,31 @@
                             <button type="submit" class="submit-btn">SUBMIT</button>
                         </div>
                     </form>
+                    
+                    <!-- Pesan terima kasih yang akan ditampilkan setelah submit -->
+                    <div id="thankYouMessage" class="thank-you-message">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>THANK YOU!</h3>
+                        <p>your message has been sent.</p>
+                    </div>
                 </div>
             </div>
             
             <div class="testimonials-section reveal delay-400">
-                <h2>WHAT OUR CLIENTS SAY</h2>
+                <h2>WHAT THEY SAY</h2>
                 <div class="testimonials-container">
                     <div class="testimonial">
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="testimonial-text">"Feel free to reach out for collaborations, projects, or just to say hi! I'm open to discussions, sharing, and creative ideas."</p>
+                        <p class="testimonial-text">"Hujan belum tentu membasahi, MANTAP!"</p>
                         <div class="testimonial-author">
-                            <span class="author-name">Rahmat Fadhila</span>
-                            <span class="author-title">Rainmate</span>
+                            <span class="author-name">Ayyi GOGEM</span>
                         </div>
                     </div>
                     <div class="testimonial">
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="testimonial-text">"Creating ideas under the rain is more than a tagline - it's a philosophy of innovation and creativity in every project we undertake."</p>
+                        <p class="testimonial-text">"Ya tawwa menyesuaikan dengan cuaca sekarang rainmate ini, kembangkan bro asal jangan sampai banjir sessa jaki itu hahahaha"</p>
                         <div class="testimonial-author">
-                            <span class="author-name">Creative Team</span>
-                            <span class="author-title">Rainmate Studio</span>
+                            <span class="author-name">Anomali Tungtung</span>
                         </div>
                     </div>
                 </div>
@@ -309,18 +341,20 @@
             
             // Tentukan jumlah elemen hujan berdasarkan performa
             return {
-                rainDrops: isLowEndDevice() ? 30 : 60
+                rainDrops: isLowEndDevice() ? 20 : 40
             };
         }
 
-        // Optimasi: Fungsi untuk membuat efek hujan yang lebih ringan
+        // Optimasi: Fungsi untuk membuat efek hujan yang lebih ringan dengan DocumentFragment
         function createRain() {
             const rainContainer = document.createElement('div');
             rainContainer.className = 'rain';
-            document.body.appendChild(rainContainer);
             
             const performanceSettings = detectPerformance();
             const numberOfDrops = performanceSettings.rainDrops;
+            
+            // Menggunakan fragment untuk mengurangi reflow DOM
+            const fragment = document.createDocumentFragment();
             
             for (let i = 0; i < numberOfDrops; i++) {
                 const drop = document.createElement('div');
@@ -348,8 +382,11 @@
                     drop.style.animation = `rain-fall-angled ${fallDuration}s linear infinite`;
                 }
                 
-                rainContainer.appendChild(drop);
+                fragment.appendChild(drop);
             }
+            
+            rainContainer.appendChild(fragment);
+            document.body.appendChild(rainContainer);
         }
 
         // Optimasi: Fungsi scroll reveal dengan throttling
@@ -365,47 +402,49 @@
             }
         }
 
-        // Fungsi untuk menampilkan elemen saat di-scroll
+        // Fungsi untuk menampilkan elemen saat di-scroll dengan requestAnimationFrame
         function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            const formRows = document.querySelectorAll('.form-row, .form-group.full-width');
-            const testimonials = document.querySelectorAll('.testimonial');
-            
-            // Cache hasil innerHeight untuk performa
-            const viewportHeight = window.innerHeight;
-            
-            // Fungsi cek apakah elemen dalam viewport
-            function isInViewport(element, offset = 100) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= viewportHeight - offset && 
-                    rect.bottom >= 0
-                );
-            }
-            
-            // Animasi elemen umum
-            reveals.forEach(element => {
-                if (isInViewport(element)) {
-                    element.classList.add('active');
+            requestAnimationFrame(() => {
+                const reveals = document.querySelectorAll('.reveal:not(.active)');
+                const formRows = document.querySelectorAll('.form-row:not(.active), .form-group.full-width:not(.active)');
+                const testimonials = document.querySelectorAll('.testimonial:not(.active)');
+                
+                // Cache hasil innerHeight untuk performa
+                const viewportHeight = window.innerHeight;
+                
+                // Fungsi cek apakah elemen dalam viewport
+                function isInViewport(element, offset = 100) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= viewportHeight - offset && 
+                        rect.bottom >= 0
+                    );
                 }
-            });
-            
-            // Animasi form rows dengan staggered delay
-            formRows.forEach((row, index) => {
-                if (isInViewport(row, 50)) {
-                    setTimeout(() => {
-                        row.classList.add('active');
-                    }, index * 100);
-                }
-            });
-            
-            // Animasi testimonials dengan staggered delay
-            testimonials.forEach((testimonial, index) => {
-                if (isInViewport(testimonial, 50)) {
-                    setTimeout(() => {
-                        testimonial.classList.add('active');
-                    }, index * 150);
-                }
+                
+                // Animasi elemen umum
+                reveals.forEach(element => {
+                    if (isInViewport(element)) {
+                        element.classList.add('active');
+                    }
+                });
+                
+                // Animasi form rows dengan staggered delay
+                formRows.forEach((row, index) => {
+                    if (isInViewport(row, 50)) {
+                        setTimeout(() => {
+                            row.classList.add('active');
+                        }, index * 100);
+                    }
+                });
+                
+                // Animasi testimonials dengan staggered delay
+                testimonials.forEach((testimonial, index) => {
+                    if (isInViewport(testimonial, 50)) {
+                        setTimeout(() => {
+                            testimonial.classList.add('active');
+                        }, index * 150);
+                    }
+                });
             });
         }
 
@@ -429,7 +468,66 @@
             });
         }
 
-        // Inisialisasi
+        // Fungsi untuk menangani visibility API
+        function handleVisibilityChange() {
+            if (document.visibilityState === 'hidden') {
+                // Jeda animasi saat tab tidak aktif
+                document.body.classList.add('animation-paused');
+            } else {
+                // Lanjutkan animasi saat tab aktif kembali
+                document.body.classList.remove('animation-paused');
+            }
+        }
+
+        // Setup dasar pada DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup page transitions
+            setupPageTransitions();
+            
+            // Setup visibility event listener
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+            
+            // Form submission handler dengan pesan terima kasih
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault(); // Mencegah pengiriman form default
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Persiapkan data untuk dikirim ke email
+                const formattedSubject = encodeURIComponent(`Contact Form: ${subject}`);
+                const formattedBody = encodeURIComponent(
+                    `Name: ${name}\n` +
+                    `Email: ${email}\n\n` +
+                    `Message:\n${message}`
+                );
+                
+                // Sembunyikan form dengan animasi
+                const formElements = this.querySelectorAll('.form-row, .form-group.full-width');
+                formElements.forEach(element => {
+                    element.style.opacity = '0';
+                });
+                
+                setTimeout(() => {
+                    // Sembunyikan form
+                    formElements.forEach(element => {
+                        element.classList.add('form-hidden');
+                    });
+                    
+                    // Tampilkan pesan terima kasih
+                    document.getElementById('thankYouMessage').classList.add('active');
+                    
+                    // Kirim email setelah menampilkan pesan terima kasih
+                    setTimeout(() => {
+                        window.location.href = `mailto:mametrahmat97@gmail.com?subject=${formattedSubject}&body=${formattedBody}`;
+                    }, 1000);
+                }, 500);
+            });
+        });
+
+        // Inisialisasi penuh saat window load
         window.addEventListener('load', function() {
             // Hapus overlay
             const overlay = document.querySelector('.page-transition-overlay');
@@ -438,43 +536,16 @@
             overlay.classList.remove('active');
             loadingIndicator.classList.remove('active');
             
-            // Buat efek hujan
-            createRain();
+            // Buat efek hujan dengan delay untuk performa lebih baik
+            setTimeout(() => {
+                createRain();
+            }, 100);
             
             // Initial check untuk elemen dalam viewport
             revealOnScroll();
             
             // Tambahkan event listener scroll dengan throttling untuk performa lebih baik
-            window.addEventListener('scroll', throttle(revealOnScroll, 100));
-            
-            // Form submission handler untuk format email
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const location = document.getElementById('location').value;
-                const date = document.getElementById('date').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Set email subject dan update form action
-                const formattedSubject = encodeURIComponent(`Contact Form: ${subject}`);
-                const formattedBody = encodeURIComponent(
-                    `First Name: ${firstName}\n` +
-                    `Last Name: ${lastName}\n` +
-                    `Email: ${email}\n` +
-                    `Phone: ${phone}\n` +
-                    `Location: ${location}\n` +
-                    `Date: ${date}\n\n` +
-                    `Message:\n${message}`
-                );
-                
-                this.action = `mailto:mametrahmat97@gmail.com?subject=${formattedSubject}&body=${formattedBody}`;
-            });
-            
-            // Setup page transitions
-            setupPageTransitions();
+            window.addEventListener('scroll', throttle(revealOnScroll, 100), { passive: true });
         });
     </script>
 </body>

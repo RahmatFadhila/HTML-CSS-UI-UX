@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Rahmat Fadhila - Temukan artikel inspiratif tentang desain, coding, teknologi, dan kuliah. Tips dan tutorial bermanfaat dari Rainmate.">
     <title>Blog - Rahmat Fadhila</title>
     <link rel="stylesheet" href="css/blog.css">
     <!-- Optimasi: Load Font Awesome dengan cara yang lebih efisien -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <!-- Optimasi: Preload gambar penting -->
     <link rel="preload" href="img/creative.jpg" as="image">
+    <link rel="preload" href="img/Backround (1).png" as="image">
     <style>
         /* Page Transition Overlay */
         .page-transition-overlay {
@@ -61,6 +64,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease-out;
+            will-change: opacity, transform;
         }
         
         .reveal.active {
@@ -79,6 +83,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease-out;
+            will-change: opacity, transform;
         }
         
         .blog-post.active {
@@ -91,6 +96,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.5s ease-out;
+            will-change: opacity, transform;
         }
         
         .category-card.active {
@@ -126,6 +132,11 @@
         .low-performance .post-rain-drop:nth-child(3n) {
             display: block;
         }
+        
+        /* Optimasi: Animasi yang paused saat tidak visible */
+        .animation-paused * {
+            animation-play-state: paused !important;
+        }
     </style>
 </head>
 <body>
@@ -146,9 +157,6 @@
             <li><a href="portfolio.html" class="page-link" data-transition="true">Portfolio</a></li>
             <li><a href="contact.html" class="page-link" data-transition="true">Contact</a></li>
         </ul>
-        <div class="search-box">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
     </nav>
 
     <main>
@@ -162,7 +170,7 @@
                 <!-- Blog Post 1 -->
                 <article class="blog-post card">
                     <div class="post-image">
-                        <img src="img/creative.jpg" alt="Portfolio Design Tips" loading="lazy">
+                        <img src="img/creative.jpg" alt="Portfolio Design Tips" loading="lazy" width="350" height="220">
                         <div class="post-image-rain"></div>
                         <div class="lightning-container"></div>
                     </div>
@@ -190,7 +198,7 @@
                 <!-- Blog Post 2 -->
                 <article class="blog-post card">
                     <div class="post-image">
-                        <img src="img/web.jpg" alt="HTML & CSS Tutorial" loading="lazy">
+                        <img src="img/web.jpg" alt="HTML & CSS Tutorial" loading="lazy" width="350" height="220">
                         <div class="post-image-rain"></div>
                         <div class="lightning-container"></div>
                     </div>
@@ -223,7 +231,7 @@
                 <!-- Blog Post 3 -->
                 <article class="blog-post card">
                     <div class="post-image">
-                        <img src="img/Vector.jpg" alt="Internet of Things" loading="lazy">
+                        <img src="img/Vector.jpg" alt="Internet of Things" loading="lazy" width="350" height="220">
                         <div class="post-image-rain"></div>
                         <div class="lightning-container"></div>
                     </div>
@@ -257,11 +265,11 @@
                     <h3>Kuliah</h3>
                     <div class="category-posts">
                         <div class="category-post">
-                            <img src="img/kuliah.jpg" alt="College Group" loading="lazy">
+                            <img src="img/kuliah.jpg" alt="College Group" loading="lazy" width="250" height="170">
                             <h4>Catatan Kuliah Semester 5</h4>
                         </div>
                         <div class="category-post">
-                            <img src="img/tugasakhir.jpg" alt="Study Notes" loading="lazy">
+                            <img src="img/tugasakhir.jpg" alt="Study Notes" loading="lazy" width="250" height="170">
                             <h4>Penerapan UI/UX dalam Projek Akhir</h4>
                         </div>
                     </div>
@@ -329,8 +337,8 @@
             
             // Tentukan jumlah elemen hujan berdasarkan performa
             return {
-                rainDrops: isLowEndDevice() ? 30 : 60,
-                postRainDrops: isLowEndDevice() ? 10 : 20
+                rainDrops: isLowEndDevice() ? 20 : 40,
+                postRainDrops: isLowEndDevice() ? 5 : 15
             };
         }
 
@@ -344,6 +352,9 @@
             
             // Bersihkan container yang mungkin sudah ada
             rain.innerHTML = '';
+            
+            // Menggunakan fragment untuk mengurangi reflow
+            const fragment = document.createDocumentFragment();
             
             // Buat hujan dengan jumlah yang sudah disesuaikan dengan performa
             for (let i = 0; i < numberOfDrops; i++) {
@@ -367,8 +378,10 @@
                 drop.style.width = size + 'px';
                 drop.style.height = (size * 10) + 'px';
                 
-                rain.appendChild(drop);
+                fragment.appendChild(drop);
             }
+            
+            rain.appendChild(fragment);
         }
 
         // Optimasi: Fungsi untuk membuat hujan pada card post yang lebih ringan
@@ -382,6 +395,9 @@
             postRainContainers.forEach(container => {
                 // Bersihkan container
                 container.innerHTML = '';
+                
+                // Menggunakan fragment untuk mengurangi reflow
+                const fragment = document.createDocumentFragment();
                 
                 // Buat hujan untuk setiap card post
                 for (let i = 0; i < numberOfDrops; i++) {
@@ -405,8 +421,10 @@
                     drop.style.width = size + 'px';
                     drop.style.height = (size * 8) + 'px';
                     
-                    container.appendChild(drop);
+                    fragment.appendChild(drop);
                 }
+                
+                container.appendChild(fragment);
             });
         }
 
@@ -416,7 +434,12 @@
             if (!lightningContainers.length) return;
             
             // Gunakan fungsi throttle untuk membatasi frequensi flash kilat
-            const throttleFlash = (container) => {
+            const createLightningFlash = (container) => {
+                // Jika halaman tidak terlihat atau performa rendah, jangan buat efek
+                if (document.visibilityState === 'hidden' || document.body.classList.contains('low-performance')) {
+                    return;
+                }
+                
                 const lightning = document.createElement('div');
                 lightning.className = 'lightning';
                 
@@ -429,21 +452,24 @@
                 
                 // Hapus elemen kilat setelah animasi selesai
                 setTimeout(() => { 
-                    lightning.remove(); 
+                    if (lightning.parentNode === container) {
+                        lightning.remove();
+                    }
                 }, 200);
-                
-                // Jeda lebih panjang antara kilat untuk performa lebih baik
-                const nextFlash = 8000 + Math.random() * 12000;
-                setTimeout(() => throttleFlash(container), nextFlash);
             };
             
-            // Mulai efek kilat untuk setiap container dengan delay awal
-            lightningContainers.forEach(container => {
-                setTimeout(() => throttleFlash(container), 5000 + Math.random() * 5000);
-            });
+            // Timer untuk efek kilat - satu timer bersama untuk semua container
+            setInterval(() => {
+                // Hanya jalankan jika visible dan random chance
+                if (document.visibilityState === 'visible' && Math.random() > 0.7) {
+                    // Pilih salah satu container secara acak
+                    const randomIndex = Math.floor(Math.random() * lightningContainers.length);
+                    createLightningFlash(lightningContainers[randomIndex]);
+                }
+            }, 8000);
         }
 
-        // Optimasi: Fungsi scroll reveal yang lebih efisien dengan throttling
+        // Optimasi: Fungsi throttle untuk scroll optimization
         function throttle(func, delay) {
             let lastCall = 0;
             return function() {
@@ -456,44 +482,47 @@
             }
         }
 
-        // Fungsi untuk menampilkan elemen saat di-scroll
+        // Fungsi untuk menampilkan elemen saat di-scroll dengan requestAnimationFrame
         function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            const blogPosts = document.querySelectorAll('.blog-post');
-            const categoryCard = document.querySelector('.category-card');
-            
-            // Cache hasil innerHeight untuk performa
-            const viewportHeight = window.innerHeight;
-            
-            // Fungsi cek apakah elemen dalam viewport
-            function isInViewport(element, offset = 100) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= viewportHeight - offset && 
-                    rect.bottom >= 0
-                );
-            }
-            
-            // Animasi elemen umum
-            reveals.forEach(element => {
-                if (isInViewport(element)) {
-                    element.classList.add('active');
+            // Gunakan requestAnimationFrame untuk optimasi
+            requestAnimationFrame(() => {
+                const reveals = document.querySelectorAll('.reveal:not(.active)');
+                const blogPosts = document.querySelectorAll('.blog-post:not(.active)');
+                const categoryCard = document.querySelector('.category-card:not(.active)');
+                
+                // Cache hasil innerHeight untuk performa
+                const viewportHeight = window.innerHeight;
+                
+                // Fungsi cek apakah elemen dalam viewport
+                function isInViewport(element, offset = 100) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= viewportHeight - offset && 
+                        rect.bottom >= 0
+                    );
+                }
+                
+                // Animasi elemen umum
+                reveals.forEach(element => {
+                    if (isInViewport(element)) {
+                        element.classList.add('active');
+                    }
+                });
+                
+                // Animasi blog posts dengan staggered delay
+                blogPosts.forEach((post, index) => {
+                    if (isInViewport(post, 50)) {
+                        setTimeout(() => {
+                            post.classList.add('active');
+                        }, index * 100);
+                    }
+                });
+                
+                // Animasi category card
+                if (categoryCard && isInViewport(categoryCard, 50)) {
+                    categoryCard.classList.add('active');
                 }
             });
-            
-            // Animasi blog posts dengan staggered delay
-            blogPosts.forEach((post, index) => {
-                if (isInViewport(post, 50)) {
-                    setTimeout(() => {
-                        post.classList.add('active');
-                    }, index * 100);
-                }
-            });
-            
-            // Animasi category card
-            if (categoryCard && isInViewport(categoryCard, 50)) {
-                categoryCard.classList.add('active');
-            }
         }
 
         // Optimasi: Fungsi untuk tombol Read More yang lebih efisien
@@ -506,9 +535,11 @@
                     card.classList.toggle('expanded');
                     
                     const readMoreText = this.querySelector('.read-more-text');
+                    const arrowIcon = this.querySelector('svg');
                     
                     if (card.classList.contains('expanded')) {
                         readMoreText.textContent = 'Read Less';
+                        arrowIcon.style.transform = 'rotate(180deg)';
                         
                         // Smooth scroll to show full content
                         setTimeout(() => {
@@ -516,6 +547,7 @@
                         }, 100);
                     } else {
                         readMoreText.textContent = 'Read More';
+                        arrowIcon.style.transform = 'rotate(0deg)';
                     }
                 });
             });
@@ -541,26 +573,47 @@
             });
         }
 
-        // Inisialisasi
+        // Fungsi yang menangani visibilitas halaman
+        function handleVisibilityChange() {
+            if (document.visibilityState === 'hidden') {
+                // Jeda animasi saat halaman tidak terlihat
+                document.body.classList.add('animation-paused');
+            } else {
+                // Lanjutkan animasi saat halaman terlihat kembali
+                document.body.classList.remove('animation-paused');
+            }
+        }
+
+        // Minimal setup pada DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup page transitions
+            setupPageTransitions();
+            
+            // Listener for visibility API
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        });
+
+        // Inisialisasi lengkap pada window load
         window.addEventListener('load', function() {
             // Hapus overlay
             const overlay = document.querySelector('.page-transition-overlay');
             overlay.classList.remove('active');
             
             // Buat efek visual
-            createRain();
-            createPostRain();
-            createLightningEffects();
+            setTimeout(() => {
+                createRain();
+                createPostRain();
+                createLightningEffects();
+            }, 100);
             
             // Setup interaksi
             setupReadMoreButtons();
-            setupPageTransitions();
             
             // Check elemen dalam viewport
             revealOnScroll();
             
             // Tambahkan event listener scroll dengan throttling untuk performa lebih baik
-            window.addEventListener('scroll', throttle(revealOnScroll, 100));
+            window.addEventListener('scroll', throttle(revealOnScroll, 100), { passive: true });
         });
     </script>
 </body>

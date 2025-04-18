@@ -1,3 +1,31 @@
+/* CSS Variables untuk konsistensi */
+:root {
+    --main-color: #00e5ff;
+    --main-color-shadow: rgba(0, 229, 255, 0.5);
+    --main-color-glow: rgba(0, 229, 255, 0.8);
+    --main-color-bg: rgba(0, 229, 255, 0.1);
+    --main-color-border: rgba(0, 229, 255, 0.3);
+    --navbar-bg: rgba(22, 28, 36, 0.8);
+    --footer-bg: rgba(22, 28, 36, 0.8);
+    --card-bg: rgba(0, 0, 0, 0.4);
+    --card-hover-bg: rgba(0, 0, 0, 0.5);
+    --category-post-bg: rgba(0, 0, 0, 0.3);
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+    --text-color: #fff;
+    --text-light: rgba(255, 255, 255, 0.8);
+    --text-lighter: rgba(255, 255, 255, 0.7);
+    --text-lightest: rgba(255, 255, 255, 0.6);
+    --text-border: rgba(255, 255, 255, 0.3);
+    --text-border-light: rgba(255, 255, 255, 0.1);
+    --text-border-lighter: rgba(255, 255, 255, 0.08);
+    --box-shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --box-shadow-md: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --box-shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.4);
+    --transition-fast: all 0.3s ease;
+    --transition-regular: all 0.4s ease;
+    --transition-slow: all 0.6s ease;
+}
+
 /* Base Styles */
 * {
     margin: 0;
@@ -7,10 +35,13 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
+    color: var(--text-color);
     line-height: 1.6;
     background-color: #000; /* Warna dasar sebelum background dimuat */
-    background: url('/img/Backround\ \(1\).png') no-repeat center center fixed;
+    background-image: url('/img/Backround\ \(1\).png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
     position: relative;
     min-height: 100vh;
@@ -24,11 +55,11 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--overlay-bg);
     z-index: -1;
 }
 
-/* Optimasi: Efek hujan */
+/* ===== EFEK HUJAN ===== */
 .rain {
     position: fixed;
     top: 0;
@@ -37,6 +68,7 @@ body::before {
     height: 100%;
     z-index: 1;
     pointer-events: none;
+    will-change: opacity;
 }
 
 .rain-drop {
@@ -46,18 +78,19 @@ body::before {
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
     opacity: 0.6;
     animation: rain-fall linear infinite;
+    will-change: transform;
 }
   
 @keyframes rain-fall {
-    0% {
+    from {
         transform: translateY(-100vh);
     }
-    100% {
+    to {
         transform: translateY(100vh);
     }
 }
 
-/* Optimasi: Efek hujan pada gambar post */
+/* ===== EFEK HUJAN PADA POST ===== */
 .post-image-rain {
     position: absolute;
     top: 0;
@@ -77,18 +110,19 @@ body::before {
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
     opacity: 0.7;
     animation: post-rain-fall linear infinite;
+    will-change: transform;
 }
 
 @keyframes post-rain-fall {
-    0% {
+    from {
         transform: translateY(-100%);
     }
-    100% {
+    to {
         transform: translateY(100%);
     }
 }
 
-/* Optimasi: Efek kilat */
+/* ===== EFEK KILAT ===== */
 .lightning-container {
     position: absolute;
     top: 0;
@@ -115,6 +149,7 @@ body::before {
     opacity: 0;
     animation: lightning-flash 0.2s ease-in-out;
     z-index: 5;
+    will-change: opacity;
 }
 
 @keyframes lightning-flash {
@@ -129,7 +164,7 @@ body::before {
     }
 }
 
-/* Optimasi: Hero section */
+/* ===== HERO SECTION ===== */
 .hero-section {
     text-align: center;
     padding: 4rem 1rem;
@@ -140,10 +175,10 @@ body::before {
 .hero-section h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-color);
     margin-bottom: 1.5rem;
     letter-spacing: 3px;
-    text-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 15px var(--main-color-shadow);
     position: relative;
     display: inline-block;
 }
@@ -156,29 +191,29 @@ body::before {
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+    background: linear-gradient(90deg, transparent, var(--main-color), transparent);
 }
 
 .hero-section h2 {
     font-size: 1.3rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-light);
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.7;
 }
 
-/* Optimasi: Navbar */
+/* ===== NAVBAR ===== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(22, 28, 36, 0.8);
+    background-color: var(--navbar-bg);
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    box-shadow: var(--box-shadow-sm);
 }
 
 .navbar::after {
@@ -188,16 +223,16 @@ body::before {
     left: 100px;
     right: 100px;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--text-border);
 }
 
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #00e5ff;
+    color: var(--main-color);
     text-decoration: none;
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
-    transition: all 0.3s ease;
+    text-shadow: 0 0 10px var(--main-color-shadow);
+    transition: var(--transition-fast);
 }
 
 .logo:hover {
@@ -217,12 +252,12 @@ body::before {
 }
 
 .nav-links a {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 0;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .nav-links a::after {
@@ -232,44 +267,26 @@ body::before {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #00e5ff;
+    background-color: var(--main-color);
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #00e5ff;
+    color: var(--main-color);
 }
 
 .nav-links a:hover::after {
     width: 100%;
 }
 
-.search-box {
-    display: flex;
-    align-items: center;
-}
-
-.search-btn {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-}
-
-.search-btn:hover {
-    color: #00e5ff;
-}
-
-/* Optimasi: Blog container */
+/* ===== BLOG CONTAINER ===== */
 .blog-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Optimasi: Blog posts section */
+/* ===== BLOG POSTS ===== */
 .blog-posts {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -278,20 +295,21 @@ body::before {
 }
 
 .blog-post {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: var(--box-shadow-md);
+    transition: var(--transition-regular);
     height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
+    will-change: transform, opacity;
 }
 
 .blog-post:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--box-shadow-lg);
 }
 
 .post-image {
@@ -322,7 +340,7 @@ body::before {
 }
 
 .category {
-    color: #00e5ff;
+    color: var(--main-color);
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 0.8rem;
@@ -331,6 +349,7 @@ body::before {
     display: inline-block;
     position: relative;
     padding-bottom: 5px;
+    overflow: hidden;
 }
 
 .category::after {
@@ -340,7 +359,7 @@ body::before {
     left: 0;
     width: 30px;
     height: 2px;
-    background-color: #00e5ff;
+    background-color: var(--main-color);
     transition: width 0.3s ease;
 }
 
@@ -350,33 +369,33 @@ body::before {
 
 .blog-post h3 {
     font-size: 1.5rem;
-    color: #fff;
+    color: var(--text-color);
     margin-bottom: 1rem;
     line-height: 1.4;
-    transition: color 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .description {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-light);
     margin-bottom: 1.8rem;
     flex-grow: 1;
     line-height: 1.7;
 }
 
-/* Optimasi: Read more button */
+/* ===== READ MORE BUTTON ===== */
 .read-more {
     display: inline-flex;
     align-items: center;
-    color: #00e5ff;
+    color: var(--main-color);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     margin-top: auto;
     padding: 8px 16px;
     border-radius: 30px;
-    background: rgba(0, 229, 255, 0.1);
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    background: var(--main-color-bg);
+    border: 1px solid var(--main-color-border);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -397,13 +416,13 @@ body::before {
     transform: translateY(-3px);
 }
 
-/* Optimasi: Card full content */
+/* ===== CARD EXPANDED CONTENT ===== */
 .card-full-content {
     height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: all 0.5s ease;
-    color: rgba(255, 255, 255, 0.8);
+    transition: var(--transition-regular);
+    color: var(--text-light);
     line-height: 1.6;
     margin-top: 0;
 }
@@ -423,28 +442,29 @@ body::before {
     z-index: 10;
 }
 
-/* Optimasi: Categories section */
+/* ===== CATEGORIES SECTION ===== */
 .categories-section {
     margin-bottom: 4rem;
 }
 
 .category-card {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--card-bg);
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow-md);
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: var(--transition-regular);
+    will-change: transform, opacity;
 }
 
 .category-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--box-shadow-lg);
 }
 
 .category-card h3 {
-    color: #00e5ff;
+    color: var(--main-color);
     font-size: 1.6rem;
     margin-bottom: 1.5rem;
     position: relative;
@@ -458,7 +478,7 @@ body::before {
     bottom: -8px;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #00e5ff, transparent);
+    background: linear-gradient(90deg, var(--main-color), transparent);
 }
 
 .category-posts {
@@ -468,12 +488,12 @@ body::before {
 }
 
 .category-post {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--category-post-bg);
     border-radius: 10px;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: var(--transition-regular);
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow-sm);
     position: relative;
 }
 
@@ -490,7 +510,7 @@ body::before {
 
 .category-post:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow-md);
 }
 
 .category-post img {
@@ -512,40 +532,40 @@ body::before {
     z-index: 2;
 }
 
-/* Optimasi: Weather widget */
+/* ===== WEATHER WIDGET ===== */
 .weather {
     position: fixed;
     bottom: 20px;
     right: 20px;
     font-size: 1.3rem;
-    color: #fff;
+    color: var(--text-color);
     background-color: rgba(0, 0, 0, 0.6);
     padding: 0.6rem 1.2rem;
     border-radius: 30px;
     z-index: 90;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-fast);
+    box-shadow: var(--box-shadow-sm);
+    border: 1px solid var(--text-border-light);
 }
 
 .weather:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--box-shadow-md);
     background-color: rgba(0, 0, 0, 0.7);
 }
 
 .weather i {
-    color: #00e5ff;
+    color: var(--main-color);
     margin-right: 8px;
 }
 
-/* Optimasi: Footer */
+/* ===== FOOTER ===== */
 .footer {
-    background-color: rgba(22, 28, 36, 0.8);
-    color: #ffffff;
+    background-color: var(--footer-bg);
+    color: var(--text-color);
     padding: 2rem 0 1rem;
     margin-top: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--text-border-light);
     position: relative;
     overflow: hidden;
 }
@@ -557,7 +577,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 229, 255, 0.05), transparent);
+    background: linear-gradient(to bottom, var(--main-color-bg), transparent);
     pointer-events: none;
 }
 
@@ -580,14 +600,14 @@ body::before {
 .footer-logo h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #00e5ff;
+    color: var(--main-color);
     margin-bottom: 0.3rem;
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 10px var(--main-color-shadow);
 }
 
 .footer-logo p {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-lighter);
 }
 
 .footer-social {
@@ -603,16 +623,16 @@ body::before {
     height: 36px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    transition: all 0.3s ease;
+    color: var(--text-color);
+    transition: var(--transition-fast);
     position: relative;
     overflow: hidden;
 }
 
 .footer-social .social-btn:hover {
-    background-color: #00e5ff;
+    background-color: var(--main-color);
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+    box-shadow: 0 5px 15px var(--main-color-shadow);
 }
 
 .footer-social .social-btn i {
@@ -629,12 +649,12 @@ body::before {
     display: flex;
     justify-content: center;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--text-border-lighter);
 }
 
 .footer-bottom p {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-lightest);
 }
 
 .rain-footer {
@@ -648,7 +668,7 @@ body::before {
     overflow: hidden;
 }
 
-/* Optimasi: Media queries */
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 768px) {
     .blog-posts {
         grid-template-columns: 1fr;
@@ -722,7 +742,11 @@ body::before {
     }
 }
 
-/* Optimasi: Classes for low performance mode */
+/* ===== KELAS OPTIMASI PERFORMA ===== */
+.animation-paused * {
+    animation-play-state: paused !important;
+}
+
 .low-performance .blog-post:hover,
 .low-performance .category-post:hover,
 .low-performance .category-card:hover,
@@ -740,12 +764,13 @@ body::before {
     transform: none;
 }
 
-/* Optimasi: Animation styles */
+/* ===== KELAS ANIMASI ===== */
 .reveal {
     position: relative;
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transition: var(--transition-slow);
+    will-change: opacity, transform;
 }
 
 .reveal.active {
@@ -753,13 +778,13 @@ body::before {
     transform: translateY(0);
 }
 
-/* Optimasi: Animation delays */
+/* Delay animasi */
 .delay-100 { transition-delay: 0.1s; }
 .delay-200 { transition-delay: 0.2s; }
 .delay-300 { transition-delay: 0.3s; }
 .delay-400 { transition-delay: 0.4s; }
 
-/* Page Transition Overlay */
+/* ===== TRANSISI HALAMAN ===== */
 .page-transition-overlay {
     position: fixed;
     top: 0;
@@ -796,7 +821,7 @@ body::before {
     height: 40px;
     border: 3px solid rgba(0, 229, 255, 0.3);
     border-radius: 50%;
-    border-top-color: #00e5ff;
+    border-top-color: var(--main-color);
     animation: spin 1s linear infinite;
 }
 
