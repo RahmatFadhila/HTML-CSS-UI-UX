@@ -760,3 +760,156 @@ main {
 @keyframes spin {
     to {transform: rotate(360deg);}
 }
+
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-transition-overlay.active {
+    opacity: 0.8;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    display: none;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 229, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00e5ff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {transform: rotate(360deg);}
+}
+
+/* Optimasi: Scroll animation */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Animation delays */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* Optimasi: Form animations */
+.form-row, .form-group.full-width {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.form-row.active, .form-group.full-width.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Testimonial animations */
+.testimonial {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.testimonial.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Low performance mode */
+.low-performance .rain-drop {
+    display: none;
+}
+
+.low-performance .rain-drop:nth-child(3n) {
+    display: block;
+}
+
+/* Paused animations when not visible */
+.animation-paused * {
+    animation-play-state: paused !important;
+}
+
+/* Static Navbar */
+.navbar {
+    position: static;
+    z-index: 100;
+}
+
+/* Pesan terima kasih */
+.thank-you-message {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 1rem;
+    background-color: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.thank-you-message.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.thank-you-message i {
+    font-size: 3rem;
+    color: #00e5ff;
+    margin-bottom: 1rem;
+}
+
+.thank-you-message h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.thank-you-message p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Untuk menyembunyikan form */
+.form-hidden {
+    display: none;
+}

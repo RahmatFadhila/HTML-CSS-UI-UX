@@ -828,3 +828,129 @@ body::before {
 @keyframes spin {
     to {transform: rotate(360deg);}
 }
+
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-transition-overlay.active {
+    opacity: 0.8;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    display: none;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 229, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00e5ff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {transform: rotate(360deg);}
+}
+
+/* Optimasi: Scroll animation styles */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Menyederhanakan delay animasi */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* Optimasi: Blog card animations */
+.blog-post {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.blog-post.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Category card animations */
+.category-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.category-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimasi: Glowing badge effect */
+.category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+}
+
+/* Static Navbar Styles */
+.navbar {
+    position: static;
+    z-index: 100;
+}
+
+/* Optimasi: Kelas untuk performa rendah */
+.low-performance .rain-drop,
+.low-performance .post-rain-drop {
+    display: none;
+}
+
+.low-performance .rain-drop:nth-child(3n),
+.low-performance .post-rain-drop:nth-child(3n) {
+    display: block;
+}
+
+/* Optimasi: Animasi yang paused saat tidak visible */
+.animation-paused * {
+    animation-play-state: paused !important;
+}

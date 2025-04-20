@@ -726,3 +726,45 @@ body::before {
   animation: none !important;
   transition: none !important;
 }
+
+
+ /* Static Navbar */
+ .navbar {
+  position: static;
+  z-index: 100;
+}
+
+/* Animasi entrance yang ringan */
+.rain-entrance {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.5s ease-out;
+}
+
+.logo-entrance {
+  color: #00e5ff;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.tagline-entrance {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Animasi paused ketika halaman tidak terlihat */
+.animation-paused * {
+  animation-play-state: paused !important;
+}
