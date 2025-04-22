@@ -35,7 +35,7 @@ body {
     background-color: #000; /* Warna dasar sebelum background dimuat */
     background-image: url('/img/Backround\ \(1\).png');
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: top center; /* Ubah ke top center */
     background-attachment: fixed;
     background-size: cover;
     position: relative;
@@ -111,7 +111,7 @@ body::before {
     justify-content: space-between;
     align-items: center;
     background-color: var(--navbar-bg);
-    padding: 1rem 2rem;
+    padding: 0.6rem 2rem; /* Kurangi padding */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -185,14 +185,14 @@ body::before {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem; /* Kurangi padding */
     position: relative;
     z-index: 2;
 }
 
 .section {
-    margin-bottom: 4rem;
-    padding: 2.5rem;
+    margin-bottom: 2rem; /* Kurangi margin */
+    padding: 1.8rem; /* Kurangi padding */
     border-radius: 15px;
     background-color: var(--section-bg);
     position: relative;
@@ -221,7 +221,7 @@ main {
 h1 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Kurangi margin */
     color: var(--text-color);
     position: relative;
     text-shadow: var(--text-shadow);
@@ -229,7 +229,7 @@ h1 {
 
 h2 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem; /* Kurangi margin */
     color: var(--text-color);
     position: relative;
     text-shadow: var(--text-shadow);
@@ -237,10 +237,10 @@ h2 {
 
 /* ===== ABOUT SECTION ===== */
 .about-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem; /* Kurangi margin */
     text-align: left;
     padding-left: 1.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem; /* Kurangi margin */
 }
 
 .highlight {
@@ -257,7 +257,7 @@ h2 {
 .about-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem; /* Kurangi gap */
     align-items: flex-start;
     width: 100%;
 }
@@ -266,13 +266,13 @@ h2 {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1.5rem; /* Kurangi gap */
     width: 100%;
-    margin-top: -1rem;
+    margin-top: -0.5rem; /* Ubah margin */
 }
 
 .profile-left {
-    flex: 0 0 250px;
+    flex: 0 0 220px; /* Kurangi ukuran */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -281,8 +281,8 @@ h2 {
 }
 
 .profile-image-container {
-    flex: 0 0 250px;
-    height: 250px;
+    flex: 0 0 220px; /* Kurangi ukuran */
+    height: 220px; /* Kurangi ukuran */
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid var(--border-lighter);
@@ -329,16 +329,16 @@ h2 {
 }
 
 .bio-text p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
+    margin-bottom: 1.2rem; /* Kurangi margin */
+    font-size: 1.05rem; /* Kurangi font-size */
+    line-height: 1.6; /* Kurangi line-height */
     text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 /* ===== EMAIL & INSTAGRAM LINKS ===== */
 .email-instagram {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem; /* Kurangi gap */
     justify-content: flex-start;
     margin-top: 0.5rem;
 }
@@ -371,30 +371,30 @@ h2 {
 
 /* ===== EDUCATION SECTION ===== */
 .education-section {
-    padding: 2.5rem;
+    padding: 1.8rem; /* Kurangi padding */
 }
 
 .education-container {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem; /* Kurangi gap */
 }
 
 .education-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 2rem;
+    gap: 1.2rem; /* Kurangi gap */
 }
 
 .education-card {
     flex: 1;
-    min-width: 220px;
-    max-width: 270px;
+    min-width: 200px; /* Kurangi ukuran minimum */
+    max-width: 250px; /* Kurangi ukuran maksimum */
     position: relative;
     text-align: center;
     transition: all 0.5s ease;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Kurangi margin */
     will-change: transform, opacity;
 }
 
@@ -426,10 +426,10 @@ h2 {
 
 .school-frame {
     width: 100%;
-    height: 180px;
+    height: 150px; /* Kurangi height */
     position: relative;
     transition: all 0.5s ease;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Kurangi margin */
 }
 
 .school-image {
@@ -460,14 +460,14 @@ h2 {
 }
 
 .school-info {
-    margin-top: 1.5rem;
+    margin-top: 1rem; /* Kurangi margin */
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .school-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem; /* Kurangi font-size */
+    margin-bottom: 0.4rem; /* Kurangi margin */
     transition: all 0.3s ease;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
@@ -502,14 +502,14 @@ h2 {
 }
 
 .education-description {
-    margin-top: 2rem;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    margin-top: 1.2rem; /* Kurangi margin */
+    font-size: 1rem; /* Kurangi font-size */
+    line-height: 1.6; /* Kurangi line-height */
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
     text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    padding: 1.5rem;
+    padding: 1.2rem; /* Kurangi padding */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: var(--box-shadow-sm);
@@ -523,20 +523,20 @@ h2 {
 
 /* ===== EXPERIENCE SECTION ===== */
 .experience-section {
-    padding: 2.5rem;
+    padding: 1.8rem; /* Kurangi padding */
 }
 
 .experience-container {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
-    margin-top: 2rem;
+    gap: 2rem; /* Kurangi gap */
+    margin-top: 1.5rem; /* Kurangi margin */
 }
 
 .experience-card {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem; /* Kurangi gap */
     align-items: center;
     justify-content: space-between;
     position: relative;
@@ -559,9 +559,9 @@ h2 {
 }
 
 .experience-image {
-    flex: 0 0 300px;
-    max-width: 300px;
-    height: 200px;
+    flex: 0 0 280px; /* Kurangi ukuran */
+    max-width: 280px; /* Kurangi ukuran */
+    height: 180px; /* Kurangi height */
     overflow: hidden;
     border-radius: 10px;
     border: 2px solid var(--border-lighter);
@@ -589,7 +589,7 @@ h2 {
 .experience-arrow {
     position: absolute;
     font-size: 1.5rem;
-    left: 320px;
+    left: 300px; /* Sesuaikan dengan ukuran baru */
     color: var(--main-color);
     filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.5));
     transition: all 0.3s ease;
@@ -602,8 +602,8 @@ h2 {
 }
 
 .experience-logo {
-    width: 100px;
-    height: 100px;
+    width: 80px; /* Kurangi ukuran */
+    height: 80px; /* Kurangi ukuran */
     border-radius: 50%;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.2);
@@ -633,9 +633,9 @@ h2 {
 .experience-description {
     flex: 1;
     min-width: 300px;
-    font-size: 1.05rem;
+    font-size: 1rem; /* Kurangi font-size */
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 1.8rem;
+    padding: 1.5rem; /* Kurangi padding */
     border-radius: 10px;
     box-shadow: var(--box-shadow-sm);
     transition: all 0.3s ease;
@@ -651,7 +651,7 @@ h2 {
 }
 
 .experience-description p {
-    line-height: 1.8;
+    line-height: 1.7; /* Kurangi line-height */
     position: relative;
     z-index: 2;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
@@ -661,8 +661,8 @@ h2 {
 .footer {
     background-color: var(--footer-bg);
     color: var(--text-color);
-    padding: 2rem 0 1rem;
-    margin-top: 3rem;
+    padding: 1.5rem 0 1rem; /* Kurangi padding */
+    margin-top: 2rem; /* Kurangi margin */
     border-top: 1px solid var(--border-light);
     box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
     position: relative;
@@ -693,7 +693,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem; /* Kurangi margin */
 }
 
 .footer-logo h3 {
@@ -718,8 +718,8 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 34px; /* Kurangi ukuran */
+    height: 34px; /* Kurangi ukuran */
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--text-color);
@@ -747,7 +747,7 @@ h2 {
 .footer-bottom {
     display: flex;
     justify-content: center;
-    padding-top: 1rem;
+    padding-top: 0.8rem; /* Kurangi padding */
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -778,7 +778,7 @@ h2 {
     }
     
     .profile-left {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem; /* Kurangi margin */
     }
     
     .profile-right {
@@ -808,7 +808,7 @@ h2 {
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        padding: 1rem;
+        padding: 0.8rem; /* Kurangi padding */
     }
     
     .navbar::after {
@@ -817,11 +817,11 @@ h2 {
     }
     
     .logo {
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem; /* Kurangi margin */
     }
     
     .nav-links {
-        margin: 1rem 0;
+        margin: 0.8rem 0; /* Kurangi margin */
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -831,7 +831,7 @@ h2 {
     }
     
     .section {
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem; /* Kurangi padding */
     }
     
     .education-card {
@@ -840,7 +840,7 @@ h2 {
     
     .footer-top {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.2rem; /* Kurangi gap */
     }
     
     .footer-logo {
@@ -863,29 +863,29 @@ h2 {
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Kurangi font-size */
     }
     
     h2 {
-        font-size: 1.7rem;
+        font-size: 1.5rem; /* Kurangi font-size */
     }
     
     .education-cards {
-        gap: 3rem;
+        gap: 2.5rem; /* Kurangi gap */
     }
     
     .email-instagram {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 0.8rem; /* Kurangi gap */
     }
     
     .section {
-        padding: 1.2rem 0.8rem;
+        padding: 1rem 0.7rem; /* Kurangi padding */
     }
     
     .education-card {
-        min-width: 200px;
+        min-width: 180px; /* Kurangi min-width */
     }
 }
 
@@ -918,8 +918,8 @@ h2 {
 .reveal {
     position: relative;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transform: translateY(20px); /* Kurangi jarak transformasi */
+    transition: all 0.5s ease-out; /* Percepat transisi */
     will-change: opacity, transform;
 }
 
@@ -984,8 +984,8 @@ h2 {
 .reveal {
     position: relative;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transform: translateY(20px); /* Kurangi dari 30px menjadi 20px */
+    transition: all 0.5s ease-out; /* Percepat dari 0.6s menjadi 0.5s */
     will-change: opacity, transform;
 }
 
@@ -1003,8 +1003,8 @@ h2 {
 /* Optimasi: Animasi kartu pendidikan yang lebih efisien */
 .education-card {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-out;
+    transform: translateY(15px); /* Kurangi dari 20px menjadi 15px */
+    transition: all 0.4s ease-out; /* Percepat dari 0.5s menjadi 0.4s */
     will-change: opacity, transform;
 }
 
@@ -1016,8 +1016,8 @@ h2 {
 /* Optimasi: Animasi kartu pengalaman yang lebih efisien */
 .experience-card {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transform: translateY(15px); /* Kurangi dari 30px menjadi 15px */
+    transition: all 0.5s ease-out; /* Percepat dari 0.6s menjadi 0.5s */
     will-change: opacity, transform;
 }
 
