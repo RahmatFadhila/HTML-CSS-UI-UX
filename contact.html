@@ -13,6 +13,8 @@
     <link rel="preload" href="img/diriku.jpeg" as="image">
     <link rel="preload" href="img/Backround (1).png" as="image">
     <link rel="icon" type="image/x-icon" href="img/LOGO.jpg">
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Page transition overlay -->
@@ -77,8 +79,7 @@
                 
                 <div class="contact-form reveal delay-300">
                     <h2>LEAVE A COMMENT</h2>
-                    <!-- Form menggunakan FormSubmit -->
-                    <form id="contactForm" action="https://formsubmit.co/mametrahmat97@gmail.com" method="POST">
+                    <form id="contactForm">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">NAME <span class="required">*</span></label>
@@ -92,19 +93,13 @@
                         
                         <div class="form-group full-width">
                             <label for="subject">SUBJECT <span class="required">*</span></label>
-                            <input type="text" id="subject" name="_subject" required>
+                            <input type="text" id="subject" name="subject" required>
                         </div>
                         
                         <div class="form-group full-width">
                             <label for="message">GIVE YOUR FEEDBACK <span class="required">*</span></label>
                             <textarea id="message" name="message" rows="6" required></textarea>
                         </div>
-                        
-                        <!-- FormSubmit settings -->
-                        <input type="text" name="_honey" style="display:none">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://rainmate.com/contact.html?status=sukses">
-                        <input type="hidden" name="_template" value="table">
                         
                         <div class="form-group full-width">
                             <button type="submit" class="submit-btn">SUBMIT</button>
@@ -114,8 +109,8 @@
                     <!-- Pesan terima kasih yang akan ditampilkan setelah submit -->
                     <div id="thankYouMessage" class="thank-you-message">
                         <i class="fas fa-check-circle"></i>
-                        <h3>TERIMA KASIH!</h3>
-                        <p>Pesan Anda telah terkirim.</p>
+                        <h3>THANK YOU!</h3>
+                        <p>Your massage has delivered.</p>
                     </div>
                 </div>
             </div>

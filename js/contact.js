@@ -1,3 +1,8 @@
+// Inisialisasi EmailJS
+(function() {
+    emailjs.init("f177BWx_Ra4rmjmrJ"); // Ganti dengan public key EmailJS Anda
+})();
+
 // Deteksi performa perangkat
 function detectPerformance() {
     // Deteksi perangkat low-end
@@ -161,33 +166,19 @@ function handleVisibilityChange() {
     }
 }
 
-// Cek URL untuk menampilkan pesan terima kasih
-function checkFormStatus() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get('status');
+// Fungsi untuk mengirim email 
+function sendEmail(formData) {
+    // Konfigurasikan dengan ID service dan template Anda
+    const serviceID = 'service_ozhez6k'; // Ganti dengan service ID EmailJS Anda
+    const templateID = 'template_4xqif1s'; // Ganti dengan template ID EmailJS Anda
     
-    if (status === 'sukses') {
-        const form = document.getElementById('contactForm');
-        if (!form) return;
-        
-        // Sembunyikan form dengan animasi
-        const formElements = form.querySelectorAll('.form-row, .form-group.full-width');
-        formElements.forEach(element => {
-            element.style.opacity = '0';
-        });
-        
-        setTimeout(() => {
-            formElements.forEach(element => {
-                element.classList.add('form-hidden');
-            });
-            
-            // Tampilkan pesan terima kasih
-            const thankYouMessage = document.getElementById('thankYouMessage');
-            if (thankYouMessage) {
-                thankYouMessage.classList.add('active');
-            }
-        }, 500);
-    }
+    // Kirim email menggunakan EmailJS
+    return emailjs.send(serviceID, templateID, {
+        from_name: formData.name,
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: formData.message
+    });
 }
 
 // Setup dasar pada DOMContentLoaded
@@ -198,8 +189,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup visibility event listener
     document.addEventListener('visibilitychange', handleVisibilityChange);
     
-    // Cek status form
-    checkFormStatus();
+    // Tambahkan event listener untuk form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form default
+            
+            // Ambil data form
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Sembunyikan form dengan animasi
+            const formElements = this.querySelectorAll('.form-row, .form-group.full-width');
+            formElements.forEach(element => {
+                element.style.opacity = '0';
+            });
+            
+            // Tampilkan pesan terima kasih
+            setTimeout(() => {
+                formElements.forEach(element => {
+                    element.classList.add('form-hidden');
+                });
+                document.getElementById('thankYouMessage').classList.add('active');
+                
+                // Kirim email
+                sendEmail(formData)
+                    .then(function() {
+                        console.log('Email berhasil dikirim!');
+                    })
+                    .catch(function(error) {
+                        console.error('Gagal mengirim email:', error);
+                    });
+            }, 500);
+        });
+    }
 });
 
 // Inisialisasi penuh saat window load
