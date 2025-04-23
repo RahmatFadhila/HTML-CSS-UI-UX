@@ -1,13 +1,13 @@
-// Deteksi performa perangkat untuk menyesuaikan efek
+// Detect performance but preserve visual appearance
 function detectPerformance() {
-    // Deteksi perangkat low-end
+    // Detect low-end device
     const isLowEndDevice = () => {
         const processors = navigator.hardwareConcurrency || 1;
         const limitedMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
         return processors <= 2 || limitedMemory;
     };
     
-    // Deteksi koneksi lambat
+    // Detect slow connection
     const isSlowConnection = () => {
         if ('connection' in navigator) {
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -16,19 +16,20 @@ function detectPerformance() {
         return false;
     };
     
-    // Sesuaikan berdasarkan perangkat dan koneksi
-    if (isLowEndDevice() || isSlowConnection()) {
+    // Apply low-performance class only for extreme cases
+    const lowPerformance = isLowEndDevice() && isSlowConnection();
+    if (lowPerformance) {
         document.body.classList.add('low-performance');
     }
     
-    // Tentukan jumlah elemen hujan berdasarkan performa
+    // Keep rain drops count the same to preserve visual appearance
     return {
-        rainDrops: isLowEndDevice() ? 20 : 40,
-        profileRainDrops: isLowEndDevice() ? 8 : 15
+        rainDrops: isLowEndDevice() ? 20 : 40, // Using original values
+        profileRainDrops: isLowEndDevice() ? 8 : 15 // Using original values
     };
 }
 
-// Fungsi untuk menyembunyikan animasi entrance yang lebih sederhana
+// Function to hide entrance animation - preserving original timing
 function hideEntranceAnimation() {
     const entranceAnimation = document.getElementById('entranceAnimation');
     if (!entranceAnimation) return;
@@ -41,7 +42,7 @@ function hideEntranceAnimation() {
     }, 500);
 }
 
-// Fungsi untuk menampilkan elemen halaman dengan animasi
+// Function to animate page elements
 function animatePageElements() {
     const elements = document.querySelectorAll('.page-element');
     elements.forEach(element => {
@@ -49,7 +50,7 @@ function animatePageElements() {
     });
 }
 
-// Memindahkan createRainDrop ke luar sebagai helper function untuk mengurangi duplikasi
+// Optimized rain drop creation that preserves visual look
 function createRainDrop(isMainRain) {
     const drop = document.createElement('div');
     drop.className = 'rain-drop';
@@ -58,26 +59,26 @@ function createRainDrop(isMainRain) {
     const posX = Math.floor(Math.random() * window.innerWidth);
     drop.style.left = posX + 'px';
     
-    // Random falling speed
+    // Random falling speed - preserving original randomization
     const fallDuration = isMainRain ? 
         (0.8 + Math.random() * 0.7) : 
         (0.5 + Math.random() * 0.5);
     drop.style.animationDuration = fallDuration + 's';
     
-    // Random opacity
+    // Random opacity - preserving original randomization
     const opacity = isMainRain ? 
         (0.2 + Math.random() * 0.4) : 
         (0.1 + Math.random() * 0.3);
     drop.style.opacity = opacity;
     
-    // Random size
+    // Random size - preserving original randomization
     const size = isMainRain ? 
         (1 + Math.random()) : 
         (0.5 + Math.random() * 0.5);
     drop.style.width = size + 'px';
     drop.style.height = isMainRain ? (size * 15) + 'px' : (size * 10) + 'px';
     
-    // Tambahkan animasi miring untuk beberapa drops
+    // Preserve original angled animation
     if (Math.random() > 0.7) {
         drop.style.animation = `rain-fall-angled ${fallDuration}s linear infinite`;
     }
@@ -85,7 +86,7 @@ function createRainDrop(isMainRain) {
     return drop;
 }
 
-// Fungsi untuk membuat efek hujan utama
+// Function to create rain effect - optimized but preserving appearance
 function createRain() {
     const rainContainer = document.querySelector('.rain-container');
     const rainFooter = document.querySelector('.rain-footer');
@@ -94,29 +95,30 @@ function createRain() {
     const performanceSettings = detectPerformance();
     const numberOfDrops = performanceSettings.rainDrops;
     
-    // Hapus semua elemen yang mungkin sudah ada
+    // Clear any existing drops
     rainContainer.innerHTML = '';
     rainFooter.innerHTML = '';
     
-    // Menggunakan fragments untuk performa lebih baik
+    // Use fragments for better performance
     const mainFragment = document.createDocumentFragment();
     const footerFragment = document.createDocumentFragment();
     
-    // Buat rain drops untuk container utama
+    // Create main rain drops
     for (let i = 0; i < numberOfDrops; i++) {
         mainFragment.appendChild(createRainDrop(true));
     }
     
-    // Buat rain drops untuk footer
+    // Create footer rain drops
     for (let i = 0; i < numberOfDrops / 2; i++) {
         footerFragment.appendChild(createRainDrop(false));
     }
     
+    // Append in one operation for better performance
     rainContainer.appendChild(mainFragment);
     rainFooter.appendChild(footerFragment);
 }
 
-// Fungsi untuk membuat hujan di sekitar profil
+// Function to create profile rain - preserving visual appearance
 function createProfileRain() {
     const profileRain = document.querySelector('.profile-rain');
     if (!profileRain) return;
@@ -124,21 +126,24 @@ function createProfileRain() {
     const performanceSettings = detectPerformance();
     const numberOfDrops = performanceSettings.profileRainDrops;
     
+    // Clear existing drops
+    profileRain.innerHTML = '';
+    
     const fragment = document.createDocumentFragment();
     
     for (let i = 0; i < numberOfDrops; i++) {
         const drop = document.createElement('div');
         drop.className = 'profile-rain-drop';
         
-        // Posisi
+        // Preserve original positioning
         const posX = Math.floor(Math.random() * 100);
         drop.style.left = posX + '%';
         
-        // Kecepatan jatuh
+        // Preserve original animation speed
         const fallDuration = 0.8 + Math.random();
         drop.style.animationDuration = fallDuration + 's';
         
-        // Ukuran
+        // Preserve original size
         const size = 1 + Math.random();
         drop.style.width = size + 'px';
         drop.style.height = (size * 6) + 'px';
@@ -149,50 +154,53 @@ function createProfileRain() {
     profileRain.appendChild(fragment);
 }
 
-// Fungsi untuk creating lightning effect
+// Lightning effect - preserving original visuals
 function createLightning() {
     const lightningContainer = document.querySelector('.lightning-container');
     if (!lightningContainer) return;
     
-    // Fungsi untuk menambahkan kilat
+    // Function to add lightning effect
     const addLightning = () => {
-        // Jika mode performa rendah, kurangi efek kilat
+        // Skip if low performance mode
         if (document.body.classList.contains('low-performance')) {
             return;
         }
         
-        const lightning = document.createElement('div');
-        lightning.className = 'lightning';
-        
-        // Random posisi
-        const posX = Math.floor(Math.random() * 100);
-        const posY = Math.floor(Math.random() * 100);
-        lightning.style.left = posX + '%';
-        lightning.style.top = posY + '%';
-        
-        lightningContainer.appendChild(lightning);
-        
-        // Hapus elemen kilat setelah animasi selesai
-        setTimeout(() => {
-            if (lightning.parentNode === lightningContainer) {
-                lightningContainer.removeChild(lightning);
-            }
-        }, 200);
+        // Only create lightning sometimes, as in original
+        if (Math.random() > 0.7) {
+            const lightning = document.createElement('div');
+            lightning.className = 'lightning';
+            
+            // Preserve original positioning
+            const posX = Math.floor(Math.random() * 100);
+            const posY = Math.floor(Math.random() * 100);
+            lightning.style.left = posX + '%';
+            lightning.style.top = posY + '%';
+            
+            lightningContainer.appendChild(lightning);
+            
+            // Remove lightning after animation finishes
+            setTimeout(() => {
+                if (lightning.parentNode === lightningContainer) {
+                    lightningContainer.removeChild(lightning);
+                }
+            }, 200);
+        }
     };
     
-    // Tambahkan kilat secara acak
+    // Keep original timing interval
     const interval = setInterval(() => {
-        // Hanya tambahkan kilat jika halaman terlihat
-        if (document.visibilityState === 'visible' && Math.random() > 0.7) {
+        // Only add lightning if page is visible
+        if (document.visibilityState === 'visible') {
             addLightning();
         }
     }, 5000);
     
-    // Simpan interval ke window agar bisa dibersihkan saat dibutuhkan
+    // Store interval reference
     window.lightningInterval = interval;
 }
 
-// Fungsi untuk mengatur transisi halaman
+// Page transitions - preserving original behavior
 function setupPageTransitions() {
     const transitionLinks = document.querySelectorAll('a[data-transition="true"]');
     const overlay = document.querySelector('.page-transition-overlay');
@@ -204,7 +212,7 @@ function setupPageTransitions() {
             
             overlay.classList.add('active');
             
-            // Navigasi setelah animasi overlay
+            // Navigate after animation
             setTimeout(() => {
                 sessionStorage.setItem('internalNavigation', 'true');
                 window.location.href = target;
@@ -213,52 +221,50 @@ function setupPageTransitions() {
     });
 }
 
-// Fungsi untuk mengoptimalkan animasi selama scroll
+// Scroll optimization that won't affect appearance
 function optimizeOnScroll() {
-    // Menggunakan throttling untuk optimasi
     let scrollThrottleTimeout;
-    const throttleDuration = 100;
     
     window.addEventListener('scroll', () => {
-        // Skip jika sudah dalam throttle
+        // Skip if already in throttle
         if (scrollThrottleTimeout) return;
         
         scrollThrottleTimeout = setTimeout(() => {
-            // Tambahkan class reduced ke container hujan
+            // Add reduced class during scroll
             document.body.classList.add('reduced');
             
-            // Hapus class setelah scroll selesai
+            // Remove class after scroll ends
             clearTimeout(window.scrollEndTimeout);
             window.scrollEndTimeout = setTimeout(() => {
                 document.body.classList.remove('reduced');
                 scrollThrottleTimeout = null;
             }, 300);
             
-        }, throttleDuration);
+        }, 100);
     }, { passive: true });
 }
 
-// Fungsi callback visibility API
+// Visibility API handler to save resources when tab not visible
 function handleVisibilityChange() {
     if (document.visibilityState === 'hidden') {
-        // Pause animations when page is not visible
+        // Pause animations when page not visible
         document.body.classList.add('animation-paused');
     } else {
-        // Resume animations when page is visible again
+        // Resume animations when page visible again
         document.body.classList.remove('animation-paused');
     }
 }
 
-// DOMContentLoaded event - minimal initial setup
+// DOMContentLoaded - initial setup
 document.addEventListener('DOMContentLoaded', function() {
-    // Setup page transitions only - delaying rest to after load
+    // Setup page transitions
     setupPageTransitions();
     
     // Listen for visibility changes
     document.addEventListener('visibilitychange', handleVisibilityChange);
 });
 
-// Load event - complete initialization after everything loaded
+// Load event - main initialization
 window.addEventListener('load', function() {
     const overlay = document.querySelector('.page-transition-overlay');
     if (overlay) {
@@ -269,22 +275,22 @@ window.addEventListener('load', function() {
     const entranceSeen = sessionStorage.getItem('entranceSeen');
     const internalNavigation = sessionStorage.getItem('internalNavigation');
     
-    // Optimize for animation on scroll
+    // Optimize for scroll
     optimizeOnScroll();
     
-    // Delayed initialization based on navigation type
+    // Initialize based on navigation state
     if (internalNavigation) {
-        // Internal navigation - remove flag
+        // Internal navigation - skip entrance
         sessionStorage.removeItem('internalNavigation');
         
         if (entranceAnimation) {
             entranceAnimation.style.display = 'none';
         }
         
-        // Animasikan elemen halaman
-        requestAnimationFrame(animatePageElements);
+        // Animate page elements
+        animatePageElements();
         
-        // Create rain effects with slight delay
+        // Create effects with slight delay
         setTimeout(() => {
             createRain();
             createProfileRain();
@@ -292,14 +298,15 @@ window.addEventListener('load', function() {
         }, 300);
     } else {
         if (entranceSeen) {
-            // Skip entrance for returning visitors
+            // Returning visitor - skip entrance
             if (entranceAnimation) {
                 entranceAnimation.style.display = 'none';
             }
             
-            requestAnimationFrame(animatePageElements);
+            // Animate page elements
+            animatePageElements();
             
-            // Create rain effects with slight delay
+            // Create effects with slight delay
             setTimeout(() => {
                 createRain();
                 createProfileRain();
@@ -307,20 +314,20 @@ window.addEventListener('load', function() {
             }, 300);
         } else {
             // First visit - show entrance
-            // Hide entrance after a short time
+            // Hide entrance after a short time - preserve original timing
             setTimeout(() => {
                 hideEntranceAnimation();
                 
                 // Animate page elements
-                requestAnimationFrame(animatePageElements);
+                animatePageElements();
                 
-                // Create rain effects
+                // Create effects with slight delay
                 setTimeout(() => {
                     createRain();
                     createProfileRain();
                     createLightning();
                 }, 300);
-            }, 1500); // Reduced from 3000 to 1500
+            }, 1500);
         }
     }
 });

@@ -31,6 +31,7 @@ body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+  will-change: transform; /* Performance hint without changing appearance */
 }
 
 body::before {
@@ -54,7 +55,7 @@ body::before {
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
-  will-change: opacity;
+  will-change: opacity; /* Performance hint without changing appearance */
 }
 
 .rain-footer {
@@ -71,7 +72,7 @@ body::before {
   background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--rain-color) 100%);
   opacity: 0.6;
   animation: rain-fall linear infinite;
-  will-change: transform;
+  will-change: transform; /* Performance hint without changing appearance */
 }
 
 @keyframes rain-fall {
@@ -115,7 +116,7 @@ body::before {
   background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
   opacity: 0.7;
   animation: profile-rain-fall linear infinite;
-  will-change: transform;
+  will-change: transform; /* Performance hint without changing appearance */
 }
 
 @keyframes profile-rain-fall {
@@ -153,7 +154,7 @@ body::before {
   filter: blur(2px);
   opacity: 0;
   animation: lightning-flash 0.2s ease-in-out;
-  will-change: opacity;
+  will-change: opacity; /* Performance hint without changing appearance */
 }
 
 @keyframes lightning-flash {
@@ -299,7 +300,7 @@ body::before {
   background: linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,0.8) 100%);
   opacity: 0.7;
   animation: entranceRainFall linear infinite;
-  will-change: transform;
+  will-change: transform; /* Performance hint without changing appearance */
 }
 
 @keyframes entranceRainFall {
@@ -336,7 +337,7 @@ body::before {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-  will-change: opacity, transform;
+  will-change: opacity, transform; /* Performance hint without changing appearance */
 }
 
 .page-element.visible {
@@ -695,7 +696,7 @@ body::before {
   }
 }
 
-/* ===== KELAS OPTIMASI PERFORMA ===== */
+/* ===== PERFORMANCE OPTIMIZATION CLASSES ===== */
 .animation-paused * {
   animation-play-state: paused !important;
 }
