@@ -31,7 +31,6 @@ body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  will-change: transform; /* Performance hint without changing appearance */
 }
 
 body::before {
@@ -55,7 +54,7 @@ body::before {
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
-  will-change: opacity; /* Performance hint without changing appearance */
+  will-change: opacity;
 }
 
 .rain-footer {
@@ -72,7 +71,7 @@ body::before {
   background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--rain-color) 100%);
   opacity: 0.6;
   animation: rain-fall linear infinite;
-  will-change: transform; /* Performance hint without changing appearance */
+  will-change: transform;
 }
 
 @keyframes rain-fall {
@@ -116,7 +115,7 @@ body::before {
   background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
   opacity: 0.7;
   animation: profile-rain-fall linear infinite;
-  will-change: transform; /* Performance hint without changing appearance */
+  will-change: transform;
 }
 
 @keyframes profile-rain-fall {
@@ -154,7 +153,7 @@ body::before {
   filter: blur(2px);
   opacity: 0;
   animation: lightning-flash 0.2s ease-in-out;
-  will-change: opacity; /* Performance hint without changing appearance */
+  will-change: opacity;
 }
 
 @keyframes lightning-flash {
@@ -300,7 +299,7 @@ body::before {
   background: linear-gradient(180deg, rgba(0,229,255,0) 0%, rgba(0,229,255,0.8) 100%);
   opacity: 0.7;
   animation: entranceRainFall linear infinite;
-  will-change: transform; /* Performance hint without changing appearance */
+  will-change: transform;
 }
 
 @keyframes entranceRainFall {
@@ -337,7 +336,7 @@ body::before {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-  will-change: opacity, transform; /* Performance hint without changing appearance */
+  will-change: opacity, transform;
 }
 
 .page-element.visible {
@@ -441,10 +440,25 @@ body::before {
   text-align: left;
 }
 
+/* Updated arrow-icon to be a stylish line */
 .arrow-icon {
-  font-size: 2rem;
-  color: #fff;
   margin-top: 2rem;
+  display: block;
+  width: 120px;
+  height: 2px;
+  background-color: var(--main-color);
+  position: relative;
+}
+
+.arrow-icon::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background-color: var(--main-color);
+  opacity: 0.6;
 }
 
 .center-content {
@@ -459,6 +473,11 @@ body::before {
   position: relative;
   width: 290px;
   height: 290px;
+  transition: transform 0.3s ease;
+}
+
+.photo-stack:hover {
+  transform: translateY(-5px);
 }
 
 .background-photo {
@@ -480,6 +499,12 @@ body::before {
   object-fit: cover;
   border-radius: 20px;
   z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-photo:hover {
+  box-shadow: 0 8px 20px rgba(0, 229, 255, 0.2);
 }
 
 .right-content {
@@ -521,15 +546,73 @@ body::before {
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1rem;
-  transition: color 0.3s;
+  transition: color 0.3s, background-color 0.4s, transform 0.4s, box-shadow 0.4s;
+  position: relative;
+  overflow: hidden;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  animation: button-attention 3s ease-in-out infinite;
+}
+
+@keyframes button-attention {
+  0% {
+    transform: translateX(0);
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(0);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
+  }
 }
 
 .cta-button:hover {
   color: var(--main-color);
+  background-color: rgba(0, 229, 255, 0.2);
+  animation-play-state: paused;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
 }
 
 .cta-button i {
   margin-left: 10px;
+  position: relative;
+  animation: arrow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(7px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.cta-button:hover i {
+  animation: arrow-excited 0.8s ease-in-out infinite;
+}
+
+@keyframes arrow-excited {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
 }
 
 .weather {
@@ -696,7 +779,7 @@ body::before {
   }
 }
 
-/* ===== PERFORMANCE OPTIMIZATION CLASSES ===== */
+/* ===== KELAS OPTIMASI PERFORMA ===== */
 .animation-paused * {
   animation-play-state: paused !important;
 }
@@ -768,4 +851,41 @@ body::before {
 /* Animasi paused ketika halaman tidak terlihat */
 .animation-paused * {
   animation-play-state: paused !important;
+}
+
+/* Tambahkan bagian ini di akhir file home.css Anda */
+
+/* Performa Optimasi untuk PageSpeed */
+.photo-stack {
+  transform: translateZ(0); /* Meningkatkan hardware acceleration */
+}
+
+.cta-button, .photo-stack:hover {
+  will-change: transform;
+}
+
+.profile-photo, .background-photo {
+  aspect-ratio: 1/1; /* Mencegah layout shift */
+}
+
+/* Mengurangi kompleksitas box shadow */
+.cta-button:hover {
+  box-shadow: 0 2px 8px rgba(0, 229, 255, 0.3);
+}
+
+/* Optimasi mode performa rendah (Akan berdampak saat detectPerformance() mendeteksi perangkat low-end) */
+.low-performance .rain-drop:nth-child(n+15),
+.low-performance .profile-rain-drop:nth-child(n+8) {
+  display: none;
+}
+
+/* Mengurangi jumlah animasi di mobile */
+@media (max-width: 768px) {
+  .entrance-drop:nth-child(odd) {
+    display: none;
+  }
+  
+  .rain-drop {
+    height: 10px;
+  }
 }
